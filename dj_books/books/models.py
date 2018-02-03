@@ -10,6 +10,7 @@ from __future__ import unicode_literals
 from django.db import models
 
 
+
 class Author(models.Model):
     id_authors = models.AutoField(primary_key=True)
     name = models.TextField(blank=True, null=True)
@@ -23,8 +24,8 @@ class Author(models.Model):
         return "{} {} ({}-{})".format(self.name, self.family_name, b, d)
 
     class Meta:
-        managed = True
         db_table = 'authors'
+        ordering= ["name", "family_name", "birth"]
 
 class Book(models.Model):
     id_books = models.AutoField(primary_key=True)
@@ -40,5 +41,5 @@ class Book(models.Model):
         return "{} ({})".format(self.title, self.year)
 
     class Meta:
-        managed = False
+#        default_permissions=('add','change','delete')
         db_table = 'books'
