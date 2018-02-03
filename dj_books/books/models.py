@@ -10,19 +10,23 @@ from __future__ import unicode_literals
 from django.db import models
 
 
-class Authors(models.Model):
+class Author(models.Model):
     id_authors = models.AutoField(primary_key=True)
     name = models.TextField(blank=True, null=True)
     family_name = models.TextField(blank=True, null=True)
     birth = models.IntegerField(blank=True, null=True)
     death = models.IntegerField(blank=True, null=True)
+    
+    def __str__(self):
+        b=self.birth if self.birth!=None else "####"
+        d=self.death if self.death!=None else "####"
+        return "{} {} ({}-{})".format(self.name, self.family_name, b, d)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'authors'
 
-
-class Books(models.Model):
+class Book(models.Model):
     id_books = models.AutoField(primary_key=True)
     title = models.TextField(blank=True, null=True)
     year = models.IntegerField(blank=True, null=True)
@@ -30,7 +34,10 @@ class Books(models.Model):
     valoration = models.IntegerField(blank=True, null=True)
     read_start = models.DateField(blank=True, null=True)
     read_end = models.DateField(blank=True, null=True)
-    id_authors = models.ForeignKey(Authors, models.DO_NOTHING, db_column='id_authors')
+    id_authors = models.ForeignKey(Author, models.DO_NOTHING, db_column='id_authors')
+    
+    def __str__(self):
+        return "{} ({})".format(self.title, self.year)
 
     class Meta:
         managed = False
