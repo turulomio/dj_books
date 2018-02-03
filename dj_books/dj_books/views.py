@@ -3,6 +3,7 @@ from django.http import HttpResponse, Http404
 from django.template.loader import get_template
 from django.contrib.auth import logout
 from django.shortcuts import redirect
+from django.utils.translation import activate
 
 def unauthorized(request):
     return HttpResponse("You're not authorized") 
@@ -23,6 +24,7 @@ def hours_ahead(request, offset):
     return HttpResponse(html)
 
 def index(request):
+    activate("es")
     now = datetime.datetime.now()
     if request.user.is_authenticated:
         t = get_template('times.html')
@@ -34,3 +36,8 @@ def index(request):
 def logout_view(request):
     logout(request)
     return redirect('login')
+    
+    
+def change_language(request, lang):
+    activate(lang)
+    
