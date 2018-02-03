@@ -16,23 +16,23 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: dj_books/admin.py:6 dj_books/admin.py:9
 msgid "My personal Django"
-msgstr "Mi Django personal"
+msgstr ""
 
 #: dj_books/admin.py:12
 msgid "My personal Django administration"
-msgstr "Administración de mi Django personal"
+msgstr ""
 
 #: dj_books/settings.py:110
 msgid "Spanish"
-msgstr "Español"
+msgstr ""
 
 #: dj_books/settings.py:111
 msgid "English"
-msgstr "English"
+msgstr ""
 
 #: dj_books/settings.py:112
 msgid "French"
@@ -40,20 +40,20 @@ msgstr ""
 
 #: templates/base.html:36
 msgid "Wellcome"
-msgstr "Bienvenido"
+msgstr ""
 
 #: templates/base.html:36
 msgid "Home"
-msgstr "Inicio"
+msgstr ""
 
 #: templates/base.html:36
 msgid "Administration"
-msgstr "Administración"
+msgstr ""
 
 #: templates/base.html:36
 msgid "Logout"
-msgstr "Salir"
+msgstr ""
 
 #: templates/base.html:37
 msgid "Change language"
-msgstr "Cambiar idioma"
+msgstr ""
