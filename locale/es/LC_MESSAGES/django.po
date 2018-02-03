@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-03 12:04+0100\n"
+"POT-Creation-Date: 2018-02-03 21:05+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,8 +28,24 @@ msgstr "Administración de mi Django personal"
 
 #: dj_books/settings.py:110
 msgid "Spanish"
-msgstr ""
+msgstr "Español"
 
 #: dj_books/settings.py:111
 msgid "English"
-msgstr ""
+msgstr "English"
+
+#: templates/base.html:35
+msgid "Wellcome"
+msgstr "Bienvenido"
+
+#: templates/base.html:35
+msgid "Home"
+msgstr "Inicio"
+
+#: templates/base.html:35
+msgid "Administration"
+msgstr "Administración"
+
+#: templates/base.html:35
+msgid "Logout"
+msgstr "Salir"
