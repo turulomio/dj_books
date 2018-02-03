@@ -19,9 +19,10 @@ class Author(models.Model):
     death = models.IntegerField(blank=True, null=True)
     
     def __str__(self):
-        b=self.birth if self.birth!=None else "####"
-        d=self.death if self.death!=None else "####"
-        return "{} {} ({}-{})".format(self.name, self.family_name, b, d)
+#        b=self.birth if self.birth!=None else "####"
+#        d=self.death if self.death!=None else "####"
+#        return "{} {} ({}-{})".format(self.name, self.family_name, b, d)
+        return "{} {}".format(self.name, self.family_name)
 
     class Meta:
         db_table = 'authors'
