@@ -1,9 +1,11 @@
 import datetime
 from django.http import HttpResponse, Http404
 from django.template.loader import get_template
+from django.contrib.auth import logout
+from django.shortcuts import redirect
 
-def hello(request):
-    return HttpResponse("Hello world") 
+def unauthorized(request):
+    return HttpResponse("You're not authorized") 
     
     
 def current_datetime(request):
@@ -24,7 +26,11 @@ def index(request):
     now = datetime.datetime.now()
     if request.user.is_authenticated:
         t = get_template('times.html')
-        html = t.render({'datetime': now})
+        html = t.render({'datetime': now, 'user': request.user})
         return HttpResponse(html)
     else:
-        return HttpResponse("You're not logged") 
+        return unauthorized(request)
+        
+def logout_view(request):
+    logout(request)
+    return redirect('login')

@@ -17,14 +17,13 @@ from django.conf.urls import url
 from dj_books.admin import mysite
 
 from django.contrib.auth import views as auth_views
-from dj_books.views import hello,  current_datetime,  hours_ahead,  index
+from dj_books.views import  current_datetime,  hours_ahead,  index, logout_view
 
 urlpatterns = [
     url(r'^admin/', mysite.urls),
-    url(r'^hello/$', hello),
     url(r'^time/$', current_datetime),
     url(r'^time/plus/(\d+)/$', hours_ahead),
     url(r'^$', auth_views.login, name='login'),
-    url(r'^logout/$', auth_views.logout, name='logout'), 
-    url(r'^index/$', index),
+    url(r'^logout/$', logout_view, name='logout'), 
+    url(r'^home/$', index, name='home'),
 ]
