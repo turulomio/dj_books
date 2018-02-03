@@ -26,6 +26,7 @@ class Author(models.Model):
     class Meta:
         db_table = 'authors'
         ordering= ["name", "family_name", "birth"]
+        managed=True
 
 class Book(models.Model):
     id_books = models.AutoField(primary_key=True)
@@ -41,5 +42,6 @@ class Book(models.Model):
         return "{} ({})".format(self.title, self.year)
 
     class Meta:
-#        default_permissions=('add','change','delete')
         db_table = 'books'
+        ordering= ["title", "id_authors"]
+        managed=True
