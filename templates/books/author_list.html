@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Authors</h2>
+    <ul>
+        {% for author in object_list %}
+            <li>{{ author }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
