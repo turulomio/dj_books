@@ -4,6 +4,9 @@ from django.template.loader import get_template
 from django.contrib.auth import logout
 from django.shortcuts import redirect
 from django.utils.translation import activate
+from django.views.generic import ListView,  DetailView
+
+from books.models import Author
 
 def unauthorized(request):
     return HttpResponse("You're not authorized") 
@@ -41,3 +44,14 @@ def logout_view(request):
 def change_language(request, lang):
     activate(lang)
     
+    
+class AuthorList(ListView):
+    queryset = Author.objects.order_by('name')
+    context_object_name = 'author_list'
+    
+#class AuthorDetail(DetailView):
+#    model = Author
+#    def get_context_data(self, **kwargs):
+#        context = super(Author, self).get_context_data(**kwargs)
+#        context['ci1'] = Author.objects.all()
+#        return context
