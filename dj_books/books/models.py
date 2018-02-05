@@ -6,11 +6,25 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from __future__ import unicode_literals
-
+from  django.contrib.auth.models import User
 from django.db import models
 
-
-
+class Profile(models.Model):    
+    SPANISH= 'ES'
+    ENGLISH = 'EN'
+    FRENCH="FR"
+    LANGUAGES= (
+        (SPANISH, 'Español'),
+        (ENGLISH, 'English'),
+        (FRENCH, 'Francés')
+    )
+    language= models.CharField(
+        max_length=2,
+        choices=LANGUAGES,
+        default=ENGLISH,
+    )
+    user = models.ForeignKey(User)
+    
 class Author(models.Model):
     id_authors = models.AutoField(primary_key=True)
     name = models.TextField(blank=True, null=True)

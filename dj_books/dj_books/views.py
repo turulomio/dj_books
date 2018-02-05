@@ -50,6 +50,7 @@ def database(request):
     books=Book.objects.order_by('title')
     t=get_template("database.html")
     html = t.render({'authors': authors, 'books': books})
+    print(request.user, dir(request.user))
     return HttpResponse(html)
     
 class AuthorList(ListView):
