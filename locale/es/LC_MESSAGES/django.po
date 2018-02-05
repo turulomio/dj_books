@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-04 09:38+0100\n"
+"POT-Creation-Date: 2018-02-05 06:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,31 +26,31 @@ msgstr "Mi Django personal"
 msgid "My personal Django administration"
 msgstr "Administración de mi Django personal"
 
-#: dj_books/settings.py:110
+#: dj_books/settings.py:113
 msgid "Spanish"
 msgstr "Español"
 
-#: dj_books/settings.py:111
+#: dj_books/settings.py:114
 msgid "English"
 msgstr "English"
 
-#: dj_books/settings.py:112
+#: dj_books/settings.py:115
 msgid "French"
-msgstr ""
+msgstr "Francés"
 
-#: templates/base.html:36
+#: templates/base.html:37
 msgid "Wellcome"
 msgstr "Bienvenido"
 
-#: templates/base.html:36
+#: templates/base.html:37
 msgid "Home"
 msgstr "Inicio"
 
-#: templates/base.html:36
+#: templates/base.html:37
 msgid "Administration"
 msgstr "Administración"
 
-#: templates/base.html:36
+#: templates/base.html:37
 msgid "Logout"
 msgstr "Salir"
 
@@ -58,10 +58,18 @@ msgstr "Salir"
 msgid "Change language"
 msgstr "Cambiar idioma"
 
-#: templates/times.html:5
+#: templates/ci1.html:5
 msgid "Consultas interactivas"
 msgstr ""
 
-#: templates/times.html:7
+#: templates/ci1.html:7 templates/times.html:7
 msgid "Interactive query"
-msgstr ""
+msgstr "Consulta interactiva"
+
+#: templates/times.html:5
+msgid "Querys menu"
+msgstr "Menú de consultas"
+
+#: templates/times.html:8
+msgid "All database"
+msgstr "Toda la base de datos"

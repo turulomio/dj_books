@@ -17,7 +17,7 @@ from django.conf.urls import url, include
 from dj_books.admin import mysite
 
 from django.contrib.auth import views as auth_views
-from dj_books.views import  current_datetime,  hours_ahead,  index, logout_view,  AuthorList
+from dj_books.views import  current_datetime,  hours_ahead,  index, logout_view,  AuthorList, database
 urlpatterns = [
     url(r'^admin/', mysite.urls),
     url(r'^time/$', current_datetime),
@@ -27,4 +27,5 @@ urlpatterns = [
     url(r'^home/$', index, name='home'),
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^authors/$', AuthorList.as_view()),
+    url(r'^database/$', database), 
 ]
