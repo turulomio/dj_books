@@ -2,9 +2,32 @@
 <html>
 {% load i18n %}
 {% load mytranslation %}
-{% set_language user.profile.language%}
-
+{% set_language user.profile.language %}
     {# Make modifiable head elements #}
+    
+<style>
+.nav-ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.nav-li {
+    float: left;
+}
+
+.nav-li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+
+</style>
     <head>
         <title>{% block title %}Home{% endblock title %}</title>
         {% block head_favicon %}
@@ -17,7 +40,7 @@
                       content="text/html; charset=utf-8" />
             {% endblock head_meta_charset %}
             {% block head_meta_contentlanguage %}
-                <meta http-equiv="Content-Language" value="en-US" />
+                <meta http-equiv="Content-Language" value="e-US" />
             {% endblock head_meta_contentlanguage %}
             {% block head_meta_viewport %}
                 <meta name="viewport"
@@ -26,19 +49,24 @@
         {% endblock head_meta %}
         {% block head_css %}
             {% block head_css_site %}
-                <link href="{{ STATIC_URL }}css/bootstrap.min.css"
-                      rel="stylesheet" media="screen">
-                <link href="{{ STATIC_URL }}css/app.css"
-                      rel="stylesheet" media="screen">
+                <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
             {% endblock head_css_site %}
             {% block head_css_section %}{% endblock head_css_section %}
             {% block head_css_page %}{% endblock head_css_page %}
         {% endblock head_css %}
     </head>
 <body>
-<div class="login_string">
-    {% trans "Wellcome" %} {{ user.username|upper }} / <a href="/home/"> {% trans "Home" %} </a> / <a href="/admin/"> {% trans "Administration" %} </a> / <a href="/profile/edit/"> {% trans "Settings" %} </a> / <a href="/logout/"> {% trans "Logout" %} </a>
-</div>
+
+<ul class="nav-ul">
+  <li class="nav-li"><a href="/home/">{% trans "Home" %}</a></li>
+  <li class="nav-li"><a href="/profile/">{% trans "Settings" %}</a></li>
+    {% if request.user.is_superuser %}
+        <li class="nav-li"><a href="/admin/">{% trans "Administration" %}</a></li>
+    {% endif %}
+  <li class="nav-li"><a href="/logout/">{% trans "Logout" %} {{ user.username|upper }}</a></li>
+</ul>
+
 </form>
 
 {% block content %}
@@ -47,5 +75,3 @@
 <p> Current language is {{user.profile.language}}</p>
 </body>
 </html>
-
-1

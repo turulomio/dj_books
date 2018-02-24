@@ -1,30 +1,23 @@
 
 {% extends 'base.html' %}
+{% load i18n %}
+{% load mytranslation %}
 
+{% set_language user.profile.language%}
 
 {% block head %}
-<title>Profile</title>
+<title>My Library > {% trans "Settings" %}</title>
 {% endblock %}
 
 {% block content %}
 <div class="container">
-    <h1>Profile</h1>
-    <p>Username: {{ user }}</p>
-    <p>First name: {{ user.first_name }}</p>
-    <p>Last name: {{ user.last_name }}</p>
-    <p>Email: {{ user.email }}</p>
-    <p>Description: {{ user.userprofile.description }}</p>
-    <p>Phone: {{ user.userprofile.phone }}</p>
-    <p>City: {{ user.userprofile.city }}</p>
-    <p>Website: {{ user.userprofile.website }}</p>
-    {% if user.userprofile.image %}
-    <img src="{{ user.userprofile.image.url }}" width="240">
-    {% endif %}
+    <h1>{% trans "Settings" %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
+    <button type="submit">Save changes</button>
+    </form>
+{% include "messages.html" %}
 </div>
-<form method="post">
-  {% csrf_token %}
-  {{ user_form.as_p }}
-  {{ profile_form.as_p }}
-  <button type="submit">Save changes</button>
-</form>
 {% endblock %}

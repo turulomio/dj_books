@@ -1,9 +1,7 @@
 import datetime
 from django.http import HttpResponse, Http404
-from django.template.loader import get_template
 from django.contrib.auth import logout
 from django.shortcuts import redirect
-from django.utils.translation import activate
 from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -33,30 +31,20 @@ def hours_ahead(request, offset):
     return HttpResponse(html)
 
 @login_required
-def index(request):
-    activate("es")
+def home(request):
     now = datetime.datetime.now()
-    t = get_template('times.html')
-    html = t.render({'datetime': now, 'user': request.user})
-    return HttpResponse(html)
+    return render(request, 'home.html', locals())
         
 def logout_view(request):
     logout(request)
     return redirect('login')
-    
-    
-def change_language(request, lang):
-    activate(lang)
+
     
 @login_required
 def database(request):
-    activate("es")
     authors= Author.objects.order_by('name')
     books=Book.objects.order_by('title')
-    t=get_template("database.html")
-    html = t.render({'authors': authors, 'books': books})
-    print(request.user, dir(request.user))
-    return HttpResponse(html)
+    return render(request, 'database.html', locals())
     
 class AuthorList(ListView):
     queryset = Author.objects.order_by('name')
@@ -77,35 +65,4 @@ def profile_edit(request):
     else:
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)
-    print(locals())
-    print(request.user, request.user.profile.language)
     return render(request, 'profile.html', locals())
-#    
-#def activate_language(language):
-#    activate(language.lower())
-    
-#class AuthorDetail(DetailView):
-#    model = Author
-#    def get_context_data(self, **kwargs):
-#        context = super(Author, self).get_context_data(**kwargs)
-#        context['ci1'] = Author.objects.all()
-#        return context
-#def view_profile(request, pk=None):
-#    if pk:
-#        user = User.objects.get(pk=pk)
-#    else:
-#        user = request.user
-#    args = {'user': user}
-#    return render(request, 'accounts/profile.html', args)
-#
-#def edit_profile(request):
-#    if request.method == 'POST':
-#        form = EditProfileForm(request.POST, instance=request.user)
-#
-#        if form.is_valid():
-#            form.save()
-#            return redirect(reverse('accounts:view_profile'))
-#    else:
-#        form = EditProfileForm(instance=request.user)
-#        args = {'form': form}
-#return render(request, 'accounts/edit_profile.html', args)

@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
-from django.utils.translation import gettext_lazy as _
+#from django.utils.translation import gettext_lazy as _
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -108,12 +108,12 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-LANGUAGES = [
-    ('es', _('Spanish')),
-    ('en', _('English')),
-    ('fr', _('French')),
-]
+#
+#LANGUAGES = [
+#    ('es', _('Spanish')),
+#    ('en', _('English')),
+#    ('fr', _('French')),
+#]
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
@@ -128,6 +128,7 @@ USE_L10N = True
 
 USE_TZ = True
 LOGIN_REDIRECT_URL = '/home/'
+#LOGOUT_URL = "/"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-05 06:07+0100\n"
+"POT-Creation-Date: 2018-02-24 12:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,38 +38,48 @@ msgstr "English"
 msgid "French"
 msgstr "Francés"
 
-#: templates/base.html:37
-msgid "Wellcome"
-msgstr "Bienvenido"
+#: dj_books/views.py:62
+msgid "Your profile was successfully updated!"
+msgstr "Tu perfil se ha actualizado correctamente"
 
-#: templates/base.html:37
+#: dj_books/views.py:64
+msgid "Please correct the error below."
+msgstr "Por favor corrige el error abajo"
+
+#: templates/base.html:62
 msgid "Home"
 msgstr "Inicio"
 
-#: templates/base.html:37
+#: templates/base.html:63 templates/profile.html:9 templates/profile.html:14
+msgid "Settings"
+msgstr "Configuración"
+
+#: templates/base.html:65
 msgid "Administration"
 msgstr "Administración"
 
-#: templates/base.html:37
+#: templates/base.html:67
 msgid "Logout"
 msgstr "Salir"
-
-#: templates/base.html:37
-msgid "Change language"
-msgstr "Cambiar idioma"
 
 #: templates/ci1.html:5
 msgid "Consultas interactivas"
 msgstr ""
 
-#: templates/ci1.html:7 templates/times.html:7
+#: templates/ci1.html:7 templates/home.html:9
 msgid "Interactive query"
 msgstr "Consulta interactiva"
 
-#: templates/times.html:5
+#: templates/home.html:7
 msgid "Querys menu"
 msgstr "Menú de consultas"
 
-#: templates/times.html:8
+#: templates/home.html:10
 msgid "All database"
 msgstr "Toda la base de datos"
+
+#~ msgid "Wellcome"
+#~ msgstr "Bienvenido"
+
+#~ msgid "Change language"
+#~ msgstr "Cambiar idioma"
