@@ -1,6 +1,6 @@
 #!/bin/bash
-dropdb -U postgres libros_borrar
-createdb -U postgres libros_borrar
+dropdb -U postgres library_borrar
+createdb -U postgres library_borrar
 python3 manage.py migrate
 python3 manage.py loaddata fixtures/users.json
 python3 manage.py runserver
