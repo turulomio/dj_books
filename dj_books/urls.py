@@ -17,11 +17,9 @@ from django.conf.urls import url
 from dj_books.admin import mysite
 
 from django.contrib.auth import views as auth_views
-from dj_books.views import  current_datetime,  hours_ahead,  home, AuthorList, database,  profile_edit,  change_password
+from dj_books.views import  home, AuthorList, database,  profile_edit,  change_password, book_edit, author_edit, author_new,  AuthorCreate,  AuthorDelete,  AuthorUpdate
 urlpatterns = [
     url(r'^admin/', mysite.urls),
-    url(r'^time/$', current_datetime),
-    url(r'^time/plus/(\d+)/$', hours_ahead),
     url(r'^$', auth_views.login, {'template_name': 'admin/login.html'}), 
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}), 
     url(r'^home/$', home, name='home'),
@@ -29,4 +27,8 @@ urlpatterns = [
     url(r'^database/$', database), 
     url(r'^profile/$', profile_edit), 
     url(r'^password/$', change_password),
+    url(r'^books/book/$', book_edit),
+    url(r'^books/author/new/$', AuthorCreate.as_view(), name='author-add'),
+    url(r'^books/author/([0-9]+)/$', AuthorUpdate.as_view()),
+    url(r'^books/author/([0-9]+)/delete$', AuthorDelete.as_view()),
 ]

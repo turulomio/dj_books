@@ -1,0 +1,21 @@
+
+{% extends 'base.html' %}
+{% load i18n %}
+{% load mytranslation %}
+
+{% set_language user.profile.language%}
+
+{% block head %}
+<title>My Library > {% trans "Books" %} > {% trans "New" %}</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>{% trans "New" %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+    <button type="submit">{% trans "Save" %}</button>
+    </form>
+{% include "messages.html" %}
+{% endblock %}
