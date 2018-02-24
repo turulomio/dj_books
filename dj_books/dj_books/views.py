@@ -1,36 +1,24 @@
 import datetime
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse
 from django.contrib.auth import logout
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from django.db import transaction
+from django.urls import reverse_lazy
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,  get_object_or_404
 
 
 from books.models import Author,  Book
-from .forms import UserForm, ProfileForm
+from .forms import UserForm, ProfileForm,  BookForm, AuthorForm
 
 def unauthorized(request):
     return HttpResponse("You're not authorized") 
-    
-    
-def current_datetime(request):
-    now = datetime.datetime.now()
-    html = "<html><body>It is now %s.</body></html>" % now        
-    return HttpResponse(html)
-    
-def hours_ahead(request, offset):
-    try:
-        offset = int(offset)
-    except ValueError:
-        raise Http404()
-    dt = datetime.datetime.now() + datetime.timedelta(hours=offset)
-    html = "<html><body>In %s hour(s), it will be  %s.</body></html>" % (offset, dt)
-    return HttpResponse(html)
+
 
 @login_required
 def home(request):
@@ -68,6 +56,65 @@ def profile_edit(request):
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)
     return render(request, 'profile.html', locals())
+    
+@login_required
+@transaction.atomic
+def book_edit(request):
+    if request.method == 'POST':
+        form = BookForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, _('Your book was successfully updated!'))
+        else:
+            messages.error(request, _('Please correct the error below.'))
+    else:
+        form = BookForm(request.POST, instance=request.user)
+    return render(request, 'books/book_new.html', locals())
+    
+@login_required
+@transaction.atomic
+def author_new(request):
+    if request.method == 'POST':
+        form = AuthorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, _('Author was successfully updated!'))
+        else:
+            messages.error(request, _('Please correct the error below.'))
+    else:
+        form = AuthorForm(request.POST)
+    return render(request, 'books/author_new.html', locals())
+    
+    
+    
+@login_required
+@transaction.atomic
+def author_edit(request, pk):
+    author= get_object_or_404(Author, id=pk)
+    if request.method == 'POST':
+        form = AuthorForm(request.POST, instance=author)
+        if form.is_valid():
+            form.save()
+            messages.success(request, _('Author was successfully updated!'))
+        else:
+            messages.error(request, _('Please correct the error below.'))
+    else:
+        form = AuthorForm(request.POST, instance=author)
+    return render(request, 'books/author_new.html', locals())
+
+class AuthorCreate(CreateView):
+    model = Author
+    fields = ['name', 'family_name', 'birth', 'death']
+    
+    success_url = '/home/'
+
+class AuthorUpdate(UpdateView):
+    model = Author
+    fields = ['name', 'family_name', 'birth', 'death']
+
+class AuthorDelete(DeleteView):
+    model = Author
+    success_url = reverse_lazy('author-list')
 
 def change_password(request):
     if request.method == 'POST':
