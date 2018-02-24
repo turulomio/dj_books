@@ -10,9 +10,9 @@ class AuthorAdmin(admin.ModelAdmin):
     list_filter = ('birth','death')
 
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('title',  'id_authors','year','valoration')
-    search_fields = ('title',  )
-    list_filter = ('id_authors','year', 'valoration')
+    list_display = ('title',  'author','year')
+    search_fields = ('title',   )
+    list_filter = ('author','year')
 
 class ProfileInline(admin.StackedInline):
     model = Profile
