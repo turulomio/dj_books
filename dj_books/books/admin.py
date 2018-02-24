@@ -34,7 +34,7 @@ mysite.register(Group)
 mysite.register(Permission)
 mysite.register(Author, AuthorAdmin)
 mysite.register(Book, BookAdmin)
-
+mysite.logout_template='admin/login.html'
 mysite.site_url ="/home"
 
 #Removes default delete_selected action

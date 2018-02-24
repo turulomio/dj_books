@@ -8,3 +8,4 @@ register = template.Library()
 def set_language(value):
     activate(value.lower())
     return ""
+
