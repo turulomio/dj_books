@@ -6,4 +6,5 @@ register = template.Library()
 
 @register.simple_tag
 def set_language(value):
-    return activate(value.lower())
+    activate(value.lower())
+    return ""
