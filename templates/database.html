@@ -1,16 +1,18 @@
 {% extends "base.html" %}
 
+{% load i18n %}
+
 {% block content %}
     <h2>Authors</h2>
     <ul>
         {% for author in authors %}
-            <li><a href="/books/author/{{ author.id }}">{{ author }}</a></li>
+            <li><a href="/books/author/{{ author.id }}">{{ author }}</a> ( <a href="/books/author/{{ author.id }}/delete/">{% trans "Delete" %}</a> )</li>
         {% endfor %}
     </ul>
     <h2>Books</h2>
     <ul>
         {% for book in books %}
-            <li>{{ book.title }}</li>
+            <li><a href="/books/book/{{ book.id }}">{{ book }}</a> ( <a href="/books/book/{{ book.id }}/delete/">{% trans "Delete" %}</a> )</li>
         {% endfor %}
     </ul>
 {% endblock %}

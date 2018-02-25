@@ -10,11 +10,11 @@ from django.db import transaction
 from django.urls import reverse_lazy
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
-from django.shortcuts import render, redirect,  get_object_or_404
+from django.shortcuts import render, redirect
 
 
 from books.models import Author,  Book
-from .forms import UserForm, ProfileForm,  BookForm, AuthorForm
+from .forms import UserForm, ProfileForm
 
 def unauthorized(request):
     return HttpResponse("You're not authorized") 
@@ -56,51 +56,8 @@ def profile_edit(request):
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)
     return render(request, 'profile.html', locals())
-    
-@login_required
-@transaction.atomic
-def book_edit(request):
-    if request.method == 'POST':
-        form = BookForm(request.POST, instance=request.user)
-        if form.is_valid():
-            form.save()
-            messages.success(request, _('Your book was successfully updated!'))
-        else:
-            messages.error(request, _('Please correct the error below.'))
-    else:
-        form = BookForm(request.POST, instance=request.user)
-    return render(request, 'books/book_new.html', locals())
-    
-@login_required
-@transaction.atomic
-def author_new(request):
-    if request.method == 'POST':
-        form = AuthorForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, _('Author was successfully updated!'))
-        else:
-            messages.error(request, _('Please correct the error below.'))
-    else:
-        form = AuthorForm(request.POST)
-    return render(request, 'books/author_new.html', locals())
-    
-    
-    
-@login_required
-@transaction.atomic
-def author_edit(request, pk):
-    author= get_object_or_404(Author, id=pk)
-    if request.method == 'POST':
-        form = AuthorForm(request.POST, instance=author)
-        if form.is_valid():
-            form.save()
-            messages.success(request, _('Author was successfully updated!'))
-        else:
-            messages.error(request, _('Please correct the error below.'))
-    else:
-        form = AuthorForm(request.POST, instance=author)
-    return render(request, 'books/author_new.html', locals())
+
+
 
 class AuthorCreate(CreateView):
     model = Author
@@ -116,7 +73,24 @@ class AuthorUpdate(UpdateView):
 
 class AuthorDelete(DeleteView):
     model = Author
-    success_url = reverse_lazy('author-list')
+    success_url = reverse_lazy('database')
+    
+
+class BookCreate(CreateView):
+    model = Book
+    fields = ['title', 'year', 'author']
+    template_name="books/book_edit.html"
+    success_url = reverse_lazy('database')
+
+class BookUpdate(UpdateView):
+    model = Book
+    fields = ['title', 'year', 'author']
+    template_name="books/book_edit.html"
+    success_url = reverse_lazy('database')
+
+class BookDelete(DeleteView):
+    model = Book
+    success_url = reverse_lazy('database')
 
 def change_password(request):
     if request.method == 'POST':

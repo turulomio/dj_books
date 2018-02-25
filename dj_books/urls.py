@@ -17,19 +17,32 @@ from django.conf.urls import url
 from dj_books.admin import mysite
 
 from django.contrib.auth import views as auth_views
-from dj_books.views import  home, AuthorList, database,  profile_edit,  change_password, book_edit, author_edit, author_new,  AuthorCreate,  AuthorDelete,  AuthorUpdate
+from dj_books.views import  (
+    home, 
+    database,  
+    profile_edit,  
+    change_password, 
+    AuthorCreate,  
+    AuthorDelete,  
+    AuthorUpdate, 
+    BookCreate, 
+    BookUpdate, 
+    BookDelete, 
+    )
 urlpatterns = [
     url(r'^admin/', mysite.urls),
     url(r'^$', auth_views.login, {'template_name': 'admin/login.html'}), 
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}), 
     url(r'^home/$', home, name='home'),
-    url(r'^authors/$', AuthorList.as_view()),
     url(r'^database/$', database, name='database'), 
     url(r'^profile/$', profile_edit), 
     url(r'^password/$', change_password),
-    url(r'^books/book/$', book_edit),
     
     url(r'^books/author/new/$', AuthorCreate.as_view(), name='author-add'),
     url(r'^books/author/(?P<pk>\d+)/$', AuthorUpdate.as_view(), name='author-edit'),
-    url(r'^books/author/([0-9]+)/delete$', AuthorDelete.as_view(), name='author-delete'),
+    url(r'^books/author/(?P<pk>\d+)/delete/$', AuthorDelete.as_view(), name='author-delete'),
+    
+    url(r'^books/book/new/$', BookCreate.as_view(), name='book-add'),
+    url(r'^books/book/(?P<pk>\d+)/$', BookUpdate.as_view(), name='book-edit'),
+    url(r'^books/book/(?P<pk>\d+)/delete/$', BookDelete.as_view(), name='book-delete'),
 ]
