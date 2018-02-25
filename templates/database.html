@@ -4,7 +4,7 @@
     <h2>Authors</h2>
     <ul>
         {% for author in authors %}
-            <li>{{ author }}</li>
+            <li><a href="/books/author/{{ author.id }}">{{ author }}</a></li>
         {% endfor %}
     </ul>
     <h2>Books</h2>

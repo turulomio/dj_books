@@ -42,8 +42,8 @@ def save_user_profile(sender, instance, **kwargs):
     
 class Author(models.Model):
     id = models.AutoField(primary_key=True, db_column="id_authors")
-    name = models.TextField(blank=True, null=True)
-    family_name = models.TextField(blank=True, null=True)
+    name = models.CharField(max_length=100,blank=True, null=True)
+    family_name = models.CharField(max_length=100,blank=True, null=True)
     birth = models.IntegerField(blank=True, null=True)
     death = models.IntegerField(blank=True, null=True)
     
@@ -60,7 +60,7 @@ class Author(models.Model):
 
 class Book(models.Model):
     id = models.AutoField(primary_key=True, db_column="id_books")
-    title = models.TextField(null=False)
+    title = models.CharField(max_length=100,null=False)
     year = models.IntegerField(null=True)
     author = models.ForeignKey(Author, models.DO_NOTHING, db_column='id_authors')
     

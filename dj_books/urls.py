@@ -24,11 +24,12 @@ urlpatterns = [
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}), 
     url(r'^home/$', home, name='home'),
     url(r'^authors/$', AuthorList.as_view()),
-    url(r'^database/$', database), 
+    url(r'^database/$', database, name='database'), 
     url(r'^profile/$', profile_edit), 
     url(r'^password/$', change_password),
     url(r'^books/book/$', book_edit),
+    
     url(r'^books/author/new/$', AuthorCreate.as_view(), name='author-add'),
-    url(r'^books/author/([0-9]+)/$', AuthorUpdate.as_view()),
-    url(r'^books/author/([0-9]+)/delete$', AuthorDelete.as_view()),
+    url(r'^books/author/(?P<pk>\d+)/$', AuthorUpdate.as_view(), name='author-edit'),
+    url(r'^books/author/([0-9]+)/delete$', AuthorDelete.as_view(), name='author-delete'),
 ]

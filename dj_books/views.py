@@ -105,12 +105,14 @@ def author_edit(request, pk):
 class AuthorCreate(CreateView):
     model = Author
     fields = ['name', 'family_name', 'birth', 'death']
-    
-    success_url = '/home/'
+    template_name="books/author_edit.html"
+    success_url = reverse_lazy('database')
 
 class AuthorUpdate(UpdateView):
     model = Author
     fields = ['name', 'family_name', 'birth', 'death']
+    template_name="books/author_edit.html"
+    success_url = reverse_lazy('database')
 
 class AuthorDelete(DeleteView):
     model = Author
