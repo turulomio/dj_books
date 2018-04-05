@@ -9,17 +9,30 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
     <h1>{% trans "Settings" %}</h1>
-    <form method="post">
+    <h2>{% trans "User profile" %}</h2>
+    <form method="post" class="form_table">
+        <table>
         {% csrf_token %}
-        {{ user_form.as_p }}
-        {{ profile_form.as_p }}
-    <button type="submit">Save changes</button>
+        {{ user_form.as_table }}
+        {{ profile_form.as_table }}
+        </table>
+        <button type="submit" name="button_profile">{% trans "Save profile changes" %}</button>
     </form>
-{% include "messages.html" %}
-</div>
-<div class="container">
-<h1>{% trans "Change password" %}</h1>
-<p><a href="/password/">{% trans "Press to change password" %}</a>
+    {% if user_form.is_valid or profile_form.is_valid %}
+        {% include "messages.html" %}
+    {% endif %}
+
+    <h2>{% trans "Change password" %}</h2>
+    <form method="post" class="form_table">
+        <table>
+        {% csrf_token %}
+        {{ change_password_form.as_table }}
+        </table>
+        <button type="submit" name="button_password">{% trans "Change password" %}</button>
+    </form>
+    {% if change_password_form.is_valid %}
+        {% include "messages.html" %}
+    {% endif %}
+
 {% endblock %}

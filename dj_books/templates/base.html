@@ -13,26 +13,32 @@
             <link rel="icon" type="image/png"
                   href="{% static "favicon.ico" %}">
         {% endblock head_favicon %}
+
         {% block head_meta %}
             {% block head_meta_charset %}
                 <meta http-equiv="Content-Type"
                       content="text/html; charset=utf-8" />
             {% endblock head_meta_charset %}
+
             {% block head_meta_contentlanguage %}
                 <meta http-equiv="Content-Language" value="en-US" />
             {% endblock head_meta_contentlanguage %}
+
             {% block head_meta_viewport %}
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
             {% endblock head_meta_viewport %}
         {% endblock head_meta %}
+
         {% block head_css %}
             {% block head_css_site %}
-                <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-                <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
                 <link rel="stylesheet" type="text/css" href="{% static "mystyles.css" %}">
             {% endblock head_css_site %}
-            {% block head_css_section %}{% endblock head_css_section %}
-            {% block head_css_page %}{% endblock head_css_page %}
+
+            {% block head_css_section %}
+            {% endblock head_css_section %}
+
+            {% block head_css_page %}
+            {% endblock head_css_page %}
         {% endblock head_css %}
     </head>
 <body>

@@ -14,7 +14,6 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from django.conf.urls.static import static
 
 from django.contrib.auth import views as auth_views
 
@@ -24,7 +23,6 @@ from dj_books.views import  (
     home, 
     database,  
     profile_edit,  
-    change_password, 
     AuthorCreate,  
     AuthorDelete,  
     AuthorUpdate, 
@@ -40,7 +38,6 @@ urlpatterns = [
     url(r'^home/$', home, name='home'),
     url(r'^database/$', database, name='database'), 
     url(r'^profile/$', profile_edit), 
-    url(r'^password/$', change_password),
     
     url(r'^books/author/new/$', AuthorCreate.as_view(), name='author-add'),
     url(r'^books/author/(?P<pk>\d+)/$', AuthorUpdate.as_view(), name='author-edit'),
