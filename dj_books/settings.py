@@ -87,9 +87,11 @@ DATABASES = {
     }
 }
 
-STATIC_URL = '/static/'
-STATIC_ROOT = "/tmp"
-STATICFILES_DIR
+
+
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+#STATIC_URL = '/static/'
+#STATIC_ROOT = BASE_DIR+ "/static"
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
