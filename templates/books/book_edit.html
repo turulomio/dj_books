@@ -12,9 +12,11 @@
 {% block content %}
 <div class="container">
     <h1>{% trans "New" %}</h1>
-    <form method="post">
+    <form method="post" class="form_table">
+    <table>
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form.as_table }}
+    </table>
     <button type="submit">{% trans "Save" %}</button>
     </form>
 {% include "messages.html" %}
