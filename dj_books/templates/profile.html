@@ -1,9 +1,8 @@
-
 {% extends 'base.html' %}
+
 {% load i18n %}
 {% load mytranslation %}
-
-{% set_language user.profile.language%}
+{% set_language user.profile.language %}
 
 {% block head %}
 <title>My Library > {% trans "Settings" %}</title>

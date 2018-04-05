@@ -2,8 +2,10 @@
 <html>
 {% load i18n %}
 {% load mytranslation %}
-{% load static %}
 {% set_language request.user.profile.language %}
+
+{% load static %}
+
 {# Make modifiable head elements #}
     <head>
         <title>{% block title %}Home{% endblock title %}</title>

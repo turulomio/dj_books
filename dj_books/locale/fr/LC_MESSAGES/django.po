@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-05 10:53+0000\n"
+"POT-Creation-Date: 2018-04-05 12:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,7 +38,7 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
-#: templates/base.html:40 templates/home.html:9
+#: templates/base.html:40
 msgid "All database"
 msgstr ""
 
@@ -104,11 +104,11 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: templates/database.html:13 templates/home.html:10
+#: templates/database.html:13 templates/home.html:9
 msgid "Adds a new book"
 msgstr ""
 
-#: templates/database.html:21 templates/home.html:11
+#: templates/database.html:21 templates/home.html:10
 msgid "Adds a new author"
 msgstr ""
 
