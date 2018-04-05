@@ -39,7 +39,7 @@ h2 {
 
 p {
     text-align: justify;
-    padding: 14px;
+    padding: 4px;
 }
 
 /* DJANGO ALERTS
@@ -57,6 +57,10 @@ p {
     font-weight: bold
 }
 
+
+tr {
+    border: 1px solid #EEEEEE;
+}
 /*
  * DJANGO FORM TABLES
  */
