@@ -49,7 +49,5 @@ urlpatterns = [
     url(r'^books/book/new/$', BookCreate.as_view(), name='book-add'),
     url(r'^books/book/(?P<pk>\d+)/$', BookUpdate.as_view(), name='book-edit'),
     url(r'^books/book/(?P<pk>\d+)/delete/$', BookDelete.as_view(), name='book-delete'),
-]# + static(STATIC_URL, document_root=STATIC_ROOT) ##Debe quitarse en producción
+]
 
-
-#print(static(STATIC_URL, document_root=STATIC_ROOT), STATIC_URL, STATIC_ROOT)

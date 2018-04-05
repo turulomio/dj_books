@@ -20,3 +20,21 @@
 }
 
 
+h1 {
+    text-align: center;
+    padding: 18 px;
+    font-weight: bold;
+}
+
+
+h2 {
+    text-align: left;
+    padding:  14px;
+    font-weight: normal;
+}
+
+
+p {
+    text-align: justify;
+    padding: 14px;
+}

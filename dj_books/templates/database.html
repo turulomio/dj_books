@@ -3,17 +3,21 @@
 {% load i18n %}
 
 {% block content %}
-    <h2>Authors</h2>
+<h1>{% trans "Library database" %}</h1>
+    <h2>{% trans "Authors" %}</h2>
     <ul>
         {% for author in authors %}
             <li><a href="/books/author/{{ author.id }}">{{ author }}</a> ( <a href="/books/author/{{ author.id }}/delete/">{% trans "Delete" %}</a> )</li>
         {% endfor %}
     </ul>
-    <h2>Books</h2>
+    <p><a href="/books/book/new">{% trans "Adds a new book" %}</a></p>
+
+    <h2>{% trans "Books" %}</h2>
     <ul>
         {% for book in books %}
             <li><a href="/books/book/{{ book.id }}">{{ book }}</a> ( <a href="/books/book/{{ book.id }}/delete/">{% trans "Delete" %}</a> )</li>
         {% endfor %}
     </ul>
+    <p><a href="/books/author/new/">{% trans "Adds a new author" %}</a></p>
 {% endblock %}
 
