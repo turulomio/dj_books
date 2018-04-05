@@ -43,6 +43,7 @@
     </head>
 <body>
 
+<div class="bar">
 <ul class="nav-ul">
   <li class="nav-li"><a href="/home/">{% trans "Home" %}</a></li>
   <li class="nav-li"><a href="/database">{% trans "All database" %}</a></li>
@@ -52,17 +53,18 @@
         <li class="nav-li"><a href="/admin/">{% trans "Administration" %}</a></li>
     {% endif %}
   <li class="nav-li"><a href="/logout/">{% trans "Logout" %} {{ user.username|upper }}</a></li>
-  {% if request.user.profile.language == "ES" %}
-      <li class="nav-li"><img src="{% static "spain.gif" %}"></li>
-  {% else %}
-      <li class="nav-li"><img src="{% static "usa.gif" %}"></li>
-  {% endif %}
 </ul>
+</div>
 
-</form>
+<div class="actions">
+{% block actions %}
+{% endblock actions %}
 
+</div>
+
+<div class="content">
 {% block content %}
 {% endblock content %}
-
+</div>
 </body>
 </html>
