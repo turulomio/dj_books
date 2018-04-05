@@ -68,6 +68,7 @@ def profile_edit(request):
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)
         change_password_form = PasswordChangeForm(request.user)
+    change_password_form.fields['old_password'].widget.attrs.pop("autofocus", None)
     return render(request, 'profile.html', locals())
 
 
