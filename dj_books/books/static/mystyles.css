@@ -22,16 +22,17 @@
 
 h1 {
     text-align: center;
-    padding: 18 px;
+    padding: 18px;
     font-weight: bold;
 }
 
 
 h2 {
-    text-align: left;
+    text-align: justify;
     padding:  14px;
-    font-weight: normal;
+    font-weight: bold;
     background-color: #BBBBBB;
+    border-radius: 14px;
 }
 
 
@@ -58,12 +59,17 @@ p {
 }
 
 
-tr {
+table {
     border: 1px solid #EEEEEE;
+    text-align: center;
 }
 /*
  * DJANGO FORM TABLES
  */
+form {
+    background-color:#C1FFFA;
+    text-align:center;
+}
     /*padding: 12px 20px;
     margin: 8px 0;
     display: block;
