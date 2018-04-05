@@ -93,6 +93,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 #STATIC_URL = '/static/'
 #STATIC_ROOT = BASE_DIR+ "/static"
 
+
+LOCALE_PATHS = (
+    BASE_DIR+ '/locale/',
+)
+
+print(BASE_DIR)
+print(LOCALE_PATHS)
+
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
