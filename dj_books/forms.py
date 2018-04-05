@@ -1,3 +1,4 @@
+import datetime
 from django.forms import ModelForm, SelectDateWidget
 
 from django.contrib.auth.models import User
@@ -12,7 +13,9 @@ class UserForm(ModelForm):
 class ProfileForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(ProfileForm, self).__init__(*args, **kwargs)
-        self.fields['birth_date'].widget = SelectDateWidget()
+        sdw=SelectDateWidget()
+        sdw.years=range(1900, datetime.date.today().year+1)
+        self.fields['birth_date'].widget = sdw
     class Meta:
         model = Profile
         fields = ('language', 'birth_date')

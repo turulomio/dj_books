@@ -10,6 +10,7 @@ from  django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.db import models
 from django.dispatch import receiver
+from django.utils.translation import gettext_lazy as _
 
 class Profile(models.Model):    
     SPANISH= 'ES'
@@ -20,13 +21,9 @@ class Profile(models.Model):
         (ENGLISH, 'English'),
         (FRENCH, 'Francés')
     )
-    language= models.CharField(
-        max_length=2,
-        choices=LANGUAGES,
-        default=ENGLISH,
-    )
+    language= models.CharField(max_length=2, choices=LANGUAGES, default=ENGLISH, verbose_name=_("Language"))
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    birth_date = models.DateField(null=True, blank=True)
+    birth_date = models.DateField(null=True, blank=True, verbose_name=_("Birth date"))
     class Meta:
         db_table = 'profiles'
     
@@ -42,10 +39,10 @@ def save_user_profile(sender, instance, **kwargs):
     
 class Author(models.Model):
     id = models.AutoField(primary_key=True, db_column="id_authors")
-    name = models.CharField(max_length=100,blank=True, null=True)
-    family_name = models.CharField(max_length=100,blank=True, null=True)
-    birth = models.IntegerField(blank=True, null=True)
-    death = models.IntegerField(blank=True, null=True)
+    name = models.CharField(max_length=100,blank=True, null=True, verbose_name=_("Name"))
+    family_name = models.CharField(max_length=100,blank=True, null=True, verbose_name=_("Family name"))
+    birth = models.IntegerField(blank=True, null=True, verbose_name=_("Birth date"))
+    death = models.IntegerField(blank=True, null=True, verbose_name=_("Death date"))
     
     def __str__(self):
 #        b=self.birth if self.birth!=None else "####"

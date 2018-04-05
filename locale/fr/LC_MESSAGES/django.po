@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-05 12:04+0000\n"
+"POT-Creation-Date: 2018-04-05 12:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,26 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: books/models.py:24
+msgid "Language"
+msgstr ""
+
+#: books/models.py:26 books/models.py:44
+msgid "Birth date"
+msgstr ""
+
+#: books/models.py:42
+msgid "Name"
+msgstr ""
+
+#: books/models.py:43
+msgid "Family name"
+msgstr ""
+
+#: books/models.py:45
+msgid "Death date"
+msgstr ""
 
 #: dj_books/admin.py:6 dj_books/admin.py:9
 msgid "My personal Django"
@@ -34,33 +54,33 @@ msgstr ""
 msgid "Please correct the error below."
 msgstr ""
 
-#: templates/base.html:39
+#: templates/base.html:41
 msgid "Home"
 msgstr ""
 
-#: templates/base.html:40
+#: templates/base.html:42
 msgid "All database"
 msgstr ""
 
-#: templates/base.html:41
+#: templates/base.html:43
 msgid "Valorations"
 msgstr ""
 
-#: templates/base.html:42 templates/profile.html:9 templates/profile.html:14
+#: templates/base.html:44 templates/profile.html:8 templates/profile.html:13
 msgid "Settings"
 msgstr ""
 
-#: templates/base.html:44
+#: templates/base.html:46
 msgid "Administration"
 msgstr ""
 
-#: templates/base.html:46
+#: templates/base.html:48
 msgid "Logout"
 msgstr ""
 
 #: templates/books/author_confirm_delete.html:9
 #: templates/books/author_edit.html:9
-#: templates/books/book_confirm_delete.html:9 templates/database.html:7
+#: templates/books/book_confirm_delete.html:9 templates/database.html:9
 msgid "Authors"
 msgstr ""
 
@@ -80,11 +100,11 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: templates/books/book_edit.html:9 templates/database.html:15
+#: templates/books/book_edit.html:9 templates/database.html:17
 msgid "Books"
 msgstr ""
 
-#: templates/change_password.html:8 templates/profile.html:24
+#: templates/change_password.html:8 templates/profile.html:23
 msgid "Change password"
 msgstr ""
 
@@ -96,26 +116,26 @@ msgstr ""
 msgid "Interactive query"
 msgstr ""
 
-#: templates/database.html:6
+#: templates/database.html:8
 msgid "Library database"
 msgstr ""
 
-#: templates/database.html:10 templates/database.html:18
+#: templates/database.html:12 templates/database.html:20
 msgid "Delete"
 msgstr ""
 
-#: templates/database.html:13 templates/home.html:9
+#: templates/database.html:15 templates/home.html:10
 msgid "Adds a new book"
 msgstr ""
 
-#: templates/database.html:21 templates/home.html:10
+#: templates/database.html:23 templates/home.html:11
 msgid "Adds a new author"
 msgstr ""
 
-#: templates/home.html:7
+#: templates/home.html:8
 msgid "Querys menu"
 msgstr ""
 
-#: templates/profile.html:25
+#: templates/profile.html:24
 msgid "Press to change password"
 msgstr ""

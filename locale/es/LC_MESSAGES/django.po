@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-05 12:04+0000\n"
+"POT-Creation-Date: 2018-04-05 12:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,26 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: books/models.py:24
+msgid "Language"
+msgstr "Idioma"
+
+#: books/models.py:26 books/models.py:44
+msgid "Birth date"
+msgstr "Fecha de nacimiento"
+
+#: books/models.py:42
+msgid "Name"
+msgstr "Nombre"
+
+#: books/models.py:43
+msgid "Family name"
+msgstr "Apellidos"
+
+#: books/models.py:45
+msgid "Death date"
+msgstr "Fecha de defunción"
 
 #: dj_books/admin.py:6 dj_books/admin.py:9
 msgid "My personal Django"
@@ -34,33 +54,33 @@ msgstr "Tu perfil se ha actualizado correctamente"
 msgid "Please correct the error below."
 msgstr "Por favor corrige el error abajo"
 
-#: templates/base.html:39
+#: templates/base.html:41
 msgid "Home"
 msgstr "Inicio"
 
-#: templates/base.html:40
+#: templates/base.html:42
 msgid "All database"
 msgstr "Toda la base de datos"
 
-#: templates/base.html:41
+#: templates/base.html:43
 msgid "Valorations"
 msgstr "Valoraciones"
 
-#: templates/base.html:42 templates/profile.html:9 templates/profile.html:14
+#: templates/base.html:44 templates/profile.html:8 templates/profile.html:13
 msgid "Settings"
 msgstr "Configuración"
 
-#: templates/base.html:44
+#: templates/base.html:46
 msgid "Administration"
 msgstr "Administración"
 
-#: templates/base.html:46
+#: templates/base.html:48
 msgid "Logout"
 msgstr "Salir"
 
 #: templates/books/author_confirm_delete.html:9
 #: templates/books/author_edit.html:9
-#: templates/books/book_confirm_delete.html:9 templates/database.html:7
+#: templates/books/book_confirm_delete.html:9 templates/database.html:9
 msgid "Authors"
 msgstr "Autores"
 
@@ -80,11 +100,11 @@ msgstr "Nuevo"
 msgid "Save"
 msgstr "Guardar"
 
-#: templates/books/book_edit.html:9 templates/database.html:15
+#: templates/books/book_edit.html:9 templates/database.html:17
 msgid "Books"
 msgstr "Libros"
 
-#: templates/change_password.html:8 templates/profile.html:24
+#: templates/change_password.html:8 templates/profile.html:23
 msgid "Change password"
 msgstr "Cambiar contraseña"
 
@@ -96,43 +116,26 @@ msgstr ""
 msgid "Interactive query"
 msgstr "Consulta interactiva"
 
-#: templates/database.html:6
-#, fuzzy
-#| msgid "All database"
+#: templates/database.html:8
 msgid "Library database"
 msgstr "Toda la base de datos"
 
-#: templates/database.html:10 templates/database.html:18
+#: templates/database.html:12 templates/database.html:20
 msgid "Delete"
 msgstr "Borrar"
 
-#: templates/database.html:13 templates/home.html:9
+#: templates/database.html:15 templates/home.html:10
 msgid "Adds a new book"
 msgstr "Añadir un nuevo libro"
 
-#: templates/database.html:21 templates/home.html:10
+#: templates/database.html:23 templates/home.html:11
 msgid "Adds a new author"
 msgstr "Añadir un nuevo autor"
 
-#: templates/home.html:7
+#: templates/home.html:8
 msgid "Querys menu"
 msgstr "Menú de consultas"
 
-#: templates/profile.html:25
+#: templates/profile.html:24
 msgid "Press to change password"
 msgstr "Pulsa para cambiar la contraseña"
-
-#~ msgid "Spanish"
-#~ msgstr "Español"
-
-#~ msgid "English"
-#~ msgstr "English"
-
-#~ msgid "French"
-#~ msgstr "Francés"
-
-#~ msgid "Wellcome"
-#~ msgstr "Bienvenido"
-
-#~ msgid "Change language"
-#~ msgstr "Cambiar idioma"
