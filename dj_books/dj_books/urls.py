@@ -14,9 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from dj_books.admin import mysite
+from django.conf.urls.static import static
 
 from django.contrib.auth import views as auth_views
+
+from dj_books.admin import mysite
+#from dj_books.settings import STATIC_URL
 from dj_books.views import  (
     home, 
     database,  
@@ -29,6 +32,7 @@ from dj_books.views import  (
     BookUpdate, 
     BookDelete, 
     )
+
 urlpatterns = [
     url(r'^admin/', mysite.urls),
     url(r'^$', auth_views.login, {'template_name': 'admin/login.html'}), 
@@ -45,4 +49,7 @@ urlpatterns = [
     url(r'^books/book/new/$', BookCreate.as_view(), name='book-add'),
     url(r'^books/book/(?P<pk>\d+)/$', BookUpdate.as_view(), name='book-edit'),
     url(r'^books/book/(?P<pk>\d+)/delete/$', BookDelete.as_view(), name='book-delete'),
-]
+]# + static(STATIC_URL, document_root=STATIC_ROOT) ##Debe quitarse en producción
+
+
+#print(static(STATIC_URL, document_root=STATIC_ROOT), STATIC_URL, STATIC_ROOT)
