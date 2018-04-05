@@ -31,10 +31,39 @@ h2 {
     text-align: left;
     padding:  14px;
     font-weight: normal;
+    background-color: #BBBBBB;
 }
+
+
 
 
 p {
     text-align: justify;
     padding: 14px;
 }
+
+/* DJANGO ALERTS
+ */
+
+
+.errorlist {
+    color: red;
+    font-weight: bold;
+}
+
+
+.alert-success {
+    color:green;
+    font-weight: bold
+}
+
+/*
+ * DJANGO FORM TABLES
+ */
+    /*padding: 12px 20px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;*/
+

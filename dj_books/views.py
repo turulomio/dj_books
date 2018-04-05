@@ -44,17 +44,30 @@ class AuthorList(ListView):
 @transaction.atomic
 def profile_edit(request):
     if request.method == 'POST':
-        user_form = UserForm(request.POST, instance=request.user)
-        profile_form = ProfileForm(request.POST, instance=request.user.profile)
-        if user_form.is_valid() and profile_form.is_valid():
-            user_form.save()
-            profile_form.save()
-            messages.success(request, _('Your profile was successfully updated!'))
-        else:
-            messages.error(request, _('Please correct the error below.'))
+
+        print(request.POST.dict())
+        if "button_profile" in request.POST.dict():
+            user_form = UserForm(request.POST, instance=request.user)
+            profile_form = ProfileForm(request.POST, instance=request.user.profile)
+            change_password_form = PasswordChangeForm(request.user)
+            if user_form.is_valid() and profile_form.is_valid():
+                user_form.save()
+                profile_form.save()
+                messages.success(request, _('Your profile was successfully updated!'))
+
+        elif "button_password" in request.POST.dict():
+            user_form = UserForm(instance=request.user)
+            profile_form = ProfileForm(instance=request.user.profile)
+            change_password_form = PasswordChangeForm(request.user, request.POST)
+            if change_password_form.is_valid():
+                user = change_password_form.save()
+                update_session_auth_hash(request, user)  # Important!
+                messages.success(request, _('Your password was successfully updated!'))
+
     else:
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)
+        change_password_form = PasswordChangeForm(request.user)
     return render(request, 'profile.html', locals())
 
 
@@ -92,18 +105,4 @@ class BookDelete(DeleteView):
     model = Book
     success_url = reverse_lazy('database')
 
-def change_password(request):
-    if request.method == 'POST':
-        form = PasswordChangeForm(request.user, request.POST)
-        if form.is_valid():
-            user = form.save()
-            update_session_auth_hash(request, user)  # Important!
-            messages.success(request, 'Your password was successfully updated!')
-            return redirect('/password/')
-        else:
-            messages.error(request, 'Please correct the error below.')
-    else:
-        form = PasswordChangeForm(request.user)
-    return render(request, 'change_password.html', {
-        'form': form
-    })
+
