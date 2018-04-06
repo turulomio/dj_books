@@ -13,7 +13,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
 
 
-from books.models import Author,  Book
+from books.models import Author,  Book, Valoration
 from .forms import UserForm, ProfileForm
 
 def unauthorized(request):
@@ -29,13 +29,18 @@ def logout_view(request):
     logout(request)
     return redirect('login')
 
-    
+
 @login_required
 def database(request):
     authors= Author.objects.order_by('name')
     books=Book.objects.order_by('title')
     return render(request, 'database.html', locals())
-    
+
+@login_required
+def valoration(request):
+    valorations= Valoration.objects.order_by('read_start')
+    return render(request, 'valoration.html', locals())
+
 class AuthorList(ListView):
     queryset = Author.objects.order_by('name')
     context_object_name = 'author_list'
@@ -105,5 +110,40 @@ class BookUpdate(UpdateView):
 class BookDelete(DeleteView):
     model = Book
     success_url = reverse_lazy('database')
+
+
+    
+
+class BookCreate(CreateView):
+    model = Book
+    fields = ['title', 'year', 'author']
+    template_name="books/book_edit.html"
+    success_url = reverse_lazy('database')
+
+class BookUpdate(UpdateView):
+    model = Book
+    fields = ['title', 'year', 'author']
+    template_name="books/book_edit.html"
+    success_url = reverse_lazy('database')
+
+class BookDelete(DeleteView):
+    model = Book
+    success_url = reverse_lazy('database')
+
+class ValorationCreate(CreateView):
+    model = Valoration
+    fields = ['book', 'user', 'comment','valoration','read_start','read_end']
+    template_name="valorations/valoration_edit.html"
+    success_url = reverse_lazy('database')
+
+class ValorationUpdate(UpdateView):
+    model = Valoration
+    fields = ['book', 'user', 'comment','valoration','read_start','read_end']
+    template_name="valorations/valoration_edit.html"
+    success_url = reverse_lazy('database')
+
+class ValorationDelete(DeleteView):
+    model = Valoration
+    success_url = reverse_lazy('valoration')
 
 

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load mytranslation %}
+{% set_language user.profile.language %}
+
+{% block content %}
+<h1>{% trans "My Valorations" %}</h1>
+    <ul>
+        {% for valoration in valorations %}
+            <li><a href="/books/valoration/{{ valoration.id }}">{{ valoration }}</a> ( <a href="/books/valoration/{{ valoration.id }}/delete/">{% trans "Delete" %}</a> )</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
