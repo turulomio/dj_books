@@ -43,6 +43,7 @@
     </head>
 <body>
 <div class="container">
+
 <div class="header">
 <ul class="nav-ul">
   <li class="nav-li"><a href="/home/">{% trans "Home" %}</a></li>
@@ -57,9 +58,20 @@
 </div>
 
 <div class="sidebar">
-{% block actions %}
-{% endblock actions %}
+{% block sidebar %}
+<ul class="sidebar-ul">
+  <li class="sidebar-li"><a href="/home/">{% trans "Home" %}</a></li>
+  <li class="sidebar-li"><a href="/database">{% trans "All database" %}</a></li>
+  <li class="sidebar-li"><a href="/valorations/">{% trans "Valorations" %}</a></li>
+  <li class="sidebar-li"><a href="/profile/">{% trans "Settings" %}</a></li>
+    {% if request.user.is_superuser %}
+        <li class="sidebar-li"><a href="/admin/">{% trans "Administration" %}</a></li>
+    {% endif %}
+  <li class="sidebar-li"><a href="/logout/">{% trans "Logout" %} {{ user.username|upper }}</a></li>
+</ul>
+    <p>Desarrollado por Turulomio</p>
 
+{% endblock sidebar %}
 </div>
 
 <div class="content">
@@ -67,7 +79,6 @@
 {% endblock content %}
 </div>
 
-
-</div>
+</div class="container">
 </body>
 </html>
