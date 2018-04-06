@@ -1,14 +1,24 @@
 {% extends 'base.html' %}
 
 {% load i18n %}
+{% load static %}
 {% load mytranslation %}
 {% set_language user.profile.language %}
 
 {% block content %}
-    <h1>{% trans "Querys menu" %}</h1>
-    <ol>
-        <li><a href="/books/book/new">{% trans "Adds a new book" %}</a>
-        <li><a href="/books/author/new/">{% trans "Adds a new author" %}</a>
-    </ol>
+    <h1> </h1>
+    <h2> </h2>
+    
+    <center><img src="{% static "book.png" %}" height="150px" width="150px"/></center>
+    
+    <h2> </h2>
+    <center>
+    <form id="searchform" action="{# url 'blog_search_list_view' #}" method="get" accept-charset="utf-8">
+    
+      <label>{% trans "Search for a Book or an Author:" %}</label>
+      <input class="searchfield" id="searchbox" name="q" type="text" placeholder="{% trans "Search" %}">
+      <button class="searchbutton" type="submit">{% trans "Search" %}</button>
+    </form></center>
+
 {% endblock %}
 
