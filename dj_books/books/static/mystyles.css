@@ -21,22 +21,16 @@
 
 
 h1 {
-    text-align: center;
-    padding: 18px;
+    text-align: left;
     font-weight: bold;
+    color=#333333;
 }
 
 
 h2 {
-    text-align: center;
-    padding:  14px;
+    text-align: left;
     font-weight: bold;
-    background-color: #BBBBBB;
-    border-radius: 14px;
     color: #444444;
-    width: 80%;
-    margin-left:auto;
-    margin-right:auto;
 }
 
 p {
@@ -63,7 +57,7 @@ p {
  * DJANGO FORM TABLES
  */
 form {
-    background-color:#D5FFFE;
+    background: linear-gradient(#F0D5D5, white);
     border-radius: 14px;
     border: 1px solid #BBBBBB;
     padding: 8px;	
@@ -72,10 +66,8 @@ form {
  display: inline-block;
 }
 
+
 div.layVertical {
-/*    width: 100%;
-    height:90%;*/
-    background-color: beige;
     display: grid;
     grid-template-columns:100%;
     padding: 0px;
@@ -84,29 +76,36 @@ div.layVertical {
 }
 
 div.layHorizontal {
-/*    width: 100%;
-    height:90%;*/
-    background-color: beige;
+/*    background: linear-gradient(#D0E0E0,white);*/
+    background-color: white;
     display: grid;
-    grid-template-columns: 25% 75%;
+    grid-template-columns: 25vw 75vw;
     padding: 0px;
     margin: 0px;
 
 }
 
 div.header{
-    background-color: #333333;
+    background: linear-gradient(to right, #333333,#AAAAAA);
     color: white;
     font-weight:bold;
     top: 0;
-
-/*    height: 5vh;*/
-/*    box-sizing: border-box;*/
+    height: 5vh;
     position:sticky;
 }
 
-div.sidebar, a.sidebar-a {
-    background-color: #333333;
+div.sidebar{
+    background: linear-gradient(#333333,#AAAAAA);
+    color: white;
+    font-weight:bold;
+    text-decoration: none;
+    top: 5vh;
+    left: 0;
+    height:95vh;
+}
+
+
+a.sidebar-a {
     color: white;
     font-weight:bold;
     text-decoration: none;
@@ -114,7 +113,12 @@ div.sidebar, a.sidebar-a {
 }
 
 div.content {
-    padding: 3vh;
+    top: 5vh;
+    left: 25vw;
+    height: 95vh;
+    overflow-y: scroll;
+    padding-left: 5vh;
+    padding-right: 5vh;
  }
 
 
@@ -122,3 +126,7 @@ body {
     margin: 0px;
 }
 
+label {
+    font-weight:bold;
+    
+}

@@ -58,20 +58,22 @@
 
 <div class="layHorizontal">
 <div class="sidebar">
-{% block sidebar %}
-<ul class="sidebar-ul">
-  <li class="sidebar-li"><a class="sidebar-a" href="/books/book/new">{% trans "Add a new book" %}</a></li>
-  <li class="sidebar-li"><a class="sidebar-a" href="/books/author/new/">{% trans "Add a new author" %}</a></li>
-  <li class="sidebar-li"><a class="sidebar-a" href="/valorations/">{% trans "Add a personal valoration" %}</a></li>
-</ul>
+    <p>Acciones</p>
+    {% block sidebar %}
+    <ul class="sidebar-ul">
+        <li class="sidebar-li"><a class="sidebar-a" href="/books/book/new">{% trans "Add a new book" %}</a></li>
+        <li class="sidebar-li"><a class="sidebar-a" href="/books/author/new/">{% trans "Add a new author" %}</a></li>
+        <li class="sidebar-li"><a class="sidebar-a" href="/valorations/">{% trans "Add a personal valoration" %}</a></li>
+    </ul>
     <p>Desarrollado por Turulomio</p>
-
-{% endblock sidebar %}
+    {% endblock sidebar %}
 </div>
 
 <div class="content">
 {% block content %}
 {% endblock content %}
+
+<p>
 </div>
 </div> {# layHorizontal #}
 </div> {# layVertical #}

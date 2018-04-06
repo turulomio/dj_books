@@ -12,7 +12,6 @@
             <li><a href="/books/author/{{ author.id }}">{{ author }}</a> ( <a href="/books/author/{{ author.id }}/delete/">{% trans "Delete" %}</a> )</li>
         {% endfor %}
     </ul>
-    <p><a href="/books/author/new/">{% trans "Adds a new author" %}</a></p>
 
     <h2>{% trans "Books" %}</h2>
     <ul>
@@ -20,7 +19,6 @@
             <li><a href="/books/book/{{ book.id }}">{{ book }}</a> ( <a href="/books/book/{{ book.id }}/delete/">{% trans "Delete" %}</a> )</li>
         {% endfor %}
     </ul>
-    <p><a href="/books/book/new">{% trans "Adds a new book" %}</a></p>
 
 {% endblock %}
 

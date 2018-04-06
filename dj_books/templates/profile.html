@@ -11,6 +11,7 @@
 {% block content %}
     <h1>{% trans "Settings" %}</h1>
     <h2>{% trans "User profile" %}</h2>
+    <p>{% trans "Set profile data and select your prefered language:" %}</p>
     <form method="post" class="form_table">
         <table>
         {% csrf_token %}
@@ -24,6 +25,7 @@
     {% endif %}
 
     <h2>{% trans "Change password" %}</h2>
+    <p>{% trans "If you wish you can change your password here:" %}</p>
     <form method="post" class="form_table">
         <table>
         {% csrf_token %}
