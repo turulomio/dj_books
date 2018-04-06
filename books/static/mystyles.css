@@ -74,7 +74,7 @@ form {
 
 div.container {
     width: 100%;
-    height:100%;
+    height:90%;
     background-color: beige;
     display: grid;
     grid-template-columns: 25% 75%;
@@ -84,31 +84,35 @@ div.container {
 }
 
 div.header{
-    color: white;
-    font-weight:bold;
-    background-color: #BBBBBB;
+    background-color: #333333;
     clear: left;
     text-align: center;
     grid-column-end: span 2;
-    height:50px;
+    top: 0;
+    height: 5vh;
     width:100%;
-    position:fixed;
+/*    box-sizing: border-box;*/
+    position:sticky;
 }
 
 div.sidebar {
-    text-align: left;
     grid-column-start: 1;
     grid-row-start: 2;
-    background-color: #BBBBBB;
-    top: 50px;
-    height:90%;
-    overflow-x: auto;
-    position: fixed;
-    
+    background-color: #333333;
+    top: 5vh;
+    height: 95vh;
+    color: white;
+    font-weight:bold;
+    position: sticky;
+
 }
 
 div.content {
-    top: 200px;
+    padding: 3vh;
+/*    left: 25%;
+    top: 50px;
+    overflow:auto;
+    */
 }
 
 
