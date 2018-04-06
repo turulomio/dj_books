@@ -39,12 +39,9 @@ h2 {
     margin-right:auto;
 }
 
-
-
-
 p {
     text-align: justify;
-    padding: 4px;
+    padding: 2px;
 }
 
 /* DJANGO ALERTS
@@ -62,11 +59,6 @@ p {
     font-weight: bold
 }
 
-div.content {
-
-    display: block;
-    text-align: center;
-}
 /*
  * DJANGO FORM TABLES
  */
@@ -82,37 +74,45 @@ form {
 
 div.container {
     width: 100%;
-    border: 1px solid gray;
+    height:100%;
+    background-color: beige;
+    display: grid;
+    grid-template-columns: 25% 75%;
+    padding: 0px;
+    margin: 0px;
+
 }
 
-header, footer {
-    padding: 1em;
+div.header{
     color: white;
-    background-color: black;
+    font-weight:bold;
+    background-color: #BBBBBB;
     clear: left;
     text-align: center;
+    grid-column-end: span 2;
+    height:50px;
+    width:100%;
+    position:fixed;
 }
 
-nav {
-    float: left;
-    max-width: 160px;
-    margin: 0;
-    padding: 1em;
+div.sidebar {
+    text-align: left;
+    grid-column-start: 1;
+    grid-row-start: 2;
+    background-color: #BBBBBB;
+    top: 50px;
+    height:90%;
+    overflow-x: auto;
+    position: fixed;
+    
 }
 
-nav ul {
-    list-style-type: none;
-    padding: 0;
-}
-   
-nav ul a {
-    text-decoration: none;
+div.content {
+    top: 200px;
 }
 
-article {
-    margin-left: 170px;
-    border-left: 1px solid gray;
-    padding: 1em;
-    overflow: hidden;
+
+body {
+    margin: 0px;
 }
-</style>
+
