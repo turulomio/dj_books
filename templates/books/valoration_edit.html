@@ -1,0 +1,23 @@
+
+{% extends 'base.html' %}
+{% load i18n %}
+{% load mytranslation %}
+
+{% set_language user.profile.language%}
+
+{% block head %}
+<title>My Library > {% trans "Valorations" %} > {% trans "New" %}</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>{% trans "Add or edit a Valoration" %}</h1>
+    <form method="post">
+        <table>
+        {% csrf_token %}
+        {{ form.as_table }}
+        </table>
+    <button type="submit">{% trans "Save" %}</button>
+    </form>
+{% include "messages.html" %}
+{% endblock %}

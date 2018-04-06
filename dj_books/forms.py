@@ -2,7 +2,7 @@ import datetime
 from django.forms import ModelForm, SelectDateWidget
 
 from django.contrib.auth.models import User
-from books.models import Profile, Book,  Author
+from books.models import Profile, Book,  Author, Valoration
 
 class UserForm(ModelForm):
     class Meta:
@@ -29,3 +29,8 @@ class AuthorForm(ModelForm):
     class Meta:
         model = Author
         fields = ('name', 'family_name','birth', 'death')
+
+class ValorationForm(ModelForm):
+    class Meta:
+        model = Valoration
+        fields = ('book', 'user', 'comment','valoration','read_start','read_end')

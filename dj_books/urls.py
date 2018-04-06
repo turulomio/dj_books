@@ -14,11 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-
 from django.contrib.auth import views as auth_views
 
 from dj_books.admin import mysite
-#from dj_books.settings import STATIC_URL
 from dj_books.views import  (
     home, 
     database,  
@@ -29,6 +27,10 @@ from dj_books.views import  (
     BookCreate, 
     BookUpdate, 
     BookDelete, 
+    ValorationCreate, 
+    ValorationUpdate, 
+    ValorationDelete, 
+    valoration,
     )
 
 urlpatterns = [
@@ -43,8 +45,10 @@ urlpatterns = [
     url(r'^books/author/(?P<pk>\d+)/$', AuthorUpdate.as_view(), name='author-edit'),
     url(r'^books/author/(?P<pk>\d+)/delete/$', AuthorDelete.as_view(), name='author-delete'),
     
-    url(r'^books/book/new/$', BookCreate.as_view(), name='book-add'),
-    url(r'^books/book/(?P<pk>\d+)/$', BookUpdate.as_view(), name='book-edit'),
-    url(r'^books/book/(?P<pk>\d+)/delete/$', BookDelete.as_view(), name='book-delete'),
+    
+    url(r'^books/valoration/', valoration, name='valoration'),
+    url(r'^books/valoration/new/$', ValorationCreate.as_view(), name='valoration-add'),
+    url(r'^books/valoration/(?P<pk>\d+)/$', ValorationUpdate.as_view(), name='valoration-edit'),
+    url(r'^books/valoration/(?P<pk>\d+)/delete/$', ValorationDelete.as_view(), name='valoration-delete'),
 ]
 
