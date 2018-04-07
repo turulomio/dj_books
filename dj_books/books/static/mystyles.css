@@ -122,10 +122,13 @@ div.content {
     top: 5vh;
     left: 25vw;
     height: 95vh;
-    overflow-y: scroll;
+    overflow-y: auto;
     padding-left: 5vh;
     padding-right: 5vh;
     background-color: white;
+    border-radius: 28px;
+/*    border: 1px solid #BBBBBB;*/
+
  }
 
 

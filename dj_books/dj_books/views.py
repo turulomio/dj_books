@@ -15,6 +15,7 @@ from django.shortcuts import render, redirect
 
 from books.models import Author,  Book, Valoration
 from .forms import UserForm, ProfileForm
+from books.tables import AuthorTable, BookTable
 
 def unauthorized(request):
     return HttpResponse("You're not authorized") 
@@ -34,6 +35,8 @@ def logout_view(request):
 def database(request):
     authors= Author.objects.order_by('name')
     books=Book.objects.order_by('title')
+    table_authors=AuthorTable(authors)
+    table_books=BookTable(books)
     return render(request, 'database.html', locals())
 
 @login_required

@@ -4,9 +4,19 @@
 {% load mytranslation %}
 {% set_language user.profile.language %}
 
+{% load render_table from django_tables2 %}
+
+
 {% block content %}
 <h1>{% trans "Library database" %}</h1>
     <h2>{% trans "Authors" %}</h2>
+
+
+<p class="normal">Tabla con query set</p>
+        {% render_table authors %}
+
+<p class="normal">Tabla authors con table.thml</p>
+         {%render_table table_authors%}
     <ul>
         {% for author in authors %}
             <li><a href="/books/author/{{ author.id }}">{{ author }}</a> ( <a href="/books/author/{{ author.id }}/delete/">{% trans "Delete" %}</a> )</li>
@@ -14,6 +24,11 @@
     </ul>
 
     <h2>{% trans "Books" %}</h2>
+
+
+<p class="normal">Tabla books con semantic</p>
+        {% render_table table_books %}
+
     <ul>
         {% for book in books %}
             <li><a href="/books/book/{{ book.id }}">{{ book }}</a> ( <a href="/books/book/{{ book.id }}/delete/">{% trans "Delete" %}</a> )</li>
