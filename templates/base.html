@@ -41,42 +41,45 @@
             {% block head_css_page %}
             {% endblock head_css_page %}
         {% endblock head_css %}
-        
                 <script type="text/javascript" src="{% static "jquery.js" %}"></script>
                 <script type="text/javascript" src="{% static "jquery-ui.js" %}"></script>
                 <script type="text/javascript" src="{% static "jquery_my.js" %}"></script>
     </head>
 <body>
 
-<div class="layVertical">
-<div class="header">
-<ul class="nav-ul">
-  <li class="nav-li"><a href="/home/">{% trans "Home" %}</a></li>
-  <li class="nav-li"><a href="/database">{% trans "All database" %}</a></li>
-  <li class="nav-li"><a href="/profile/">{% trans "Settings" %}</a></li>
-    {% if request.user.is_superuser %}
-        <li class="nav-li"><a href="/admin/">{% trans "Administration" %}</a></li>
-    {% endif %}
-  <li class="nav-li"><a href="/logout/">{% trans "Logout" %} {{ user.username|upper }}</a></li>
-</ul>
-</div>
-
 <div class="layHorizontal">
 <div class="sidebar">
-    <p>Acciones</p>
+    <p class="title">{% trans "MY BOOKS LIBRARY" %}</p>
+    <p class="title"><img src="{% static "book.png" %}" height="50px" width="50px"/></p>
     {% block sidebar %}
-    <ul class="sidebar-ul">My library
+    <ul class="sidebar-ul">{% trans "My library" %}
         <li class="sidebar-li"><a class="sidebar-a" href="/books/book/new">{% trans "Add a new book" %}</a></li>
         <li class="sidebar-li"><a class="sidebar-a" href="/books/author/new/">{% trans "Add a new author" %}</a></li>
     </ul>
 
-    <ul class="sidebar-ul">My valorations
+    <ul class="sidebar-ul">{% trans "My valorations" %}
         <li class="sidebar-li"><a class="sidebar-a" href="/books/valoration/new/">{% trans "Add a new valoration" %}</a></li>
         <li class="sidebar-li"><a class="sidebar-a" href="/books/valoration/list/">{% trans "Valorations list" %}</a></li>
     </ul>
 
-    <p>Desarrollado por Turulomio</p>
+    <center>Desarrollado por Turulomio</center>
     {% endblock sidebar %}
+</div>
+
+
+<div class="layVertical">
+
+
+<div class="header">
+<ul class="nav-ul">
+  <li class="nav-li"><a href="/logout/">{% trans "Logout" %} {{ user.username|upper }}</a></li>
+    {% if request.user.is_superuser %}
+        <li class="nav-li"><a href="/admin/">{% trans "Administration" %}</a></li>
+    {% endif %}
+  <li class="nav-li"><a href="/profile/">{% trans "Settings" %}</a></li>
+  <li class="nav-li"><a href="/database">{% trans "All database" %}</a></li>
+  <li class="nav-li"><a href="/home/">{% trans "Home" %}</a></li>
+</ul>
 </div>
 
 <div class="content">
@@ -85,7 +88,7 @@
 
 <p>
 </div>
-</div> {# layHorizontal #}
 </div> {# layVertical #}
+</div> {# layHorizontal #}
 </body>
 </html>

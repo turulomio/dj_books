@@ -4,18 +4,20 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
 }
 
-.nav-li {
+.nav-title {
     float: left;
+    text-transform: uppercase;
+}
+.nav-li {
+    float: right;
 }
 
-.nav-li a {
+.nav-li a, .nav-title a {
     display: inline-block;
     color: white;
-    text-align: center;
-    padding: 14px 16px;
+    padding: 14px 14px;
     text-decoration: none;
 }
 
@@ -33,15 +35,20 @@ h2 {
     color: #444444;
 }
 
-p {
+p.normal {
     text-align: justify;
     padding: 2px;
 }
 
+p.title {
+    text-align: center;
+    padding:2px;
+/*    color: white;
+    font-weight: bold;*/
+}
+
 /* DJANGO ALERTS
  */
-
-
 .errorlist {
     color: red;
     font-weight: bold;
@@ -76,8 +83,7 @@ div.layVertical {
 }
 
 div.layHorizontal {
-/*    background: linear-gradient(#D0E0E0,white);*/
-    background-color: white;
+    background: linear-gradient(#333333,#AAAAAA);
     display: grid;
     grid-template-columns: 25vw 75vw;
     padding: 0px;
@@ -86,7 +92,8 @@ div.layHorizontal {
 }
 
 div.header{
-    background: linear-gradient(to right, #333333,#AAAAAA);
+    /*background: linear-gradient(to right, #333333,#AAAAAA);*/*/
+    /*background-color: #333333;*/
     color: white;
     font-weight:bold;
     top: 0;
@@ -95,13 +102,13 @@ div.header{
 }
 
 div.sidebar{
-    background: linear-gradient(#333333,#AAAAAA);
+/*    background: linear-gradient(#333333,#AAAAAA);*/
     color: white;
     font-weight:bold;
     text-decoration: none;
-    top: 5vh;
-    left: 0;
-    height:95vh;
+/*    top: 5vh;
+    left: 0;*/
+    height:100vh;
 }
 
 
@@ -109,7 +116,6 @@ a.sidebar-a {
     color: white;
     font-weight:bold;
     text-decoration: none;
-    
 }
 
 div.content {
@@ -119,6 +125,7 @@ div.content {
     overflow-y: scroll;
     padding-left: 5vh;
     padding-right: 5vh;
+    background-color: white;
  }
 
 
