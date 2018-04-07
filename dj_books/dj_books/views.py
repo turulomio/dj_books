@@ -44,7 +44,7 @@ def valoration(request):
 class AuthorList(ListView):
     queryset = Author.objects.order_by('name')
     context_object_name = 'author_list'
-    
+
 @login_required
 @transaction.atomic
 def profile_edit(request):
@@ -82,68 +82,64 @@ class AuthorCreate(CreateView):
     model = Author
     fields = ['name', 'family_name', 'birth', 'death']
     template_name="books/author_edit.html"
-    success_url = reverse_lazy('database')
+    success_url = reverse_lazy('home')
 
 class AuthorUpdate(UpdateView):
     model = Author
     fields = ['name', 'family_name', 'birth', 'death']
     template_name="books/author_edit.html"
-    success_url = reverse_lazy('database')
+    success_url = reverse_lazy('home')
 
 class AuthorDelete(DeleteView):
     model = Author
-    success_url = reverse_lazy('database')
-    
+    success_url = reverse_lazy('home')
 
 class BookCreate(CreateView):
     model = Book
     fields = ['title', 'year', 'author']
     template_name="books/book_edit.html"
-    success_url = reverse_lazy('database')
+    success_url = reverse_lazy('home')
 
 class BookUpdate(UpdateView):
     model = Book
     fields = ['title', 'year', 'author']
     template_name="books/book_edit.html"
-    success_url = reverse_lazy('database')
+    success_url = reverse_lazy('home')
 
 class BookDelete(DeleteView):
     model = Book
-    success_url = reverse_lazy('database')
-
-
-    
-
-class BookCreate(CreateView):
-    model = Book
-    fields = ['title', 'year', 'author']
-    template_name="books/book_edit.html"
-    success_url = reverse_lazy('database')
-
-class BookUpdate(UpdateView):
-    model = Book
-    fields = ['title', 'year', 'author']
-    template_name="books/book_edit.html"
-    success_url = reverse_lazy('database')
-
-class BookDelete(DeleteView):
-    model = Book
-    success_url = reverse_lazy('database')
+    success_url = reverse_lazy('home')
 
 class ValorationCreate(CreateView):
     model = Valoration
     fields = ['book', 'user', 'comment','valoration','read_start','read_end']
-    template_name="valorations/valoration_edit.html"
-    success_url = reverse_lazy('database')
+    template_name="books/valoration_edit.html"
+    success_url = reverse_lazy('valoration-list')
+
+    def get_form(self, form_class=None): 
+        if form_class is None: 
+            form_class = self.get_form_class()
+        form = super(ValorationCreate, self).get_form(form_class)
+        form.fields['read_start'].widget.attrs['class'] ='datepicker'
+        form.fields['read_end'].widget.attrs['class'] ='datepicker'
+        return form
 
 class ValorationUpdate(UpdateView):
     model = Valoration
     fields = ['book', 'user', 'comment','valoration','read_start','read_end']
-    template_name="valorations/valoration_edit.html"
-    success_url = reverse_lazy('database')
+    template_name="books/valoration_edit.html"
+    success_url = reverse_lazy('valoration-list')
+
+    def get_form(self, form_class=None): 
+        if form_class is None: 
+            form_class = self.get_form_class()
+        form = super(ValorationUpdate, self).get_form(form_class)
+        form.fields['read_start'].widget.attrs['class'] ='datepicker'
+        form.fields['read_end'].widget.attrs['class'] ='datepicker'
+        return form
 
 class ValorationDelete(DeleteView):
     model = Valoration
-    success_url = reverse_lazy('valoration')
+    success_url = reverse_lazy('valoration-list')
 
 
