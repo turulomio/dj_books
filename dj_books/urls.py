@@ -40,13 +40,16 @@ urlpatterns = [
     url(r'^home/$', home, name='home'),
     url(r'^database/$', database, name='database'), 
     url(r'^profile/$', profile_edit), 
-    
+
     url(r'^books/author/new/$', AuthorCreate.as_view(), name='author-add'),
     url(r'^books/author/(?P<pk>\d+)/$', AuthorUpdate.as_view(), name='author-edit'),
     url(r'^books/author/(?P<pk>\d+)/delete/$', AuthorDelete.as_view(), name='author-delete'),
-    
-    
-    url(r'^books/valoration/', valoration, name='valoration'),
+
+    url(r'^books/book/new/$', BookCreate.as_view(), name='book-add'),
+    url(r'^books/book/(?P<pk>\d+)/$', BookUpdate.as_view(), name='book-edit'),
+    url(r'^books/book/(?P<pk>\d+)/delete/$', BookDelete.as_view(), name='book-delete'),
+
+    url(r'^books/valoration/list/', valoration, name='valoration-list'),
     url(r'^books/valoration/new/$', ValorationCreate.as_view(), name='valoration-add'),
     url(r'^books/valoration/(?P<pk>\d+)/$', ValorationUpdate.as_view(), name='valoration-edit'),
     url(r'^books/valoration/(?P<pk>\d+)/delete/$', ValorationDelete.as_view(), name='valoration-delete'),
