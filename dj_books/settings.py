@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_tables2',
     'books',
 ]
 
@@ -98,7 +99,6 @@ LOCALE_PATHS = (
     BASE_DIR+ '/locale/',
 )
 
-print(BASE_DIR)
 print(LOCALE_PATHS)
 
 # Password validation
@@ -144,3 +144,4 @@ LOGIN_REDIRECT_URL = '/home/'
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = "/home/keko/Proyectos/xulpymoney-root/dj_books/books/static/"
