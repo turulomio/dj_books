@@ -15,16 +15,16 @@
   color black;
   font-weight: bold;
   text-align: left;
-  padding: 12px;
+  padding: 1px;
 }
 #myInput {
   background-image: url('/css/searchicon.png');
   background-position: 10px 10px;
   background-repeat: no-repeat;
   font-size: 16px;
-  padding: 12px 20px 12px 40px;
+  padding: 1px;
   border: 1px solid #ddd;
-  margin-bottom: 12px;
+  /*margin-bottom: 12px;*/
 }
 
 #myTable {
@@ -38,11 +38,11 @@
   background-color: #bda8a8;
   color black;
   text-align: left;
-  padding: 12px;
+  padding: 1px;
 }
 #myTable td {
   text-align: left;
-  padding: 12px;
+  padding: 1px;
 }
 
 #myTable tr {
