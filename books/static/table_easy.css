@@ -1,12 +1,26 @@
 * {
   box-sizing: border-box;
 }
-
+.EasyTable {
+    background: linear-gradient(#F0D5D5, white);
+    border-radius: 14px;
+    border: 1px solid #BBBBBB;
+    padding: 8px;	
+ margin-left: auto;
+ margin-right: auto;
+ display: inline-block;
+}
+.EasyTableButton{
+  background-color: #bda8a8;
+  color black;
+  font-weight: bold;
+  text-align: left;
+  padding: 12px;
+}
 #myInput {
   background-image: url('/css/searchicon.png');
   background-position: 10px 10px;
   background-repeat: no-repeat;
-  width: 100%;
   font-size: 16px;
   padding: 12px 20px 12px 40px;
   border: 1px solid #ddd;
@@ -20,7 +34,13 @@
   font-size: 18px;
 }
 
-#myTable th, #myTable td {
+#myTable th{
+  background-color: #bda8a8;
+  color black;
+  text-align: left;
+  padding: 12px;
+}
+#myTable td {
   text-align: left;
   padding: 12px;
 }
@@ -30,5 +50,5 @@
 }
 
 #myTable tr.header, #myTable tr:hover {
-  background-color: #f1f1f1;
+  background-color: #bda8a8;
 }

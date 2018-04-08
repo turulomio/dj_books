@@ -6,7 +6,13 @@
 
 {% block content %}
 <h1>{% trans "My Valorations" %}</h1>
+
+{% autoescape off %}
+        {{ tableeasy_valorations.render }}
+        {% endautoescape %}
     <ul>
+    
+        
         {% for valoration in valorations %}
             <li><a href="/books/valoration/{{ valoration.id }}">{{ valoration }}</a> ( <a href="/books/valoration/{{ valoration.id }}/delete/">{% trans "Delete" %}</a> )</li>
         {% endfor %}
