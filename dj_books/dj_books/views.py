@@ -1,8 +1,8 @@
 import datetime
-from django.http import HttpResponse
-from django.contrib.auth import logout
+#from django.http import HttpResponse
+#from django.contrib.auth import logout
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.views.generic import ListView
+#from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
@@ -10,15 +10,15 @@ from django.db import transaction
 from django.urls import reverse_lazy
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 
 
 from books.models import Author,  Book, Valoration
 from .forms import UserForm, ProfileForm
-from books.tables import AuthorTable, BookTable
-
-def unauthorized(request):
-    return HttpResponse("You're not authorized") 
+from books.tables import AuthorTable, BookTable, TableEasyAuthors
+#
+#def unauthorized(request):
+#    return HttpResponse("You're not authorized") 
 
 
 @login_required
@@ -26,9 +26,9 @@ def home(request):
     now = datetime.datetime.now()
     return render(request, 'home.html', locals())
         
-def logout_view(request):
-    logout(request)
-    return redirect('login')
+#def logout_view(request):
+#    logout(request)
+#    return redirect('login')
 
 
 @login_required
@@ -37,6 +37,7 @@ def database(request):
     books=Book.objects.order_by('title')
     table_authors=AuthorTable(authors)
     table_books=BookTable(books)
+    tableeasy_authors=TableEasyAuthors(authors)
     return render(request, 'database.html', locals())
 
 @login_required
@@ -44,9 +45,9 @@ def valoration(request):
     valorations= Valoration.objects.order_by('read_start')
     return render(request, 'valoration.html', locals())
 
-class AuthorList(ListView):
-    queryset = Author.objects.order_by('name')
-    context_object_name = 'author_list'
+#class AuthorList(ListView):
+#    queryset = Author.objects.order_by('name')
+#    context_object_name = 'author_list'
 
 @login_required
 @transaction.atomic
