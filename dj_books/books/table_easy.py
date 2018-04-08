@@ -1,12 +1,12 @@
 from abc import ABC, abstractmethod
 from django.utils.translation import gettext_lazy as _
-class Table(ABC):
+class TableEasy(ABC):
     def __init__(self):
         self._width="100%"
         self._height="100%"
-        self._delete_html=""
-        self.i_nsert_html=""
-        self._edit_html=""
+        self._html_delete=""
+        self._html_insert=""
+        self._html_update=""
         self._fields=[]
         self._name="table_easy"
 
@@ -38,21 +38,23 @@ class Table(ABC):
         self.fields_pk=self.model._meta.get_field(string_fields_pk)
         
     def setIBM(self, html_insert, html_update, html_delete):
-        pass
+        self._html_insert=html_insert
+        self._html_update=html_update
+        self._html_delete=html_delete
 
         
-class TableFromModel(Table):
+class TableEasyFromModel(TableEasy):
     def __init__(self, model, queryset):
-        Table.__init__(self)
+        TableEasy.__init__(self)
         self.model=model
         self.queryset=queryset
     
     def render(self):
-        r='<div class="EasyTable">'
+        r='<div class="EasyTable">\n'
         ##Search box
-        r=r+'<button type="button" name="cmd_insert">{}</button>'.format(_("Insert"))
-        r=r+'<button type="button" name="cmd_insert">{}</button>'.format(_("Update"))
-        r=r+'<button type="button" name="cmd_insert">{}</button>'.format(_("Delete"))
+        r=r+"""<button type="button" class="EasyTableButton" name="cmd_insert" onclick="window.location.href='{}';" >{}</button>\n""".format(self._html_insert, _("Insert"))
+        r=r+'<button type="button" class="EasyTableButton" name="cmd_update">{}</button>\n'.format(_("Update"))
+        r=r+'<button type="button" class="EasyTableButton" name="cmd_delete">{}</button>\n'.format(_("Delete"))
         r=r+'    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">\n'
         r=r+'<table id="myTable">\n'
         r=r+'<tr class="header">\n'
@@ -72,10 +74,6 @@ class TableFromModel(Table):
         r=r+"    </table>\n"
         r=r+"</div>\n"
         return r
-    
-class TableFromQuerySet():
-    def __init__(self):
-        Table.__init__(self)
 
 
 

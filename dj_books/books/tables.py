@@ -1,7 +1,7 @@
 import django_tables2 as tables
 from django.utils.translation import gettext_lazy as _
-from .models import Author, Book
-from books.table_easy import TableFromModel
+from .models import Author, Book, Valoration
+from books.table_easy import TableEasyFromModel
 
 class AuthorTable(tables.Table):
     class Meta:
@@ -18,7 +18,20 @@ class BookTable(tables.Table):
         exclude = ("id",)
         
         
-class TableEasyAuthors(TableFromModel):
+class TableEasyAuthors(TableEasyFromModel):
     def __init__(self,  queryset):
-        TableFromModel.__init__(self, Author,  queryset)
+        TableEasyFromModel.__init__(self, Author,  queryset)
         self.setFields("id", ["name", "family_name", "birth", "death"])
+        self.setIBM("/books/author/new/", None, None)
+
+class TableEasyBooks(TableEasyFromModel):
+    def __init__(self,  queryset):
+        TableEasyFromModel.__init__(self, Book,  queryset)
+        self.setFields("id", ["title", "author", "year"])
+        self.setIBM("/books/book/new/", None, None)
+
+class TableEasyValorations(TableEasyFromModel):
+    def __init__(self,  queryset):
+        TableEasyFromModel.__init__(self, Valoration,  queryset)
+        self.setFields("id", ["book", "read_start", "read_end", "valoration"])
+        self.setIBM("/books/valoration/new/", None, None)

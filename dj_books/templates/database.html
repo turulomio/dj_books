@@ -12,10 +12,19 @@
     <h2>{% trans "Authors" %}</h2>
 
 
-<p class="normal">Tabla Easy</p>
 {% autoescape off %}
         {{ tableeasy_authors.render }}
         {% endautoescape %}
+        
+        
+        
+    <h2>{% trans "Books" %}</h2>
+{% autoescape off %}
+        {{ tableeasy_books.render }}
+        {% endautoescape %}
+        
+        
+    <h2>Other visualizations</h2>
 <p class="normal">Tabla con query set</p>
         {% render_table authors %}
 
@@ -27,7 +36,6 @@
         {% endfor %}
     </ul>
 
-    <h2>{% trans "Books" %}</h2>
 
 
 <p class="normal">Tabla books con semantic</p>
