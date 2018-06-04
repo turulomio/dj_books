@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 {% load i18n %}
+{% load mymenu %}
 {% load mytranslation %}
 {% set_language request.user.profile.language %}
 {% load sitetree %}
@@ -60,23 +61,10 @@
     <p class="title">{% trans "MY BOOKS LIBRARY" %}</p>
     <p class="title"><img src="{% static "book.png" %}" height="50px" width="50px"/></p>
 
-<nav>
-    <ul class="nav nav_level_1">
-        <li><a href="/database/">All database</a></li>
-        <li><a href="#" class="toggle-custom" id="btn-1" data-toggle="collapse" data-size="small" data-target="#submenu1" aria-expanded="false">My Library...</a>
-             <ul class="nav collapse nav_level_2" id="submenu1" role="menu" aria-labelledby="btn-1">
-                  <li><a href="/books/author/new/">Add author</a></li>
-                  <li><a  href="/books/book/new/">Add book</a></li>
-                  <li><a href="#" class="toggle-custom" id="btn-3" data-toggle="collapse" data-target="#submenu3" aria-expanded="false">My valorations...</a>
-                      <ul class="nav collapse nav_level_3" id="submenu3" role="menu" aria-labelledby="btn-3">
-                          <li><a href="/books/valoration/new/">Add a new valoration</a></li>
-                          <li><a href="/books/valoration/list/">Valoration list</a></li>
-                      </ul>
-                  </li>
-             </ul>
-        </li>
-    </ul>
-</nav>
+{% autoescape off %}
+{% mymenu %}
+{% endautoescape %}
+
 <p>
 <hr>
 <center>Desarrollado por Turulomio</center>
