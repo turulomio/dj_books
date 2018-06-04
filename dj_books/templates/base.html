@@ -61,29 +61,24 @@
     <p class="title"><img src="{% static "book.png" %}" height="50px" width="50px"/></p>
 
 <nav>
-    <ul class="nav">
-        <li><a class="nav_level_1" href="/database/">All database</a></li>
-         <li class="nav_level_1" ><a href="#">My Library</a><a href="#" class="toggle-custom" id="btn-1" data-toggle="collapse" data-target="#submenu1" aria-expanded="false"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
-             <ul class="nav collapse" id="submenu1" role="menu" aria-labelledby="btn-1">
-                  <li class="nav_level_2"><a href="/books/author/new/">Add author</a></li>
-                  <li class="nav_level_2"><a  href="/books/book/new/">Add book</a></li>
-                  <li a class="nav_level_2"><a href="#">My other options</a><a href="#" class="toggle-custom" id="btn-3" data-toggle="collapse" data-target="#submenu3" aria-expanded="false"><small><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></small> 
-                      <ul class="nav collapse" id="submenu3" role="menu" aria-labelledby="btn-3">
-                          <li class="nav_level_3"><a href="/books/valoration/new/">Add a new valoration</a></li>
-                          <li class="nav_level_3"><a href="/books/valoration/list/">Valoration list</a></li>
+    <ul class="nav nav_level_1">
+        <li><a href="/database/">All database</a></li>
+        <li><a href="#" class="toggle-custom" id="btn-1" data-toggle="collapse" data-size="small" data-target="#submenu1" aria-expanded="false">My Library...</a>
+             <ul class="nav collapse nav_level_2" id="submenu1" role="menu" aria-labelledby="btn-1">
+                  <li><a href="/books/author/new/">Add author</a></li>
+                  <li><a  href="/books/book/new/">Add book</a></li>
+                  <li><a href="#" class="toggle-custom" id="btn-3" data-toggle="collapse" data-target="#submenu3" aria-expanded="false">My valorations...</a>
+                      <ul class="nav collapse nav_level_3" id="submenu3" role="menu" aria-labelledby="btn-3">
+                          <li><a href="/books/valoration/new/">Add a new valoration</a></li>
+                          <li><a href="/books/valoration/list/">Valoration list</a></li>
                       </ul>
                   </li>
              </ul>
         </li>
-        <li class="nav_level_1"><a href="#">My valorations</a><a href="#" class="toggle-custom" id="btn-2" data-toggle="collapse" data-target="#submenu2" aria-expanded="false"><small><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></small>
-            <ul class="nav collapse" id="submenu2" role="menu" aria-labelledby="btn-2">
-                <li class="nav_level_2"><a href="/books/valoration/new/">Add a new valoration</a></li>
-                <li class="nav_level_2"><a href="/books/valoration/list/">Valoration list</a></li>
-            </ul>
-        </li>
     </ul>
 </nav>
-
+<p>
+<hr>
 <center>Desarrollado por Turulomio</center>
 </div>{# sidebar#}
 

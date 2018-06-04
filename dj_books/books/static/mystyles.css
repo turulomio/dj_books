@@ -6,18 +6,15 @@
     overflow: hidden;
 }
 
-.nav-title {
-    float: left;
-    text-transform: uppercase;
-}
 .nav-li {
     float: right;
+    padding: 0px;
 }
 
 .nav-li a, .nav-title a {
     display: inline-block;
     color: white;
-    padding: 14px 14px;
+    padding: 7px 7px;
     text-decoration: none;
 }
 
@@ -42,9 +39,8 @@ p.normal {
 
 p.title {
     text-align: center;
-    padding:2px;
-/*    color: white;
-    font-weight: bold;*/
+    padding-top: 10px;
+    font-size: 130%;
 }
 
 /* DJANGO ALERTS
@@ -68,9 +64,9 @@ form {
     border-radius: 14px;
     border: 1px solid #BBBBBB;
     padding: 8px;	
- margin-left: auto;
- margin-right: auto;
- display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
 }
 
 
@@ -104,12 +100,7 @@ div.sidebar{
     font-weight:bold;
     text-decoration: none;
     height:100vh;
-}
-
-a.sidebar-a {
-    color: white;
-    font-weight:bold;
-    text-decoration: none;
+    overflow-y:auto;
 }
 
 div.content {
@@ -134,33 +125,54 @@ label {
 
 
 /* Bootstrap minified CSS included as External Resource*/
-.nav_level_1, .nav_level_1 a {
-    color: white;
-    font-weight: bold;
-    font-size: 100%;
+.nav_level_1{
+    list-style-type: disc;
+    line-height:75%;
 }
 
-.nav_level_2, .nav_level_2 a {
+.nav_level_1 a{
     color: white;
+    font-weight: bold;
+}
+
+.nav_level_2{
+    list-style-type: disc;
+    line-height:65%;
+}
+
+.nav_level_2 li {
+    padding-left: 30px;
+}
+
+.nav_level_2 a {
+    color: #DFDFDF;
     font-weight: bold;
     font-size:95%;
+}
+
+.nav_level_3{
+    list-style-type: square;
+    line-height:55%;
+}
+
+.nav_level_3 li {
     padding-left: 30px;
 }
 
-
-.nav_level_3 {
-    color: white;
+.nav_level_3 a {
+    color: #BFBFBF;
     font-weight: bold;
     font-size:90%;
-    padding-left: 30px;
 }
 
-.toggle-custom {
-    position:absolute !important;
-    top: 0px;
-    right: 0px;
+
+/*Usa el modo developer de firfox capuyo*/
+.nav > li > a:focus, .nav > li > a:hover {
+    text-decoration: none;
+    background-color: transparent;
 }
 
-.toggle-custom[aria-expanded='true'] .glyphicon-plus:before {
-    content: "\2212";
+.nav_level_1 a:hover {
+    color: orange;
+    background-color: transparent;
 }
