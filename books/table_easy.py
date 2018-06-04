@@ -80,6 +80,7 @@ class TableEasyFromModel(TableEasy):
         r=r+"    </table>\n"
         r=r+"""<button type="button" class="EasyTableButton" name="cmd_insert" onclick="window.location.href='{}';" >{}</button>\n""".format(self._html_insert, _("Insert"))
         r=r+"""<button type="button" class="EasyTableButton" name="cmd_delete_selected" onclick="window.location.href='{}';" >{}</button>\n""".format(self._html_insert, _("Delete selected"))
+        r=r+"""<label class="EasyTableRecords">""" + _("Found {} records").format(len(self.queryset)) + """</label>\n"""
         r=r+"</div>\n"
         return r
 

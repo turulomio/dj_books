@@ -17,8 +17,13 @@
   float: left;
   padding: 6px;
 }
+.EasyTableRecords{
+  color: #bda8a8;
+  font-weight: bold;
+  float: right;
+  padding: 6px;
+}
 #myInput {
-  background-image: url('/css/searchicon.png');
   background-position: 10px 10px;
   background-repeat: no-repeat;
   font-size: 100%;
