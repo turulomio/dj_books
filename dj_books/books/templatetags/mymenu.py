@@ -93,7 +93,7 @@ def mymenu():
    grLibrary=Group(1,_("My Library"), "10")
    grLibrary.append(Action(_("Add author"),[],"/books/author/new/"))
    grLibrary.append(Action(_("Add book"),[],"/books/book/new/"))
-   grVal=Group(1,_("My Valorations"), "11")
+   grVal=Group(2,_("My Valorations"), "11")
    grVal.append(Action(_("Add a valoration"),[],"/books/valoration/new/"))
    grVal.append(Action(_("List of valorations"),[],"/books/valoration/list/"))
    grLibrary.append(grVal)
