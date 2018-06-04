@@ -52,8 +52,13 @@
                 <script type="text/javascript" src="{% static "jquery-ui.js" %}"></script>
                 <script type="text/javascript" src="{% static "jquery_my.js" %}"></script>
                 <script type="text/javascript" src="{% static "table_easy.js" %}"></script>
-                <script type="text/javascript" src="{% static "sitetree.js" %}"></script>
-                
+                <script type="text/javascript" src="{% static "js/bootstrap.min.js" %}"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static "navbar-static-top.css" %}" rel="stylesheet">
     </head>
 <body>
 
@@ -61,15 +66,54 @@
 <div class="sidebar">
     <p class="title">{% trans "MY BOOKS LIBRARY" %}</p>
     <p class="title"><img src="{% static "book.png" %}" height="50px" width="50px"/></p>
-    <div class="sitetree_menu">
-    <p><a href="#" id="tree-expand-all">Expand all</a> | <a href="#" id="tree-collapse-all">Collapse all</a></p>
-        {% sitetree_menu from "maintree" include "trunk,topmenu" %}
-    </div> {# sitetree_menu #}
+
+
+
+
+
 <center>Desarrollado por Turulomio</center>
 </div>{# sidebar#}
 
 <div class="layVertical">
 
+
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">My books library</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/home/">Home</a></li>
+            <li><a href="/database">All database</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My library <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Add author</a></li>
+                <li><a href="#">Add book</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">My valorations</li>
+                <li><a href="#">Add a new valoration</a></li>
+                <li><a href="#">Valoration list</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/profile/">Settings</a></li>
+            <li class="active"><a href="/admin/">Administration <span class="sr-only">(current)</span></a></li>
+            <li><a href="/logout/">Logout</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
 <div class="header">
 <ul class="nav-ul">
   <li class="nav-li"><a href="/logout/">{% trans "Logout" %} {{ user.username|upper }}</a></li>
