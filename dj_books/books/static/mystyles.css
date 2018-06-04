@@ -92,8 +92,6 @@ div.layHorizontal {
 }
 
 div.header{
-    /*background: linear-gradient(to right, #333333,#AAAAAA);*/*/
-    /*background-color: #333333;*/
     color: white;
     font-weight:bold;
     top: 0;
@@ -102,15 +100,11 @@ div.header{
 }
 
 div.sidebar{
-/*    background: linear-gradient(#333333,#AAAAAA);*/
     color: white;
     font-weight:bold;
     text-decoration: none;
-/*    top: 5vh;
-    left: 0;*/
     height:100vh;
 }
-
 
 a.sidebar-a {
     color: white;
@@ -127,9 +121,7 @@ div.content {
     padding-right: 5vh;
     background-color: white;
     border-radius: 28px;
-/*    border: 1px solid #BBBBBB;*/
-
- }
+}
 
 
 body {
@@ -141,56 +133,34 @@ label {
 }
 
 
-
-/*Django Site-tree*/
-.sitetree_menu ul li {
-    list-style-type: none;
-    margin: 5px;
-    padding: 0;
-    overflow: hidden;
-/*    padding: 6px 8px 6px 16px;*/
-    text-decoration: none;
-    font-size: 20px;
-    color: #818181;
-    display: block;
-    border: none;
-    background: none;
-    width: 100%;
-    text-align: left;
-    cursor: pointer;
-    outline: none;
-
-}
-
-.sitetree_menu ul ul li, .sitetree_menu ul ul {
-    text-align: left;
-    font-size: 18px;
-}
-
-.sitetree_menu  a {
+/* Bootstrap minified CSS included as External Resource*/
+.nav_level_1, .nav_level_1 a {
     color: white;
-/*    padding: 14px 14px;*/
-    text-decoration: none;
+    font-weight: bold;
+    font-size: 100%;
 }
 
-.breadcrumbs , .breadcrumbs a {
-    list-style-type: none;
-    text-decoration: none;
-    font-size: 10px;
+.nav_level_2, .nav_level_2 a {
     color: white;
-    display: block;
-    text-align: left;
-    float: left;
+    font-weight: bold;
+    font-size:95%;
+    padding-left: 30px;
 }
 
 
-
-.abix-tree-list li {
-    list-style: none;
+.nav_level_3 {
+    color: white;
+    font-weight: bold;
+    font-size:90%;
+    padding-left: 30px;
 }
 
-.abix-tree-list .collapsed span.icon, 
-.abix-tree-list .expanded span.icon {
-    margin-right: 6px;
-    cursor: pointer;
+.toggle-custom {
+    position:absolute !important;
+    top: 0px;
+    right: 0px;
+}
+
+.toggle-custom[aria-expanded='true'] .glyphicon-plus:before {
+    content: "\2212";
 }
