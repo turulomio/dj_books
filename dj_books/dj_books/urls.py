@@ -15,8 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib.auth import views as auth_views
+from django.contrib import admin
 
-from dj_books.admin import mysite
 from dj_books.views import  (
     home, 
     database,  
@@ -34,7 +34,7 @@ from dj_books.views import  (
     )
 
 urlpatterns = [
-    url(r'^admin/', mysite.urls),
+    url(r'^admin/', admin.site.urls),
     url(r'^$', auth_views.login, {'template_name': 'admin/login.html'}), 
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}), 
     url(r'^home/$', home, name='home'),

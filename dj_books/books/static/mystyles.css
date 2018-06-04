@@ -138,5 +138,59 @@ body {
 
 label {
     font-weight:bold;
-    
+}
+
+
+
+/*Django Site-tree*/
+.sitetree_menu ul li {
+    list-style-type: none;
+    margin: 5px;
+    padding: 0;
+    overflow: hidden;
+/*    padding: 6px 8px 6px 16px;*/
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+
+}
+
+.sitetree_menu ul ul li, .sitetree_menu ul ul {
+    text-align: left;
+    font-size: 18px;
+}
+
+.sitetree_menu  a {
+    color: white;
+/*    padding: 14px 14px;*/
+    text-decoration: none;
+}
+
+.breadcrumbs , .breadcrumbs a {
+    list-style-type: none;
+    text-decoration: none;
+    font-size: 10px;
+    color: white;
+    display: block;
+    text-align: left;
+    float: left;
+}
+
+
+
+.abix-tree-list li {
+    list-style: none;
+}
+
+.abix-tree-list .collapsed span.icon, 
+.abix-tree-list .expanded span.icon {
+    margin-right: 6px;
+    cursor: pointer;
 }
