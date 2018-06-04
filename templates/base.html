@@ -3,6 +3,7 @@
 {% load i18n %}
 {% load mytranslation %}
 {% set_language request.user.profile.language %}
+{% load sitetree %}
 
 {% load static %}
 
@@ -51,6 +52,8 @@
                 <script type="text/javascript" src="{% static "jquery-ui.js" %}"></script>
                 <script type="text/javascript" src="{% static "jquery_my.js" %}"></script>
                 <script type="text/javascript" src="{% static "table_easy.js" %}"></script>
+                <script type="text/javascript" src="{% static "sitetree.js" %}"></script>
+                
     </head>
 <body>
 
@@ -58,24 +61,14 @@
 <div class="sidebar">
     <p class="title">{% trans "MY BOOKS LIBRARY" %}</p>
     <p class="title"><img src="{% static "book.png" %}" height="50px" width="50px"/></p>
-    {% block sidebar %}
-    <ul class="sidebar-ul">{% trans "My library" %}
-        <li class="sidebar-li"><a class="sidebar-a" href="/books/author/new/">{% trans "Add a new author" %}</a></li>
-        <li class="sidebar-li"><a class="sidebar-a" href="/books/book/new">{% trans "Add a new book" %}</a></li>
-    </ul>
-
-    <ul class="sidebar-ul">{% trans "My valorations" %}
-        <li class="sidebar-li"><a class="sidebar-a" href="/books/valoration/new/">{% trans "Add a new valoration" %}</a></li>
-        <li class="sidebar-li"><a class="sidebar-a" href="/books/valoration/list/">{% trans "Valorations list" %}</a></li>
-    </ul>
-
-    <center>Desarrollado por Turulomio</center>
-    {% endblock sidebar %}
-</div>
-
+    <div class="sitetree_menu">
+    <p><a href="#" id="tree-expand-all">Expand all</a> | <a href="#" id="tree-collapse-all">Collapse all</a></p>
+        {% sitetree_menu from "maintree" include "trunk,topmenu" %}
+    </div> {# sitetree_menu #}
+<center>Desarrollado por Turulomio</center>
+</div>{# sidebar#}
 
 <div class="layVertical">
-
 
 <div class="header">
 <ul class="nav-ul">
@@ -87,15 +80,19 @@
   <li class="nav-li"><a href="/database">{% trans "All database" %}</a></li>
   <li class="nav-li"><a href="/home/">{% trans "Home" %}</a></li>
 </ul>
-</div>
+</div> {# header #}
+
+<div class="breadcrumbs">
+    {% sitetree_breadcrumbs from "maintree" %}
+</div> {#breadcrumbs#}
 
 <div class="content">
 {% block content %}
 {% endblock content %}
-
 <p>
-</div>
+</div> {# content #}
 </div> {# layVertical #}
 </div> {# layHorizontal #}
+{% sitetree_tree from "mytree" %}
 </body>
 </html>
