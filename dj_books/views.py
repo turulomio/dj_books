@@ -16,6 +16,7 @@ from django.shortcuts import render
 from books.models import Author,  Book, Valoration
 from .forms import UserForm, ProfileForm
 from books.tables import AuthorTable, BookTable, TableEasyAuthors,  TableEasyValorations, TableEasyBooks
+from books.menu_easy import Menu, Action, Group
 #
 1#def unauthorized(request):
 #    return HttpResponse("You're not authorized") 
@@ -25,11 +26,6 @@ from books.tables import AuthorTable, BookTable, TableEasyAuthors,  TableEasyVal
 def home(request):
     now = datetime.datetime.now()
     return render(request, 'home.html', locals())
-        
-#def logout_view(request):
-#    logout(request)
-#    return redirect('login')
-
 
 @login_required
 def database(request):
@@ -46,10 +42,6 @@ def valoration(request):
     valorations= Valoration.objects.order_by('read_start')
     tableeasy_valorations=TableEasyValorations(valorations)
     return render(request, 'valoration.html', locals())
-
-#class AuthorList(ListView):
-#    queryset = Author.objects.order_by('name')
-#    context_object_name = 'author_list'
 
 @login_required
 @transaction.atomic
@@ -147,5 +139,3 @@ class ValorationUpdate(UpdateView):
 class ValorationDelete(DeleteView):
     model = Valoration
     success_url = reverse_lazy('valoration-list')
-
-
