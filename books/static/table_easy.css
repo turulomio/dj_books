@@ -14,35 +14,41 @@
   background-color: #bda8a8;
   color black;
   font-weight: bold;
-  text-align: left;
-  padding: 1px;
+  float: left;
+  padding: 6px;
 }
 #myInput {
   background-image: url('/css/searchicon.png');
   background-position: 10px 10px;
   background-repeat: no-repeat;
-  font-size: 16px;
+  font-size: 100%;
   padding: 1px;
   border: 1px solid #ddd;
-  /*margin-bottom: 12px;*/
 }
 
 #myTable {
   border-collapse: collapse;
   width: 100%;
   border: 1px solid #ddd;
-  font-size: 18px;
+  font-size: 100%;
 }
 
 #myTable th{
   background-color: #bda8a8;
   color black;
   text-align: left;
-  padding: 1px;
+  padding-left: 8px;
+  padding-right: 8px;
+  font-size: 105%;
+  border: 1px solid #ddd;
+  
 }
 #myTable td {
   text-align: left;
-  padding: 1px;
+  padding-left: 8px;
+  padding-right: 8px;
+  font-size:95%;
+  border: 1px solid #ddd;
 }
 
 #myTable tr {

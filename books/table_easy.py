@@ -56,12 +56,12 @@ class TableEasyFromModel(TableEasy):
     def render(self):
         r='<div class="EasyTable">\n'
         ##Search box
-        r=r+"""<button type="button" class="EasyTableButton" name="cmd_insert" onclick="window.location.href='{}';" >{}</button>\n""".format(self._html_insert, _("Insert"))
-        r=r+"""<button type="button" class="EasyTableButton" name="cmd_delete_selected" onclick="window.location.href='{}';" >{}</button>\n""".format(self._html_insert, _("Delete selected"))
-        r=r+'    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">\n'
+        r=r+"""<div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span><input  class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..." title="Type in a name"></div>\n"""
+
+
         r=r+'<table id="myTable">\n'
         r=r+'<tr class="header">\n'
-        ##Header
+        ##Header1
         r=r+'<th><input type="checkbox" id="all"/></th>\n'
         for field in self.fields:
             r=r+"<th>{}</th>\n".format(field.verbose_name)
@@ -78,6 +78,8 @@ class TableEasyFromModel(TableEasy):
             r=r+"""<button type="button" class="EasyTableButton" name="cmd_delete"  onclick="window.location.href='{}';">{}</button></td>\n""".format(self._html_delete.replace("###",str(pk_id)), _("Delete"))
             r=r+"        </tr>\n"
         r=r+"    </table>\n"
+        r=r+"""<button type="button" class="EasyTableButton" name="cmd_insert" onclick="window.location.href='{}';" >{}</button>\n""".format(self._html_insert, _("Insert"))
+        r=r+"""<button type="button" class="EasyTableButton" name="cmd_delete_selected" onclick="window.location.href='{}';" >{}</button>\n""".format(self._html_insert, _("Delete selected"))
         r=r+"</div>\n"
         return r
 
