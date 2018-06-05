@@ -35,6 +35,7 @@ from dj_books.views import  (
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^accounts/login/$', auth_views.login, {'template_name': 'admin/login.html'}), ## Internal compatibility
     url(r'^$', auth_views.login, {'template_name': 'admin/login.html'}), 
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}), 
     url(r'^home/$', home, name='home'),
