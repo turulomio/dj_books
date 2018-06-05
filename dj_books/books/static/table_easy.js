@@ -1,22 +1,39 @@
-function myFunction() {
-  var input, filter, table, tr, td, i;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-  numfiltered=0
-  for (i = 1; i < tr.length; i++) {
-    var s="";
-    td = tr[i].getElementsByTagName("td");
-    for (j=0;j<td.length;j++){
-        s=s+tr[i].getElementsByTagName("td")[j].innerHTML+" ";
-    }
-      if (s.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-        numfiltered=numfiltered+1;
-      } else {
-        tr[i].style.display = "none";
-      }
-  }
-  $(".EasyTableRecords").text("Filtered " + numfiltered + " from " + (tr.length-1) + " records");
+function TableEasy_search_onkeyup(tableeasydiv_id) {
+  var tableEasy=document.getElementById(tableeasydiv_id);
+  var input = $(tableEasy).find("#"+tableeasydiv_id+"_search");
+  var filter = $(input).val().toUpperCase();
+  var labelRecords=$(tableEasy).find("#"+tableeasydiv_id+"_records");
+  var table = $(tableEasy).find("#"+tableeasydiv_id+"_table");
+  var numfiltered=0;
+  $(table).find("tr.data").each(
+      function() {
+         var s="";
+         $(this).find("td").each(
+             function() {
+                 s=s+$(this).html();
+             });
+         if (s.toUpperCase().indexOf(filter) > -1) {
+             $(this).show();
+             numfiltered=numfiltered+1;
+         } else {
+             $(this).hide();
+         };
+      });
+
+  $(labelRecords).text("Filtered " + numfiltered + " from " + ($(table).find("tr").length-1) + " records");
+}
+
+function TableEasy_chkAll_onclick(tableeasydiv_id) {
+  var tableEasy=$(document).find("#" + tableeasydiv_id);
+  var chkAll=$(tableEasy).find(".TableEasyCheckBoxAll");
+  alert($(chkAll).parent().html());
+  $(tableEasy).find(".TableEasyCheckbox").each(
+      function() {
+         if( $(chkAll).prop('checked',true)){
+             $(this).prop('checked',true);
+         }else{
+             $(this).prop('checked',false);
+        alert($(this).prop('checked'));
+        };
+      });
 }
