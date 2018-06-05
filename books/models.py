@@ -72,8 +72,8 @@ class Author(models.Model):
 
 class Book(models.Model):
     id = models.AutoField(primary_key=True, db_column="id_books")
-    title = models.CharField(max_length=100,null=False)
-    year = models.IntegerField(null=True)
+    title = models.CharField(max_length=100,null=False, verbose_name=_("Title"))
+    year = models.IntegerField(null=True, verbose_name=_("Year"))
     author = models.ForeignKey(Author, models.DO_NOTHING, db_column='id_authors')
 
     def __str__(self):

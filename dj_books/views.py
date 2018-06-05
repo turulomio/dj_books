@@ -15,12 +15,7 @@ from django.shortcuts import render
 
 from books.models import Author,  Book, Valoration
 from .forms import UserForm, ProfileForm
-from books.tables import AuthorTable, BookTable, TableEasyAuthors,  TableEasyValorations, TableEasyBooks
-from books.menu_easy import Menu, Action, Group
-#
-1#def unauthorized(request):
-#    return HttpResponse("You're not authorized") 
-
+from books.tables import TableEasyAuthors,  TableEasyValorations, TableEasyBooks
 
 @login_required
 def home(request):
@@ -31,8 +26,6 @@ def home(request):
 def database(request):
     authors= Author.objects.order_by('name')
     books=Book.objects.order_by('title')
-    table_authors=AuthorTable(authors)
-    table_books=BookTable(books)
     tableeasy_authors=TableEasyAuthors(authors)
     tableeasy_books=TableEasyBooks(books)
     return render(request, 'database.html', locals())

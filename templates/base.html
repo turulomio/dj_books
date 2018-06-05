@@ -4,7 +4,6 @@
 {% load mymenu %}
 {% load mytranslation %}
 {% set_language request.user.profile.language %}
-{% load sitetree %}
 
 {% load static %}
 
@@ -35,8 +34,6 @@
             {% block head_css_site %}
                 <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
                 <link rel="stylesheet" type="text/css" href="{% static "jquery-ui.css" %}">
-                <link rel="stylesheet" type="text/css" href="{% static "django_tables2/bootstrap.css" %}">
-                <link rel="stylesheet" type="text/css" href="{% static "django_tables2/themes/paleblue/css/screen.css" %}">
                 <link rel="stylesheet" type="text/css" href="{% static "table_easy.css" %}">
                 <link rel="stylesheet" type="text/css" href="{% static "mystyles.css" %}">
             {% endblock head_css_site %}
@@ -90,6 +87,5 @@
 </div> {# content #}
 </div> {# layVertical #}
 </div> {# layHorizontal #}
-{% sitetree_tree from "mytree" %}
 </body>
 </html>
