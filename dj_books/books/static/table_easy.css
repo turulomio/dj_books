@@ -44,8 +44,8 @@
 
 .TableEasy th{
   background-color: #bda8a8;
-  color black;
-  text-align: left;
+  color: black;
+  text-align: center;
   padding-left: 8px;
   padding-right: 8px;
   font-size: 105%;
