@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib.auth import views as auth_views
 from django.contrib import admin
+from django.views.generic import RedirectView
 
 from dj_books.views import  (
     home, 
@@ -35,8 +36,11 @@ from dj_books.views import  (
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^accounts/login/$', auth_views.login, {'template_name': 'admin/login.html'}), ## Internal compatibility
+
+    url(r'^admin/login/$', RedirectView.as_view(url='/')),
+    url(r'^accounts/login/$', RedirectView.as_view(url='/')),
     url(r'^$', auth_views.login, {'template_name': 'admin/login.html'}), 
+
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}), 
     url(r'^home/$', home, name='home'),
     url(r'^database/$', database, name='database'), 

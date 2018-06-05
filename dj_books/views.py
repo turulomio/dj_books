@@ -3,15 +3,15 @@ import datetime
 #from django.contrib.auth import logout
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 #from django.views.generic import ListView
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
+from django.utils.decorators import method_decorator
 from django.db import transaction
 from django.urls import reverse_lazy
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render
-
 
 from books.models import Author,  Book, Valoration
 from .forms import UserForm, ProfileForm
@@ -69,37 +69,51 @@ def profile_edit(request):
 
 
 
+@method_decorator(login_required, name='dispatch')
+@method_decorator(permission_required('books.add_author',raise_exception=True), name='dispatch')
 class AuthorCreate(CreateView):
     model = Author
     fields = ['name', 'family_name', 'birth', 'death']
     template_name="books/author_edit.html"
     success_url = reverse_lazy('home')
 
+@method_decorator(login_required, name='dispatch')
+@method_decorator(permission_required('books.change_author',raise_exception=True), name='dispatch')
 class AuthorUpdate(UpdateView):
     model = Author
     fields = ['name', 'family_name', 'birth', 'death']
     template_name="books/author_edit.html"
     success_url = reverse_lazy('home')
 
+@method_decorator(login_required, name='dispatch')
+@method_decorator(permission_required('books.delete_author',raise_exception=True), name='dispatch')
 class AuthorDelete(DeleteView):
     model = Author
     success_url = reverse_lazy('home')
 
+@method_decorator(login_required, name='dispatch')
+@method_decorator(permission_required('books.add_book',raise_exception=True), name='dispatch')
 class BookCreate(CreateView):
     model = Book
     fields = ['title', 'year', 'author']
     template_name="books/book_edit.html"
     success_url = reverse_lazy('home')
 
+@method_decorator(login_required, name='dispatch')
+@method_decorator(permission_required('books.change_book',raise_exception=True), name='dispatch')
 class BookUpdate(UpdateView):
     model = Book
     fields = ['title', 'year', 'author']
     template_name="books/book_edit.html"
     success_url = reverse_lazy('home')
 
+
+@method_decorator(login_required, name='dispatch')
+@method_decorator(permission_required('books.delete_book',raise_exception=True), name='dispatch')
 class BookDelete(DeleteView):
     model = Book
     success_url = reverse_lazy('home')
+
 
 class ValorationCreate(CreateView):
     model = Valoration
