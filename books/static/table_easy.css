@@ -1,29 +1,33 @@
 * {
   box-sizing: border-box;
 }
-.EasyTable {
+
+.TableEasyDiv {
     background: linear-gradient(#F0D5D5, white);
     border-radius: 14px;
     border: 1px solid #BBBBBB;
     padding: 8px;	
- margin-left: auto;
- margin-right: auto;
- display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
 }
-.EasyTableButton{
+
+.TableEasyButton{
   background-color: #bda8a8;
   color black;
   font-weight: bold;
   float: left;
   padding: 6px;
 }
-.EasyTableRecords{
+
+.TableEasyRecords{
   color: #bda8a8;
   font-weight: bold;
   float: right;
   padding: 6px;
 }
-#myInput {
+
+.TableEasySearch {
   background-position: 10px 10px;
   background-repeat: no-repeat;
   font-size: 100%;
@@ -31,14 +35,14 @@
   border: 1px solid #ddd;
 }
 
-#myTable {
+.TableEasy {
   border-collapse: collapse;
   width: 100%;
   border: 1px solid #ddd;
   font-size: 100%;
 }
 
-#myTable th{
+.TableEasy th{
   background-color: #bda8a8;
   color black;
   text-align: left;
@@ -46,9 +50,9 @@
   padding-right: 8px;
   font-size: 105%;
   border: 1px solid #ddd;
-  
 }
-#myTable td {
+
+.TableEasy td {
   text-align: left;
   padding-left: 8px;
   padding-right: 8px;
@@ -56,10 +60,10 @@
   border: 1px solid #ddd;
 }
 
-#myTable tr {
+.TableEasy tr {
   border-bottom: 1px solid #ddd;
 }
 
-#myTable tr.header, #myTable tr:hover {
+.TableEasy tr.header, #myTable tr:hover {
   background-color: #bda8a8;
 }
