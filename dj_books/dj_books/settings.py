@@ -145,3 +145,6 @@ LOGIN_REDIRECT_URL = '/home/'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = "/home/keko/Proyectos/xulpymoney-root/dj_books/books/static/"
+
+## Sets session timeout in seconds.
+SESSION_COOKIE_AGE = 600
