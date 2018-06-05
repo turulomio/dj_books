@@ -1,3 +1,6 @@
+## @package admin
+## @brief Defines everything for Django Admin Site
+
 ## Se mete en books  porque necesita los modelos
 
 
@@ -9,13 +12,13 @@ from django.contrib import admin# Need to import this since auth models get regi
 
 admin.site.unregister(User)
 admin.site.unregister(Group)
-# Text to put at the end of each page's <title>.
+## Text to put at the end of each page's <title>.
 admin.site.site_title = ugettext_lazy('My personal Django')
 
-# Text to put in each page's <h1> (and above login form).
+## Text to put in each page's <h1> (and above login form).
 admin.site.site_header = ugettext_lazy('My personal Django')
 
-# Text to put at the top of the admin index page.
+## Text to put at the top of the admin index page.
 admin.site.index_title = ugettext_lazy('My personal Django administration')
 
 class AuthorAdmin(admin.ModelAdmin):
@@ -37,8 +40,9 @@ class ProfileInline(admin.StackedInline):
 
 class PermissionAdmin(admin.ModelAdmin):
     model = Permission
-    fields = ['name']
-    
+    list_display = ['name','content_type','codename']
+    search_fields = ['name', 'content_type','codename']
+
 class CustomUserAdmin(UserAdmin):
     inlines = (ProfileInline, )
 
