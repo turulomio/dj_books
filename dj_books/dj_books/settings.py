@@ -71,7 +71,7 @@ WSGI_APPLICATION = 'dj_books.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'library_borrar',
+        'NAME': 'library_borrar2',
         'USER': 'postgres',
         'PASSWORD': 'mypassword',
         'HOST': '127.0.0.1',
