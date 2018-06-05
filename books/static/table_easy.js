@@ -26,14 +26,12 @@ function TableEasy_search_onkeyup(tableeasydiv_id) {
 function TableEasy_chkAll_onclick(tableeasydiv_id) {
   var tableEasy=$(document).find("#" + tableeasydiv_id);
   var chkAll=$(tableEasy).find(".TableEasyCheckBoxAll");
-  alert($(chkAll).parent().html());
-  $(tableEasy).find(".TableEasyCheckbox").each(
+  $(tableEasy).find(".TableEasyCheckBox").each(
       function() {
-         if( $(chkAll).prop('checked',true)){
+         if( $(chkAll).prop('checked')){
              $(this).prop('checked',true);
          }else{
              $(this).prop('checked',false);
-        alert($(this).prop('checked'));
-        };
+         };
       });
 }
