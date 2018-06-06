@@ -2,7 +2,16 @@ from django.contrib.auth.models import User,Group, Permission
 from django.contrib.contenttypes.models import ContentType
 from django.db import migrations
 
-from books.models import Book
+from books.models import Book,Author,Valoration
+
+
+
+def add_permission(group, model, arrCodename):
+    ct = ContentType.objects.get_for_model(model)
+    for codename in arrCodename:
+        permission = Permission.objects.get(content_type=ct, codename=codename)
+        group.permissions.add(permission)
+    group.save()
 
 
 
@@ -12,12 +21,16 @@ def create_data(apps, schema_editor):
     user.is_staff=True
     user.save()
 
-    group,create=Group.objects.get_or_create(name="LibraryWorker")
 
-    ct = ContentType.objects.get_for_model(Book)
-    permission = Permission.objects.get(content_type=ct, codename='change_book')
-    group.permissions.add(permission)
-    group.save()
+    group,create=Group.objects.get_or_create(name="LibraryWorker")
+    add_permission(group,Book,['change_book','add_book','delete_book'])
+    add_permission(group,Author,['change_author','add_author','delete_author'])
+    add_permission(group,Valoration,['change_valoration','add_valoration','delete_valoration'])
+
+    group,create=Group.objects.get_or_create(name="LibraryUser")
+    add_permission(group,Valoration,['change_valoration','add_valoration','delete_valoration'])
+
+    
 
 
 
