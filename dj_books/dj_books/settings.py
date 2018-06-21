@@ -63,7 +63,7 @@ TEMPLATES = [
         },
     },
 ]
-print (TEMPLATES)
+
 WSGI_APPLICATION = 'dj_books.wsgi.application'
 
 

@@ -1,12 +1,6 @@
 from django import template
-from django.utils.html import escape
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse_lazy
-## El menu es un array del tipo
-##Group1=[(Nivel, Nombre,[grupos],url),
-## (Nivel, Nombre,[grupos],url),
-## Group2
-##]
 
 class Action:
     def __init__(self,name,permissions,url):
@@ -14,8 +8,19 @@ class Action:
         self.permissions=permissions
         self.url=url
 
-    def render(self):
-       return """<li><a href="{}">{}</a></li>\n""".format(self.url,self.name)
+    def render(self, userpers):
+        #print("Action render", self.permissions, userpers, self.__has_all_user_permissions(userpers))
+        if self.__has_all_user_permissions(userpers):
+            return """<li><a href="{}">{}</a></li>\n""".format(self.url,self.name)
+        else:
+            return ""
+       
+       
+    def __has_all_user_permissions(self, userpers):
+        for p in self.permissions:
+            if p not in userpers:
+                return False
+        return True
 
 ## Can have actions or other menus
 """
@@ -41,23 +46,45 @@ class Action:
 
 
 ## Arr can be actions or a group object
+## No tiene permisos, busca en las acciones internas.
 class Group:
-    def __init__(self,level,name,id,):
+    def __init__(self,level,name, id):
         self.arr=[]
         self.level=level
         self.name=name
         self.id=id
-    
-    def render(self):
-        r="""<li><a href="#" class="toggle-custom" id="btn-{0}" data-toggle="collapse" data-target="#submenu{0}" aria-expanded="false">{1} ...</a>\n""".format(self.id,self.name)
-        r=r+"""<ul class="nav collapse nav_level_{0}" id="submenu{1}" role="menu" aria-labelledby="btn-{1}">\n""".format(self.level+1,self.id)
+        
+    ## Search for some permissions, not all
+    def __user_has_some_children_permissions(self, userpers):
+        for p in self.get_all_permissions():
+            if p in userpers:
+                return True
+        return False
+        
+    def get_all_permissions(self):        
+        r=set()
         for item in self.arr:
             if item.__class__==Group:
-                r=r+item.render()
+                for p in item.get_all_permissions():
+                    r.add(p)
             else:#Action
-                r=r+item.render()
-        r=r+"""</ul>\n"""
-        r=r+"""</li>\n"""
+                for p in item.permissions:
+                    r.add(p)
+        return r
+    
+    def render(self, userpers):
+        r=""
+        #        print("Group render", self.get_all_permissions(), userpers, self.__user_has_some_children_permissions(userpers))
+        if self.__user_has_some_children_permissions(userpers):
+            r=r+"""<li><a href="#" class="toggle-custom" id="btn-{0}" data-toggle="collapse" data-target="#submenu{0}" aria-expanded="false">{1} ...</a>\n""".format(self.id,self.name)
+            r=r+"""<ul class="nav collapse nav_level_{0}" id="submenu{1}" role="menu" aria-labelledby="btn-{1}">\n""".format(self.level+1,self.id)
+            for item in self.arr:
+                if item.__class__==Group:
+                    r=r+item.render(userpers)
+                else:#Action
+                    r=r+item.render(userpers)
+            r=r+"""</ul>\n"""
+            r=r+"""</li>\n"""
         return r
 
     def append(self,o):
@@ -74,13 +101,12 @@ class Menu:
         r="<nav>\n"
         r=r+"""<ul class="nav nav_level_1">\n"""
         for item in self.arr:
-            r=r+item.render()
-
+            r=r+item.render(self.user.get_all_permissions())#Inherited from group and from user)
         r=r+"""</ul>\n"""
         r=r+"</nav>\n"
-        perm_list = self.user.user_permissions.all().values_list('codename', flat=True)
-        r=r+"<p>"+ str(perm_list)
+        r=r+"<p>"
         return r
+    
 
     def append(self,o):
         self.arr.append(o)
@@ -92,16 +118,26 @@ register = template.Library()
 
 @register.simple_tag
 def mymenu(user):
+    """
+        books.change_valoration
+        books.add_valoration
+        books.change_author
+        books.add_book
+        books.delete_book
+        books.change_book
+        books.delete_valoration
+        books.delete_author
+        books.add_author
+    """
     menu=Menu(user)
-    if user.is_authenticated:
-        menu.append(Action(_("All database"),[], reverse_lazy("database")))
-        grLibrary=Group(1,_("My Library"), "10")
-        grLibrary.append(Action(_("Add author"),[], reverse_lazy("author-add")))
-        grLibrary.append(Action(_("Add book"),[],reverse_lazy("book-add")))
-        grVal=Group(2,_("My Valorations"), "11")
-        grVal.append(Action(_("Add a valoration"),[], reverse_lazy("valoration-add")))
-        grVal.append(Action(_("List of valorations"),[], reverse_lazy("valoration-list")))
-        grLibrary.append(grVal)
-        menu.append(grLibrary)
+    menu.append(Action(_("All database"),['books.search_author', 'books.search_book'],  reverse_lazy("database")))
+    grLibrary=Group(1,_("My Library"),"10")
+    grLibrary.append(Action(_("Add author"),['books.add_author', ], reverse_lazy("author-add")))
+    grLibrary.append(Action(_("Add book"),['books.add_book', ],reverse_lazy("book-add")))
+    grVal=Group(2,_("My Valorations"), "11")
+    grVal.append(Action(_("Add a valoration"),['books.add_valoration'], reverse_lazy("valoration-add")))
+    grVal.append(Action(_("List of valorations"),['books.search_valoration'], reverse_lazy("valoration-list")))
+    grLibrary.append(grVal)
+    menu.append(grLibrary)
     return menu.render()
 
