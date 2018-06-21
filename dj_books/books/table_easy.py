@@ -1,13 +1,48 @@
 from abc import ABC, abstractmethod
 from django.utils.translation import gettext_lazy as _
+
+## Class to store an url and associated permissions. Permissions is an array
+class UrlAccess:
+    def __init__(self):
+        self.url=None
+        self.permissions=[]
+        self.visible=False
+    
+    def isSet(self):
+        if self.url!=None:
+            return True
+        return False
+        
+    def set(self, url, permissions, visible):
+        self.url=url
+        self.permissions=permissions
+        self.visible=visible
+
+
 class TableEasy(ABC):
     def __init__(self, name):
         self._width="100%"
         self._height="100%"
-        self._html_delete=""
-        self._html_insert=""
-        self._html_update=""
         self.setName(name)
+        self._selectable=False
+        self.create=UrlAccess()
+        self.read=UrlAccess()
+        self.update=UrlAccess()
+        self.delete=UrlAccess()
+        self.export=UrlAccess()
+
+
+    ## Returns if all urls and buttons are invisible
+    def allInvisible(self):
+        if self.create.visible==False and self.read.visible==False and self.update.visible==False and self.delete.visible==False and self.export.visible==False:
+            return True
+        return False
+    def selectable(self):
+        return self._selectable
+        
+    ## Sets if checkbox are shwon
+    def setSelectable(self, boolean):
+        self._selectable=boolean
 
     @property
     def width(self):
@@ -39,11 +74,19 @@ class TableEasy(ABC):
             self.headers.append(self.getHeader_from_string_field(sf))
 
         
-    def setIBM(self, html_insert, html_update, html_delete, html_export):
-        self._html_insert=html_insert
-        self._html_update=html_update
-        self._html_delete=html_delete
-        self._html_export=html_export
+    ## CRUDE Create, Read, Update, Delete, Export
+    ## url es url, per permissions, vis, visibility
+    ## Permissions is an array
+    def setCRUDE(self, c_url, c_per, c_vis, r_url, r_per, r_vis,  u_url, u_per, u_vis,  d_url, d_per, d_vis,  e_url, e_per,  e_vis):
+        self.create.set(c_url, c_per, c_vis)
+        self.read.set(r_url, r_per, r_vis)
+        self.update.set(u_url, u_per, u_vis)
+        self.delete.set(d_url, d_per,  d_vis)
+        self.export.set(e_url, e_per,  e_vis)
+        
+    ## @todo Function that overrides visibility and sets visibility with permissions
+    def setVisibilityWithPermissions(self, userpers):
+        pass
 
     def setName(self, name):
         self._name=name
@@ -94,22 +137,27 @@ class TableEasyFromModel(TableEasy):
 
     
     def render(self):
+        if len(self.queryset)==0:
+            return _("No records found")
         r='<div class="TableEasyDiv" id="{}">\n'.format(self.name())
         ##Search box
         r=r+"""<div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span><input  class="form-control TableEasySearch" type="text" id="{0}_search" onkeyup="TableEasy_search_onkeyup('{0}')" placeholder="Search for names..." title="Type in a name"></div>\n""".format(self.name())
         r=r+'<table class="TableEasy" id="{}_table">\n'.format(self.name())
         r=r+'<tr class="header">\n'
         ##Header1
-        r=r+"""<th><input type="checkbox" id="{0}_chkAll" class="TableEasyCheckBoxAll" onclick="TableEasy_chkAll_onclick('{0}');" /></th>\n""".format(self.name())
+        if self.selectable():
+            r=r+"""<th><input type="checkbox" id="{0}_chkAll" class="TableEasyCheckBoxAll" onclick="TableEasy_chkAll_onclick('{0}');" /></th>\n""".format(self.name())
         for header in self.headers:
             r=r+"""<th>{}</th>\n""".format(header)
-        r=r+'<th>{}</th>\n'.format(_("Actions"))
+        if self.allInvisible()==False:
+            r=r+'<th>{}</th>\n'.format(_("Actions"))
         r=r+"        </tr>\n"
         ##Data
         for row in self.queryset:
             pk_id=self.getValue_from_string_field(row, self.string_fields_pk)
             r=r+"""<tr class="data">\n"""
-            r=r+'<td><input type="checkbox" class="TableEasyCheckBox" id="{0}_{1}" /></td>\n'.format(self.name(),pk_id)
+            if self.selectable():
+                r=r+'<td><input type="checkbox" class="TableEasyCheckBox" id="{0}_{1}" /></td>\n'.format(self.name(),pk_id)
             for sf in self.string_fields:
                 value=self.getValue_from_string_field(row, sf)
                 if value==None:
@@ -118,13 +166,22 @@ class TableEasyFromModel(TableEasy):
                     r=r+"""<td style="text-align: right;">{}</td>\n""".format(value)
                 else:
                     r=r+"""<td>{}</td>\n""".format(value)
-            r=r+"""<td><button type="button" class="TableEasyButton" name="cmd_update"  onclick="window.location.href='{}';">{}</button>""".format(self._html_update.replace("###",str(pk_id)), _("Update"))
-            r=r+"""<button type="button" class="TableEasyButton" name="cmd_delete"  onclick="window.location.href='{}';">{}</button></td>\n""".format(self._html_delete.replace("###",str(pk_id)), _("Delete"))
-            r=r+"""<button type="button" class="TableEasyButton" name="cmd_export"  onclick="window.location.href='{}';">{}</button></td>\n""".format(self._html_export.replace("###",str(pk_id)), _("Export"))
+            if self.allInvisible()==False:
+                r=r+"""<td>\n"""
+                if self.update.visible:
+                    r=r+"""<button type="button" class="btn btn-default" name="cmd_update"  onclick="window.location.href='{}';"><span class="glyphicon glyphicon-edit"></span></button>""".format(self.update.url.replace("###",str(pk_id)))
+                if self.delete.visible:
+                    r=r+"""<button type="button" class="btn btn-default" name="cmd_delete"  onclick="window.location.href='{}';"><span class="glyphicon glyphicon-remove"></span></button>""".format(self.delete.url.replace("###",str(pk_id)))
+                r=r+"""</td>\n"""
             r=r+"        </tr>\n"
         r=r+"    </table>\n"
-        r=r+"""<button type="button" class="TableEasyButton" name="cmd_insert" onclick="window.location.href='{}';" ><span class="glyphicon glyphicon-plus"></span>{}</button>\n""".format(self._html_insert, _("Insert"))
-        r=r+"""<button type="button" class="TableEasyButton" name="cmd_delete_selected" onclick="window.location.href='{}';" >{}</button>\n""".format(self._html_insert, _("Delete selected"))
+        if self.create.visible:
+            r=r+"""<button type="button" class="btn btn-default" name="cmd_insert" onclick="window.location.href='{}';" ><span class="glyphicon glyphicon-plus"></span></button>\n""".format(self.create.url)
+        if self.selectable() and self.delete.visible:
+            r=r+"""<button type="button" class="btn btn-default" name="cmd_delete_selected" onclick="window.location.href='{}';" ><span class="glyphicon glyphicon-remove-circle"></span></button>\n""".format(self.delete.url, _("Delete selected"))
+        if self.export.visible:
+            r=r+"""<button type="button" class="btn btn-default" name="cmd_export"  onclick="window.location.href='{}';"><span class="glyphicon glyphicon-export"></span></button>""".format(self.export.url.replace("###",str(pk_id)))
+
         r=r+"""<label class="TableEasyRecords" id="{}_records">""".format(self.name()) + _("Found {} records").format(len(self.queryset)) + """</label>\n"""
         r=r+"</div>\n"
         return r

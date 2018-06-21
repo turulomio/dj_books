@@ -17,22 +17,23 @@
       <button class="searchbutton" type="submit">{% trans "Search" %}</button>
     </form></center>
 {% if search %}
-<h1>{% trans "Library database" %}</h1>
+<h1>{{ searchtitle }}</h1>
     <h2>{% trans "Authors" %}</h2>
         {% autoescape off %}
         {{ tableeasy_authors.render }}
         {% endautoescape %}
-<br>
+    <br>
     <h2>{% trans "Books" %}</h2>
         {% autoescape off %}
         {{ tableeasy_books.render }}
         {% endautoescape %}
-{% if perms.auth.search_valoration %}
-    <h2>{% trans "Valorations" %}</h2>
-        {% autoescape off %}
-        {{ tableeasy_valorations.render }}
-        {% endautoescape %} 
-{% endif %}
+    {% if perms.auth.search_valoration %}
+        <br>
+        <h2>{% trans "Valorations" %}</h2>
+            {% autoescape off %}
+            {{ tableeasy_valorations.render }}
+            {% endautoescape %} 
+    {% endif %}
 
 {% endif %}
 

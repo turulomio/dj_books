@@ -19,6 +19,7 @@ from books.tables import TableEasyAuthors,  TableEasyValorations, TableEasyBooks
 def home(request):
     search = request.GET.get('search')
     if search!=None:
+        searchtitle=_("Looking for '{}' in Library database".format(search))
         books=Book.objects.filter(Q(title__icontains=search) | Q(year__icontains=search))
         authors=Author.objects.filter(Q(name__icontains=search) | Q(family_name__icontains=search))
         tableeasy_authors=TableEasyAuthors(authors)
@@ -32,8 +33,10 @@ def home(request):
 def database(request):
     authors= Author.objects.order_by('name')
     books=Book.objects.order_by('title')
+    valorations=Valoration.objects.order_by('read_end')
     tableeasy_authors=TableEasyAuthors(authors)
     tableeasy_books=TableEasyBooks(books)
+    tableeasy_valorations=TableEasyValorations(valorations)
     return render(request, 'database.html', locals())
 
 @login_required

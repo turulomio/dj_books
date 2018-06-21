@@ -47,17 +47,17 @@ urlpatterns = [
     url(ab(r'^database/$'), database, name='database'), 
     url(ab(r'^profile/$'), profile_edit, name="profile"), 
 
-    url(ab(r'^books/author/new/$'), AuthorCreate.as_view(), name='author-add'),
-    url(ab(r'^books/author/(?P<pk>\d+)/$'), AuthorUpdate.as_view(), name='author-edit'),
+    url(ab(r'^books/author/create/$'), AuthorCreate.as_view(), name='author-add'),
+    url(ab(r'^books/author/(?P<pk>\d+)/update/$'), AuthorUpdate.as_view(), name='author-edit'),
     url(ab(r'^books/author/(?P<pk>\d+)/delete/$'), AuthorDelete.as_view(), name='author-delete'),
 
-    url(ab(r'^books/book/new/$'), BookCreate.as_view(), name='book-add'),
-    url(ab(r'^books/book/(?P<pk>\d+)/$'), BookUpdate.as_view(), name='book-edit'),
+    url(ab(r'^books/book/create/$'), BookCreate.as_view(), name='book-add'),
+    url(ab(r'^books/book/(?P<pk>\d+)/update/$'), BookUpdate.as_view(), name='book-edit'),
     url(ab(r'^books/book/(?P<pk>\d+)/delete/$'), BookDelete.as_view(), name='book-delete'),
 
     url(ab(r'^books/valoration/list/'), valoration, name='valoration-list'),
-    url(ab(r'^books/valoration/new/$'), ValorationCreate.as_view(), name='valoration-add'),
-    url(ab(r'^books/valoration/(?P<pk>\d+)/$'), ValorationUpdate.as_view(), name='valoration-edit'),
+    url(ab(r'^books/valoration/create/$'), ValorationCreate.as_view(), name='valoration-add'),
+    url(ab(r'^books/valoration/(?P<pk>\d+)/update/$'), ValorationUpdate.as_view(), name='valoration-edit'),
     url(ab(r'^books/valoration/(?P<pk>\d+)/delete/$'), ValorationDelete.as_view(), name='valoration-delete'),
 ]
 
