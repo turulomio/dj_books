@@ -71,12 +71,12 @@
 
 <div class="header">
 <ul class="nav-ul">
-  <li class="nav-li"><a href="/logout/">{% trans "Logout" %} {{ user.username|upper }}</a></li>
+  <li class="nav-li"><a href="{% url 'logout' %}">{% trans "Logout" %} {{ user.username|upper }}</a></li>
     {% if request.user.is_superuser %}
-        <li class="nav-li"><a href="/admin/">{% trans "Administration" %}</a></li>
+        <li class="nav-li"><a href="admin/">{% trans "Administration" %}</a></li>
     {% endif %}
-  <li class="nav-li"><a href="/profile/">{% trans "Settings" %}</a></li>
-  <li class="nav-li"><a href="/home/">{% trans "Home" %}</a></li>
+  <li class="nav-li"><a href="{% url 'profile' %}">{% trans "Settings" %}</a></li>
+  <li class="nav-li"><a href="{% url 'home' %}">{% trans "Home" %}</a></li>
 </ul>
 </div> {# header #}
 

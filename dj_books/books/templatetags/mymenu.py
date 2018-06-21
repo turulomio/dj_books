@@ -1,6 +1,7 @@
 from django import template
 from django.utils.html import escape
 from django.utils.translation import gettext_lazy as _
+from django.urls import reverse_lazy
 ## El menu es un array del tipo
 ##Group1=[(Nivel, Nombre,[grupos],url),
 ## (Nivel, Nombre,[grupos],url),
@@ -20,15 +21,15 @@ class Action:
 """
 <nav>
     <ul class="nav nav_level_1">
-        <li><a href="/database/">All database</a></li>
+        <li><a href="database/">All database</a></li>
         <li><a href="#" class="toggle-custom" id="btn-1" data-toggle="collapse" data-size="small" data-target="#submenu1" aria-expanded="false">My Library...</a>
              <ul class="nav collapse nav_level_2" id="submenu1" role="menu" aria-labelledby="btn-1">
-                  <li><a href="/books/author/new/">Add author</a></li>
-                  <li><a  href="/books/book/new/">Add book</a></li>
+                  <li><a href="books/author/new/">Add author</a></li>
+                  <li><a  href="books/book/new/">Add book</a></li>
                   <li><a href="#" class="toggle-custom" id="btn-3" data-toggle="collapse" data-target="#submenu3" aria-expanded="false">My valorations...</a>
                       <ul class="nav collapse nav_level_3" id="submenu3" role="menu" aria-labelledby="btn-3">
-                          <li><a href="/books/valoration/new/">Add a new valoration</a></li>
-                          <li><a href="/books/valoration/list/">Valoration list</a></li>
+                          <li><a href="books/valoration/new/">Add a new valoration</a></li>
+                          <li><a href="books/valoration/list/">Valoration list</a></li>
                       </ul>
                   </li>
              </ul>
@@ -89,13 +90,13 @@ register = template.Library()
 @register.simple_tag
 def mymenu():
    menu=Menu()
-   menu.append(Action(_("All database"),[],"/database/"))
+   menu.append(Action(_("All database"),[], reverse_lazy("database")))
    grLibrary=Group(1,_("My Library"), "10")
-   grLibrary.append(Action(_("Add author"),[],"/books/author/new/"))
-   grLibrary.append(Action(_("Add book"),[],"/books/book/new/"))
+   grLibrary.append(Action(_("Add author"),[], reverse_lazy("author-add")))
+   grLibrary.append(Action(_("Add book"),[],reverse_lazy("book-add")))
    grVal=Group(2,_("My Valorations"), "11")
-   grVal.append(Action(_("Add a valoration"),[],"/books/valoration/new/"))
-   grVal.append(Action(_("List of valorations"),[],"/books/valoration/list/"))
+   grVal.append(Action(_("Add a valoration"),[],"books/valoration/new/"))
+   grVal.append(Action(_("List of valorations"),[],"books/valoration/list/"))
    grLibrary.append(grVal)
    menu.append(grLibrary)
    return menu.render()

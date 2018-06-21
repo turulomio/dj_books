@@ -17,6 +17,7 @@ from django.conf.urls import url
 from django.contrib.auth import views as auth_views
 from django.contrib import admin
 from django.views.generic import RedirectView
+from django.conf import settings
 
 from dj_books.views import  (
     home, 
@@ -34,29 +35,34 @@ from dj_books.views import  (
     valoration,
     )
 
+## Return a reg expression appending WWWSUBDIR, from absoluth
+def ab(reg):
+    return reg
+    #return  r"{}{}{}".format(reg[:1], settings.WEBSUBDIR , reg[1:])
+
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(ab(r'^admin/'), admin.site.urls,  name="admin-site"),
 
-    url(r'^admin/login/$', RedirectView.as_view(url='/')),
-    url(r'^accounts/login/$', RedirectView.as_view(url='/')),
-    url(r'^$', auth_views.login, {'template_name': 'admin/login.html'}), 
+    url(ab(r'^admin/login/$'), RedirectView.as_view(url='/'), name="admin-login"),
+#    url(r'^accounts/login/$', RedirectView.as_view(url='/')),
+    url(ab(r'^accounts/login/$'), auth_views.login, {'template_name': 'admin/login.html'}, name="login"), 
 
-    url(r'^logout/$', auth_views.logout, {'next_page': '/'}), 
-    url(r'^home/$', home, name='home'),
-    url(r'^database/$', database, name='database'), 
-    url(r'^profile/$', profile_edit), 
+    url(ab(r'^logout/$'), auth_views.logout, {'next_page': '/'}, name="logout"), 
+    url(ab(r'^$'), home, name='home'),
+    url(ab(r'^database/$'), database, name='database'), 
+    url(ab(r'^profile/$'), profile_edit, name="profile"), 
 
-    url(r'^books/author/new/$', AuthorCreate.as_view(), name='author-add'),
-    url(r'^books/author/(?P<pk>\d+)/$', AuthorUpdate.as_view(), name='author-edit'),
-    url(r'^books/author/(?P<pk>\d+)/delete/$', AuthorDelete.as_view(), name='author-delete'),
+    url(ab(r'^books/author/new/$'), AuthorCreate.as_view(), name='author-add'),
+    url(ab(r'^books/author/(?P<pk>\d+)/$'), AuthorUpdate.as_view(), name='author-edit'),
+    url(ab(r'^books/author/(?P<pk>\d+)/delete/$'), AuthorDelete.as_view(), name='author-delete'),
 
-    url(r'^books/book/new/$', BookCreate.as_view(), name='book-add'),
-    url(r'^books/book/(?P<pk>\d+)/$', BookUpdate.as_view(), name='book-edit'),
-    url(r'^books/book/(?P<pk>\d+)/delete/$', BookDelete.as_view(), name='book-delete'),
+    url(ab(r'^books/book/new/$'), BookCreate.as_view(), name='book-add'),
+    url(ab(r'^books/book/(?P<pk>\d+)/$'), BookUpdate.as_view(), name='book-edit'),
+    url(ab(r'^books/book/(?P<pk>\d+)/delete/$'), BookDelete.as_view(), name='book-delete'),
 
-    url(r'^books/valoration/list/', valoration, name='valoration-list'),
-    url(r'^books/valoration/new/$', ValorationCreate.as_view(), name='valoration-add'),
-    url(r'^books/valoration/(?P<pk>\d+)/$', ValorationUpdate.as_view(), name='valoration-edit'),
-    url(r'^books/valoration/(?P<pk>\d+)/delete/$', ValorationDelete.as_view(), name='valoration-delete'),
+    url(ab(r'^books/valoration/list/'), valoration, name='valoration-list'),
+    url(ab(r'^books/valoration/new/$'), ValorationCreate.as_view(), name='valoration-add'),
+    url(ab(r'^books/valoration/(?P<pk>\d+)/$'), ValorationUpdate.as_view(), name='valoration-edit'),
+    url(ab(r'^books/valoration/(?P<pk>\d+)/delete/$'), ValorationDelete.as_view(), name='valoration-delete'),
 ]
 

@@ -17,7 +17,6 @@ from books.models import Author,  Book, Valoration
 from .forms import UserForm, ProfileForm
 from books.tables import TableEasyAuthors,  TableEasyValorations, TableEasyBooks
 
-@login_required
 def home(request):
     now = datetime.datetime.now()
     return render(request, 'home.html', locals())

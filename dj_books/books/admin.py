@@ -58,7 +58,7 @@ admin.site.register(User, CustomUserAdmin)
 admin.site.register(Group)
     
 admin.site.logout_template='admin/login.html'
-admin.site.site_url ="/home"
+admin.site.site_url ="./"
 
 #Removes default delete_selected action
 admin.site.disable_action('delete_selected')
