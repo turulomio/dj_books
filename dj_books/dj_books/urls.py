@@ -16,9 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib.auth import views as auth_views
 from django.contrib import admin
-from django.views.generic import RedirectView
 from django.urls import reverse_lazy
-#from django.conf import settings
 
 from dj_books.views import  (
     home, 
@@ -43,13 +41,9 @@ def ab(reg):
 
 urlpatterns = [
     url(ab(r'^admin/'), admin.site.urls,  name="admin-site"),
-
-#    url(ab(r'^admin/login/$'), RedirectView.as_view(url='/'), name="admin-login"),
-#    url(r'^accounts/login/$', RedirectView.as_view(url='/')),
     url(ab(r'^accounts/login/$'), auth_views.login, {'template_name': 'admin/login.html'}, name="login"), 
-
     url(ab(r'^logout/$'), auth_views.logout, {'next_page': reverse_lazy('home')}, name="logout"), 
-    url(ab(r'^$'), home, name='home'),
+    url(r'^$', home, name='home'),
     url(ab(r'^database/$'), database, name='database'), 
     url(ab(r'^profile/$'), profile_edit, name="profile"), 
 
