@@ -8,6 +8,7 @@ from django.utils.translation import ugettext_lazy
 from books.models import Author, Book,  Profile,  Valoration
 from django.contrib.auth.models import Permission,  Group, User
 from django.contrib.auth.admin import UserAdmin
+from django.urls import reverse_lazy
 from django.contrib import admin# Need to import this since auth models get registered on import.
 
 admin.site.unregister(User)
@@ -63,8 +64,9 @@ admin.site.register(Valoration, ValorationAdmin)
 admin.site.register(User, CustomUserAdmin)
 admin.site.register(Group)
     
+admin.site.site_url = reverse_lazy('home') 
 admin.site.logout_template='admin/login.html'
-admin.site.site_url ="./"
+
 
 #Removes default delete_selected action
 admin.site.disable_action('delete_selected')

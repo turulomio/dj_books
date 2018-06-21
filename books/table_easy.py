@@ -135,7 +135,8 @@ class TableEasyFromModel(TableEasy):
     def html_with_pk(self, html):
         return html.replace("###",self.fields_pk)
 
-    
+    ## Function that renders an html table
+    ## @todo Create button help to explain all buttons
     def render(self):
         if len(self.queryset)==0:
             return _("No records found")
@@ -168,6 +169,8 @@ class TableEasyFromModel(TableEasy):
                     r=r+"""<td>{}</td>\n""".format(value)
             if self.allInvisible()==False:
                 r=r+"""<td>\n"""
+                if self.read.visible:
+                    r=r+"""<button type="button" class="btn btn-default" name="cmd_read"  onclick="window.location.href='{}';"><span class="glyphicon glyphicon-eye-open"></span></button>""".format(self.read.url.replace("###",str(pk_id)))
                 if self.update.visible:
                     r=r+"""<button type="button" class="btn btn-default" name="cmd_update"  onclick="window.location.href='{}';"><span class="glyphicon glyphicon-edit"></span></button>""".format(self.update.url.replace("###",str(pk_id)))
                 if self.delete.visible:
