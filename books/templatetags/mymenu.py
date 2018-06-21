@@ -97,6 +97,9 @@ class Menu:
         self.level=None
         self.user=user
 
+
+    ## Renders an HTML menu
+    ## @todo Leave selected current action
     def render(self):
         r="<nav>\n"
         r=r+"""<ul class="nav nav_level_1">\n"""
