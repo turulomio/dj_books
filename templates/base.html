@@ -59,7 +59,7 @@
     <p class="title"><img src="{% static "book.png" %}" height="50px" width="50px"/></p>
 
 {% autoescape off %}
-{% mymenu %}
+{% mymenu user %}
 {% endautoescape %}
 
 <p>
@@ -71,11 +71,15 @@
 
 <div class="header">
 <ul class="nav-ul">
-  <li class="nav-li"><a href="{% url 'logout' %}">{% trans "Logout" %} {{ user.username|upper }}</a></li>
-    {% if request.user.is_superuser %}
-        <li class="nav-li"><a href="admin/">{% trans "Administration" %}</a></li>
+    {% if request.user.is_authenticated %}
+        <li class="nav-li"><a href="{% url 'logout' %}">{% trans "Logout" %} {{ user.username|upper }}</a></li>
+        <li class="nav-li"><a href="{% url 'profile' %}">{% trans "Settings" %}</a></li>
+    {% else %}
+         <li class="nav-li"><a href="{% url 'login' %}?next={%url 'home' %}">{% trans "Login" %}</a></li>
     {% endif %}
-  <li class="nav-li"><a href="{% url 'profile' %}">{% trans "Settings" %}</a></li>
+    {% if request.user.is_superuser %}
+        <li class="nav-li"><a href="{% url 'admin:index' %}">{% trans "Administration" %}</a></li>
+    {% endif %}
   <li class="nav-li"><a href="{% url 'home' %}">{% trans "Home" %}</a></li>
 </ul>
 </div> {# header #}

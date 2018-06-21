@@ -65,9 +65,10 @@ class Group:
 
 
 class Menu:
-    def __init__(self):
+    def __init__(self, user):
         self.arr=[]
         self.level=None
+        self.user=user
 
     def render(self):
         r="<nav>\n"
@@ -77,6 +78,8 @@ class Menu:
 
         r=r+"""</ul>\n"""
         r=r+"</nav>\n"
+        perm_list = self.user.user_permissions.all().values_list('codename', flat=True)
+        r=r+"<p>"+ str(perm_list)
         return r
 
     def append(self,o):
@@ -88,16 +91,17 @@ register = template.Library()
 
 
 @register.simple_tag
-def mymenu():
-   menu=Menu()
-   menu.append(Action(_("All database"),[], reverse_lazy("database")))
-   grLibrary=Group(1,_("My Library"), "10")
-   grLibrary.append(Action(_("Add author"),[], reverse_lazy("author-add")))
-   grLibrary.append(Action(_("Add book"),[],reverse_lazy("book-add")))
-   grVal=Group(2,_("My Valorations"), "11")
-   grVal.append(Action(_("Add a valoration"),[],"books/valoration/new/"))
-   grVal.append(Action(_("List of valorations"),[],"books/valoration/list/"))
-   grLibrary.append(grVal)
-   menu.append(grLibrary)
-   return menu.render()
+def mymenu(user):
+    menu=Menu(user)
+    if user.is_authenticated:
+        menu.append(Action(_("All database"),[], reverse_lazy("database")))
+        grLibrary=Group(1,_("My Library"), "10")
+        grLibrary.append(Action(_("Add author"),[], reverse_lazy("author-add")))
+        grLibrary.append(Action(_("Add book"),[],reverse_lazy("book-add")))
+        grVal=Group(2,_("My Valorations"), "11")
+        grVal.append(Action(_("Add a valoration"),[], reverse_lazy("valoration-add")))
+        grVal.append(Action(_("List of valorations"),[], reverse_lazy("valoration-list")))
+        grLibrary.append(grVal)
+        menu.append(grLibrary)
+    return menu.render()
 
