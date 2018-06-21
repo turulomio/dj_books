@@ -12,7 +12,7 @@
 import os
 
 ## Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 ## SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'dr@0-#9nj4=loa8)j_5(s&m7s=fbmlo=15yeac01q#kiij$cev'
@@ -51,7 +51,7 @@ ROOT_URLCONF = 'dj_books.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["./templates/"],
+        'DIRS': [BASE_DIR+"/templates/"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -63,7 +63,7 @@ TEMPLATES = [
         },
     },
 ]
-
+print (TEMPLATES)
 WSGI_APPLICATION = 'dj_books.wsgi.application'
 
 
@@ -81,7 +81,6 @@ DATABASES = {
 
 
 
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 #STATIC_URL = '/static/'
 #STATIC_ROOT = BASE_DIR+ "/static"
 
@@ -120,14 +119,18 @@ USE_L10N = False
 DATE_FORMAT = "Y-m-d"
 
 USE_TZ = True
-LOGIN_REDIRECT_URL = '/home/'
-#LOGOUT_URL = "/"
+LOGIN_REDIRECT_URL = './'
+LOGOUT_URL = "./"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = "/home/keko/Proyectos/xulpymoney-root/dj_books/books/static/"
+STATIC_URL = '/dj_books/static/'
+STATIC_ROOT = BASE_DIR+ "/static"
+
+## If we are using this app from a apache Directory, we must change this to
+## If app is in server root, you must set to "". If app is in server directory dj_books you must set "/dj_books/"
+WEBSUBDIR="/"
 
 ## Sets session timeout in seconds.
 SESSION_COOKIE_AGE = 600

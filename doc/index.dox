@@ -85,5 +85,52 @@ python manage.py createsuperuser
 python manage.py runserver
 @endcode
 
+Installation in apache
+======================
+
+
+You must configure apache with mod_wsgi support. In gentoo
+@code
+emerge -v apache mod_wsgi
+@endcode
+
+Then I had to add in /etc/conf.d/apache2 -D WSGI
+
+In gentoo I need to add this code in /etc/apache2/vhosts.d/default_vhost.include
+
+@code
+ WSGIScriptAlias /dj_books /var/www/localhost/htdocs/dj_books/dj_books/wsgi.py
+# WSGIDaemonProcess myothersite.example.com processes=2 threads=15 display-name=%{GROUP} python-home=/var/www/vhosts/myothersite/venv/bin/python3.5 0
+# WSGIProcessGroup myothersite.example.com 
+ 
+<directory /var/www/localhost/htdocs/dj_books> 
+   AllowOverride all 
+   Require all granted 
+   Options FollowSymlinks 
+</directory> 
+ 
+# Alias /static/ /var/www/vhosts/myothersite/static/ 
+ 
+# <Directory /var/www/vhosts/myothersite/static> 
+#  Require all granted 
+# </Directory> 
+@endcode
+
+@note
+In WSGIScriptAlias notice no trailing slash after the 2nd token, "/dj_books"
+@endnote
+
+
+I had to add this line before environ line in djbooks/wsgi.py
+@code
+import sys
+sys.path.append('/var/www/localhost/htdocs/dj_books/') 
+@endcode
+
+
+Then I restart apache and it works
+@code
+/etc/init.d/apache2 restart
+@endcode
 
 */

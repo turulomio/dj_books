@@ -39,10 +39,11 @@ class TableEasy(ABC):
             self.headers.append(self.getHeader_from_string_field(sf))
 
         
-    def setIBM(self, html_insert, html_update, html_delete):
+    def setIBM(self, html_insert, html_update, html_delete, html_export):
         self._html_insert=html_insert
         self._html_update=html_update
         self._html_delete=html_delete
+        self._html_export=html_export
 
     def setName(self, name):
         self._name=name
@@ -119,6 +120,7 @@ class TableEasyFromModel(TableEasy):
                     r=r+"""<td>{}</td>\n""".format(value)
             r=r+"""<td><button type="button" class="TableEasyButton" name="cmd_update"  onclick="window.location.href='{}';">{}</button>""".format(self._html_update.replace("###",str(pk_id)), _("Update"))
             r=r+"""<button type="button" class="TableEasyButton" name="cmd_delete"  onclick="window.location.href='{}';">{}</button></td>\n""".format(self._html_delete.replace("###",str(pk_id)), _("Delete"))
+            r=r+"""<button type="button" class="TableEasyButton" name="cmd_export"  onclick="window.location.href='{}';">{}</button></td>\n""".format(self._html_export.replace("###",str(pk_id)), _("Export"))
             r=r+"        </tr>\n"
         r=r+"    </table>\n"
         r=r+"""<button type="button" class="TableEasyButton" name="cmd_insert" onclick="window.location.href='{}';" ><span class="glyphicon glyphicon-plus"></span>{}</button>\n""".format(self._html_insert, _("Insert"))
@@ -126,3 +128,17 @@ class TableEasyFromModel(TableEasy):
         r=r+"""<label class="TableEasyRecords" id="{}_records">""".format(self.name()) + _("Found {} records").format(len(self.queryset)) + """</label>\n"""
         r=r+"</div>\n"
         return r
+        
+def export_csv(modeladmin, request, queryset):
+    import csv
+    from django.utils.encoding import smart_str
+    from django.http import HttpResponse
+    response = HttpResponse(mimetype='text/csv')
+    response['Content-Disposition'] = 'attachment; filename=mymodel.csv'
+    writer = csv.writer(response, csv.excel)
+    response.write(u'\ufeff'.encode('utf8')) # BOM (optional...Excel needs it to open UTF-8 file properly)
+    writer.writerow([smart_str(u"ID"), smart_str(u"Title"), smart_str(u"Description"),])
+    for obj in queryset:
+        writer.writerow([ smart_str(obj.pk), smart_str(obj.title), smart_str(obj.description), ])
+    return response
+    export_csv.short_description = u"Export CSV"
