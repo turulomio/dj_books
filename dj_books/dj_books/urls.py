@@ -48,7 +48,7 @@ urlpatterns = [
 #    url(r'^accounts/login/$', RedirectView.as_view(url='/')),
     url(ab(r'^accounts/login/$'), auth_views.login, {'template_name': 'admin/login.html'}, name="login"), 
 
-    url(ab(r'^logout/$'), auth_views.logout, {'next_page': '/'}, name="logout"), 
+    url(ab(r'^logout/$'), auth_views.logout, {'next_page': reverse_lazy('home')}, name="logout"), 
     url(ab(r'^$'), home, name='home'),
     url(ab(r'^database/$'), database, name='database'), 
     url(ab(r'^profile/$'), profile_edit, name="profile"), 
