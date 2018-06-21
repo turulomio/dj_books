@@ -12,11 +12,31 @@
     <h2> </h2>
     <center>
     <form id="searchform" action="{# url 'blog_search_list_view' #}" method="get" accept-charset="utf-8">
-    
       <label>{% trans "Search for a Book or an Author:" %}</label>
-      <input class="searchfield" id="searchbox" name="q" type="text" placeholder="{% trans "Search" %}">
+      <input class="searchfield" id="searchbox" name="search" type="text" placeholder="{% trans "Search" %}">
       <button class="searchbutton" type="submit">{% trans "Search" %}</button>
     </form></center>
+{% if search %}
+<h1>{% trans "Library database" %}</h1>
+    <h2>{% trans "Authors" %}</h2>
+        {% autoescape off %}
+        {{ tableeasy_authors.render }}
+        {% endautoescape %}
+<br>
+    <h2>{% trans "Books" %}</h2>
+        {% autoescape off %}
+        {{ tableeasy_books.render }}
+        {% endautoescape %}
+{% if perms.auth.search_valoration %}
+    <h2>{% trans "Valorations" %}</h2>
+        {% autoescape off %}
+        {{ tableeasy_valorations.render }}
+        {% endautoescape %} 
+{% endif %}
+
+{% endif %}
+
+
 
 {% endblock %}
 

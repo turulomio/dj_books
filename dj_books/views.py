@@ -1,13 +1,10 @@
-import datetime
-#from django.http import HttpResponse
-#from django.contrib.auth import logout
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-#from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from django.utils.decorators import method_decorator
 from django.db import transaction
+from django.db.models import Q
 from django.urls import reverse_lazy
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
@@ -17,8 +14,19 @@ from books.models import Author,  Book, Valoration
 from .forms import UserForm, ProfileForm
 from books.tables import TableEasyAuthors,  TableEasyValorations, TableEasyBooks
 
+## @todo
+## Add search to search field to repeat search
+## @endtodo
 def home(request):
-    now = datetime.datetime.now()
+    search = request.GET.get('search')
+    if search!=None:
+        books=Book.objects.filter(Q(title__icontains=search) | Q(year__icontains=search))
+        authors=Author.objects.filter(Q(name__icontains=search) | Q(family_name__icontains=search))
+        tableeasy_authors=TableEasyAuthors(authors)
+        tableeasy_books=TableEasyBooks(books)
+        if request.user.has_perm('books.search_valoration'):
+            valorations=Valoration.objects.filter(comment__icontains=search)
+            tableeasy_valorations=TableEasyValorations(valorations)
     return render(request, 'home.html', locals())
 
 @login_required

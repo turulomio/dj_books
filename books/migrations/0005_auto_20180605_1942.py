@@ -1,10 +1,7 @@
 from django.contrib.auth.models import User,Group, Permission
 from django.contrib.contenttypes.models import ContentType
 from django.db import migrations
-
-from books.models import Book,Author,Valoration
-
-
+from books.models import Book, Author, Valoration
 
 def add_permission(group, model, arrCodename):
     ct = ContentType.objects.get_for_model(model)
@@ -20,9 +17,9 @@ def create_data(apps, schema_editor):
     ctAuthor = ContentType.objects.get_for_model(Author)
     ctValoration = ContentType.objects.get_for_model(Valoration)
 
-    pSearchBook = Permission.objects.create(codename='search_book', name='Can search books', content_type=ctBook)
-    pSearchAuthor = Permission.objects.create(codename='search_author', name='Can search authors', content_type=ctAuthor)
-    pSearchValoration = Permission.objects.create(codename='search_valoration', name='Can search valorations', content_type=ctValoration)
+    Permission.objects.create(codename='search_book', name='Can search books', content_type=ctBook)
+    Permission.objects.create(codename='search_author', name='Can search authors', content_type=ctAuthor)
+    Permission.objects.create(codename='search_valoration', name='Can search valorations', content_type=ctValoration)
 
     user=User.objects.create_user('root', password='root')
     user.is_superuser=True

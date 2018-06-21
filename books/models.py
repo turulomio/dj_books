@@ -84,6 +84,12 @@ class Book(models.Model):
         ordering= ["title", "author"]
         managed=True
 
+    ## @todo
+    ## Make a function to resume valorations. It must be showed in Book Model
+    ## @endtodo
+    def valorations(self):
+        pass
+
 class Valoration(models.Model):
     id=models.AutoField(primary_key=True, db_column="id")
     book = models.ForeignKey(Book,  models.DO_NOTHING, db_column="id_books", verbose_name=_("Book"))

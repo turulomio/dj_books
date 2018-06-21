@@ -128,10 +128,6 @@ LOGOUT_URL = "./"
 STATIC_URL = '/dj_books/static/'
 STATIC_ROOT = BASE_DIR+ "/static"
 
-## If we are using this app from a apache Directory, we must change this to
-## If app is in server root, you must set to "". If app is in server directory dj_books you must set "/dj_books/"
-WEBSUBDIR="/"
-
 ## Sets session timeout in seconds.
 SESSION_COOKIE_AGE = 600
 
