@@ -6,18 +6,32 @@ class TableEasyAuthors(TableEasyFromModel):
     def __init__(self,  queryset):
         TableEasyFromModel.__init__(self, "TableEasyAuthor", Author,  queryset)
         self.setFields("id", ["name", "family_name", "birth", "death"])
-        self.setIBM("/books/author/new/", "/books/author/###/", "/books/author/###/delete/","")
+        self.setCRUDE(  "/books/author/create/",  [], True, 
+                                    "/books/author/###/", [], True,
+                                    "/books/author/###/update/", [], True,
+                                    "/books/author/###/delete/",[],True,
+                                    "/books/author/export/",[],  True,)
+                                    
+        self.setSelectable(True)
 
 class TableEasyBooks(TableEasyFromModel):
     def __init__(self,  queryset):
         TableEasyFromModel.__init__(self, "TableEasyBooks", Book,  queryset)
         self.setFields("id", ["title", "author", "year"])
-        self.setIBM("/books/book/new/", "/books/book/###/", "/books/book/###/delete/","")
+        self.setCRUDE(  "/books/book/create/", [],False,
+                                    "/books/book/###/", [],False,
+                                    "/books/book/###/update/", [], False,
+                                    "/books/book/###/delete/",[],False,
+                                    "",[], False,)
 
 class TableEasyValorations(TableEasyFromModel):
     def __init__(self,  queryset):
         TableEasyFromModel.__init__(self, "TableEasyValorations", Valoration,  queryset)
         self.setFields("id", ["book.title", "read_start", "read_end", "valoration","user.email", "comment"])
-        self.setIBM("/books/valoration/new/", "/books/valoration/###/", "/books/valoration/###/delete/","")
+        self.setCRUDE(  "/books/valoration/create/", [], False,
+                                    "/books/valoration/###/", [], False,
+                                    "/books/valoration/###/update/", [], False, 
+                                    "/books/valoration/###/delete/", [], False,
+                                    "", [], False,)
         self.headers[0]=_("Book title")
         self.headers[4]=_("User mail")
