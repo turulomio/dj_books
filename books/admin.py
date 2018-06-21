@@ -5,7 +5,7 @@
 
 
 from django.utils.translation import ugettext_lazy
-from books.models import Author, Book,  Profile
+from books.models import Author, Book,  Profile,  Valoration
 from django.contrib.auth.models import Permission,  Group, User
 from django.contrib.auth.admin import UserAdmin
 from django.contrib import admin# Need to import this since auth models get registered on import.
@@ -30,6 +30,11 @@ class BookAdmin(admin.ModelAdmin):
     list_display = ('title',  'author','year')
     search_fields = ('title',   )
     list_filter = ('author','year')
+    
+class ValorationAdmin(admin.ModelAdmin):
+    list_display = ('comment',  'read_start','read_end',  'valoration', 'book', 'user')
+    search_fields = ('comment',  'read_start','read_end',  'valoration', 'book')
+    list_filter = ('user','read_start', 'read_end')
 
 class ProfileInline(admin.StackedInline):
     model = Profile
@@ -54,6 +59,7 @@ class CustomUserAdmin(UserAdmin):
 admin.site.register(Permission, PermissionAdmin)
 admin.site.register(Author, AuthorAdmin)
 admin.site.register(Book, BookAdmin)
+admin.site.register(Valoration, ValorationAdmin)
 admin.site.register(User, CustomUserAdmin)
 admin.site.register(Group)
     

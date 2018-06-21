@@ -14,9 +14,8 @@ from books.models import Author,  Book, Valoration
 from .forms import UserForm, ProfileForm
 from books.tables import TableEasyAuthors,  TableEasyValorations, TableEasyBooks
 
-## @todo
-## Add search to search field to repeat search
-## @endtodo
+## @todo Add search to search field to repeat search
+## @todo Limit search minimum 3 and maximum 50
 def home(request):
     search = request.GET.get('search')
     if search!=None:
