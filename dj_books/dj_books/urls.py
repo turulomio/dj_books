@@ -18,7 +18,11 @@ from django.contrib.auth import views as auth_views
 from django.contrib import admin
 from django.urls import reverse_lazy
 
+## @todo Change views import to a generic way
+
 from dj_books.views import  (
+    author_read, 
+    book_read, 
     home, 
     database,  
     profile_edit,  
@@ -48,10 +52,12 @@ urlpatterns = [
     url(ab(r'^profile/$'), profile_edit, name="profile"), 
 
     url(ab(r'^books/author/create/$'), AuthorCreate.as_view(), name='author-add'),
+    url(r'^books/author/(?P<pk>\d+)/$', author_read, name='author-read'), 
     url(ab(r'^books/author/(?P<pk>\d+)/update/$'), AuthorUpdate.as_view(), name='author-edit'),
     url(ab(r'^books/author/(?P<pk>\d+)/delete/$'), AuthorDelete.as_view(), name='author-delete'),
 
     url(ab(r'^books/book/create/$'), BookCreate.as_view(), name='book-add'),
+    url(ab(r'^books/book/(?P<pk>\d+)/$'), book_read, name='book-read'),
     url(ab(r'^books/book/(?P<pk>\d+)/update/$'), BookUpdate.as_view(), name='book-edit'),
     url(ab(r'^books/book/(?P<pk>\d+)/delete/$'), BookDelete.as_view(), name='book-delete'),
 

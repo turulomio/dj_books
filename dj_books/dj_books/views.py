@@ -8,7 +8,7 @@ from django.db.models import Q
 from django.urls import reverse_lazy
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
-from django.shortcuts import render
+from django.shortcuts import render,  get_object_or_404
 
 from books.models import Author,  Book, Valoration
 from .forms import UserForm, ProfileForm
@@ -16,17 +16,15 @@ from books.tables import TableEasyAuthors,  TableEasyValorations, TableEasyBooks
 
 ## @todo Add search to search field to repeat search
 ## @todo Limit search minimum 3 and maximum 50
+## @todo Add a tab Widget, author, books, valorations with number in ttab
 def home(request):
     search = request.GET.get('search')
     if search!=None:
         searchtitle=_("Looking for '{}' in Library database".format(search))
         books=Book.objects.filter(Q(title__icontains=search) | Q(year__icontains=search))
         authors=Author.objects.filter(Q(name__icontains=search) | Q(family_name__icontains=search))
-        tableeasy_authors=TableEasyAuthors(authors)
-        tableeasy_books=TableEasyBooks(books)
         if request.user.has_perm('books.search_valoration'):
             valorations=Valoration.objects.filter(comment__icontains=search)
-            tableeasy_valorations=TableEasyValorations(valorations)
     return render(request, 'home.html', locals())
 
 @login_required
@@ -44,6 +42,20 @@ def valoration(request):
     valorations= Valoration.objects.order_by('read_start')
     tableeasy_valorations=TableEasyValorations(valorations)
     return render(request, 'valoration.html', locals())
+    
+    
+
+
+def book_read(request, pk):
+    book=get_object_or_404(Book, pk=pk)
+    valorations=Valoration.objects.filter(book=book)
+    return render(request, 'books/book_read.html', locals())
+    
+def author_read(request, pk):
+    author=get_object_or_404(Author, pk=pk)
+    books=Book.objects.filter(author=author)
+    return render(request, 'books/author_read.html', locals())
+
 
 @login_required
 @transaction.atomic

@@ -1,0 +1,22 @@
+
+{% extends 'base.html' %}
+{% load i18n %}
+{% load mytranslation %}
+
+{% set_language user.profile.language%}
+
+{% block head %}
+<title>My Library > {% trans "Authors" %} > {% trans "New" %}</title>
+{% endblock %}
+
+{% block content %}
+
+  <h1>{% trans "Authors" %}: {{ author.name }} {{ author.family_name }}</h1>
+
+  <p><strong>Birth: </strong> {{ author.birth }}</a></p> 
+  
+  <h2>Books</h2>
+    {% for book in books %}
+       {% include "objects/book.html" with book=book only %}
+    {% endfor %}
+{% endblock %}
