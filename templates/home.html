@@ -19,20 +19,21 @@
 {% if search %}
 <h1>{{ searchtitle }}</h1>
     <h2>{% trans "Authors" %}</h2>
-        {% autoescape off %}
-        {{ tableeasy_authors.render }}
-        {% endautoescape %}
+    
+    {% for author in authors %}
+       {% include "objects/author.html" with author=author only %}
+    {% endfor %}
     <br>
     <h2>{% trans "Books" %}</h2>
-        {% autoescape off %}
-        {{ tableeasy_books.render }}
-        {% endautoescape %}
+    {% for book in books %}
+       {% include "objects/book.html" with book=book author=book.author only%}
+    {% endfor %}
     {% if perms.auth.search_valoration %}
         <br>
         <h2>{% trans "Valorations" %}</h2>
-            {% autoescape off %}
-            {{ tableeasy_valorations.render }}
-            {% endautoescape %} 
+        {% for valoration in valorations %}
+            {% include "objects/valoration.html" with valoration=valoration author=valoration.book.author book=valoration.book only %}
+        {% endfor %}
     {% endif %}
 
 {% endif %}

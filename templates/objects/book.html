@@ -1,0 +1,7 @@
+{% if author %}
+    <p><strong>Author: </strong><a href="{% url 'author-read' author.id %}">{{ author }}</a></p>
+{% endif %}
+
+<p><strong>Title: </strong><a href="{% url 'book-read' book.id %}">{{ book.title }}</a></p>
+<p><strong>Year: </strong> {{ book.year }}</p>
+<hr>

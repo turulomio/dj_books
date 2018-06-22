@@ -1,0 +1,22 @@
+
+{% extends 'base.html' %}
+{% load i18n %}
+{% load mytranslation %}
+
+{% set_language user.profile.language%}
+
+{% block head %}
+<title>My Library > {% trans "Authors" %} > {% trans "New" %}</title>
+{% endblock %}
+
+{% block content %}
+
+  <h1>Title: {{ book.title }}</h1>
+
+  <p><strong>Author:</strong> <a href="{% url 'author-read' book.author.id %}">{{ book.author }}</a></p> 
+  
+  <h2>Valorations</h2>
+    {% for valoration in valorations %}
+       {% include "objects/valoration.html" with valoration=valoration only %}
+    {% endfor %}
+{% endblock %}
