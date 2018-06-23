@@ -88,7 +88,7 @@ def profile_edit(request):
     change_password_form.fields['old_password'].widget.attrs.pop("autofocus", None)
     return render(request, 'profile.html', locals())
 
-
+## @todo After inserting returns to home. It's ugly
 
 @method_decorator(login_required, name='dispatch')
 @method_decorator(permission_required('books.add_author',raise_exception=True), name='dispatch')
@@ -96,7 +96,9 @@ class AuthorCreate(CreateView):
     model = Author
     fields = ['name', 'family_name', 'birth', 'death']
     template_name="books/author_edit.html"
-    success_url = reverse_lazy('home')
+
+    def get_success_url(self):
+        return reverse_lazy('author-read',args=(self.object.id,))
 
 @method_decorator(login_required, name='dispatch')
 @method_decorator(permission_required('books.change_author',raise_exception=True), name='dispatch')
@@ -118,7 +120,9 @@ class BookCreate(CreateView):
     model = Book
     fields = ['title', 'year', 'author']
     template_name="books/book_edit.html"
-    success_url = reverse_lazy('home')
+
+    def get_success_url(self):
+        return reverse_lazy('author-read',args=(self.object.author.id,))
 
 @method_decorator(login_required, name='dispatch')
 @method_decorator(permission_required('books.change_book',raise_exception=True), name='dispatch')
@@ -136,6 +140,9 @@ class BookDelete(DeleteView):
     success_url = reverse_lazy('home')
 
 
+
+
+## @todo user must not be asked
 class ValorationCreate(CreateView):
     model = Valoration
     fields = ['book', 'user', 'comment','valoration','read_start','read_end']

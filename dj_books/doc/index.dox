@@ -22,9 +22,11 @@ Xulpymoney depends on the following software:
 
 
 @todo
-- Improve translation
 - Register procedure, sending mail
 - Without register, can't see valorations, but can search and see median value
+- Only one voloration by user and book
+- Show statistics page for workers
+
 @endtodo
 
 */
