@@ -101,6 +101,10 @@ class Valoration(models.Model):
 
     def __str__(self):
         return _("Valoration of {} ({}) by {}: {}").format(self.book.title, self.book.author.full_name(), self.user.email, self.valoration)
+    ## Days took read
+    ## @return int Number of days
+    def read_took(self):
+        return (self.read_end -self.read_start).days
 
     class Meta:
         db_table = 'valorations'
