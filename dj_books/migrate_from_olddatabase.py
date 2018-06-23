@@ -36,16 +36,14 @@ def Yn(pregunta):
 			print ("Please enter 'Y', 'n'")
 
 
-parser=argparse.ArgumentParser('Films documentation')
-group = parser.add_mutually_exclusive_group()
-group.add_argument('-i', '--insert', help='Insert films from current numbered directory', action="store_true")
-group.add_argument('-g', '--generate', help='Generate films documentation', action="store_true")
+parser=argparse.ArgumentParser('Books migration to MyLibrary')
 parser.add_argument('-U', '--user', help='Postgresql user', default='postgres')
 parser.add_argument('-p', '--port', help='Postgresql server port', default=5432)
 parser.add_argument('-H', '--host', help='Postgresql server address', default='127.0.0.1')
 parser.add_argument('-d', '--db', help='Postgresql database', default='books')
 args=parser.parse_args()
 
+print ("Enter database books password")
 password=getpass.getpass()
 
 
