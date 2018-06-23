@@ -70,6 +70,8 @@ class Author(models.Model):
         ordering= ["name", "family_name", "birth"]
         managed=True
 
+
+## @todo year must allow to bbe None
 class Book(models.Model):
     id = models.AutoField(primary_key=True, db_column="id_books")
     title = models.CharField(max_length=100,null=False, verbose_name=_("Title"))
