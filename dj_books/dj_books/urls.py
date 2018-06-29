@@ -19,12 +19,14 @@ from django.contrib import admin
 from django.urls import reverse_lazy
 
 ## @todo Change views import to a generic way
-
 from dj_books.views import  (
+    activate, 
+    account_activation_sent, 
     author_read, 
     book_read, 
     home, 
     database,  
+    signup, 
     profile_edit,  
     AuthorCreate,  
     AuthorDelete,  
@@ -44,6 +46,11 @@ def ab(reg):
     #return  r"{}{}{}".format(reg[:1], settings.WEBSUBDIR , reg[1:])
 
 urlpatterns = [
+    url(r'^signup/$', signup, name='signup'),
+    
+    url(r'^account_activation_sent/$', account_activation_sent, name='account_activation_sent'),
+    url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',  activate, name='activate'),
+    
     url(ab(r'^admin/'), admin.site.urls,  name="admin-site"),
     url(ab(r'^accounts/login/$'), auth_views.login, {'template_name': 'admin/login.html'}, name="login"), 
     url(ab(r'^logout/$'), auth_views.logout, {'next_page': reverse_lazy('home')}, name="logout"), 

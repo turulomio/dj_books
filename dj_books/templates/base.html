@@ -75,6 +75,7 @@
         <li class="nav-li"><a href="{% url 'logout' %}">{% trans "Logout" %} {{ user.username|upper }}</a></li>
         <li class="nav-li"><a href="{% url 'profile' %}">{% trans "Settings" %}</a></li>
     {% else %}
+         <li class="nav-li"><a href="{% url 'signup' %}">{% trans "Sign up" %}</a></li>
          <li class="nav-li"><a href="{% url 'login' %}?next={%url 'home' %}">{% trans "Login" %}</a></li>
     {% endif %}
     {% if request.user.is_superuser %}

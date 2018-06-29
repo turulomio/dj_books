@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% load mytranslation %}
+{% set_language user.profile.language %}
+
+{% block content %}
+  <h1>{% trans "Account verification" %}</h1>
+  <p>{% trans "Your account verification has been successful. Now you're logged in." %}</p>
+{% endblock %}

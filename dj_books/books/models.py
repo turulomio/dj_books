@@ -28,6 +28,7 @@ class Profile(models.Model):
     language= models.CharField(max_length=2, choices=LANGUAGES, default=ENGLISH, verbose_name=_("Language"))
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     birth_date = models.DateField(null=True, blank=True, verbose_name=_("Birth date"))
+    email_confirmed = models.BooleanField(default=False)
     class Meta:
         db_table = 'profiles'
 
