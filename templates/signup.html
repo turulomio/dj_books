@@ -13,9 +13,11 @@
       <p>
         {{ field.label_tag }}<br>
         {{ field }}
+        {% autoescape off %}
         {% if field.help_text %}
           <small style="color: grey">{{ field.help_text }}</small>
         {% endif %}
+        {% endautoescape %}
         {% for error in field.errors %}
           <p style="color: red">{{ error }}</p>
         {% endfor %}
