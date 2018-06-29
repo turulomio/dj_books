@@ -141,6 +141,11 @@ def mymenu(user):
     grVal.append(Action(_("Add a valoration"),['books.add_valoration'], reverse_lazy("valoration-add")))
     grVal.append(Action(_("List of valorations"),['books.search_valoration'], reverse_lazy("valoration-list")))
     grLibrary.append(grVal)
+
+    grQuerys=Group(1, _("Consultas"), "12")
+    grQuerys.append(Action(_("Last books"),['books.search_author','books.search_book'], reverse_lazy("query-books-last")))
+    grQuerys.append(Action(_("Most valued books"),['books.search_author','books.search_book'], reverse_lazy("query-books-valued")))
     menu.append(grLibrary)
+    menu.append(grQuerys)
     return menu.render()
 

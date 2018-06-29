@@ -72,5 +72,10 @@ urlpatterns = [
     url(ab(r'^books/valoration/create/$'), ValorationCreate.as_view(), name='valoration-add'),
     url(ab(r'^books/valoration/(?P<pk>\d+)/update/$'), ValorationUpdate.as_view(), name='valoration-edit'),
     url(ab(r'^books/valoration/(?P<pk>\d+)/delete/$'), ValorationDelete.as_view(), name='valoration-delete'),
+
+
+    url(r'^books/querys/last/', valoration, name='query-books-last'),
+    url(r'^books/querys/valued/', valoration, name='query-books-valued'),
+
 ]
 
