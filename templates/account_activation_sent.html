@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% load mytranslation %}
+{% set_language user.profile.language %}
+
+{% block content %}
+  <h1>{% trans "Account verification" %}</h1>
+  <p>{% trans "A mail have been sent to your signup email address. Please confirm it, clicking the url sent in that message." %}</p>
+{% endblock %}

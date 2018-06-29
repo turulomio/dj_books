@@ -78,11 +78,15 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
-
-
-#STATIC_URL = '/static/'
-#STATIC_ROOT = BASE_DIR+ "/static"
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+django_send_mail=open("/etc/django_send_mail", "r").read().split("\t")
+EMAIL_HOST_USER = django_send_mail[0]
+EMAIL_HOST_PASSWORD =django_send_mail[1]
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SERVER_EMAIL = EMAIL_HOST_USER
 
 
 ## Locale paths in source distribution
