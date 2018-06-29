@@ -16,6 +16,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.auth.models import User
 
 from .tokens import account_activation_token
+from django.contrib.auth.models import Group
 
 from books.models import Author,  Book, Valoration
 from .forms import UserForm, ProfileForm,  SignUpForm
@@ -92,6 +93,8 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.profile.email_confirmed = True
         user.save()
+        groupUser=Group.objects.get(name="LibraryUser")
+        groupUser.user_set.add(user)
         login(request, user)
         return render(request, 'account_activation_valid.html')
     else:
