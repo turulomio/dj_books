@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-21 15:36+0000\n"
+"POT-Creation-Date: 2018-06-29 10:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: books/admin.py:16 books/admin.py:19
+#: books/admin.py:17 books/admin.py:20
 msgid "My personal Django"
 msgstr "Mi Django personal"
 
-#: books/admin.py:22
+#: books/admin.py:23
 msgid "My personal Django administration"
 msgstr "Administración de mi Django personal"
 
@@ -34,109 +34,122 @@ msgstr "Idioma"
 msgid "Birth date"
 msgstr "Fecha de nacimiento"
 
-#: books/models.py:45
+#: books/models.py:46
 msgid "Name"
 msgstr "Nombre"
 
-#: books/models.py:46
+#: books/models.py:47
 msgid "Family name"
 msgstr "Apellidos"
 
-#: books/models.py:47
+#: books/models.py:48
 msgid "Birth year"
 msgstr "Año de nacimiento"
 
-#: books/models.py:48
+#: books/models.py:49
 msgid "Death year"
 msgstr "Año de defunción"
 
-#: books/models.py:75
+#: books/models.py:78
 msgid "Title"
 msgstr "Título"
 
-#: books/models.py:76
+#: books/models.py:79
 msgid "Year"
 msgstr "Año"
 
-#: books/models.py:89
+#: books/models.py:98 templates/objects/valoration.html:10
 msgid "Book"
 msgstr "Libros"
 
-#: books/models.py:97
+#: books/models.py:106
 msgid "Valoration of {} ({}) by {}: {}"
 msgstr "Valoración de {} ({}) por {}: {}"
 
-#: books/table_easy.py:106
+#: books/table_easy.py:142
+msgid "No records found"
+msgstr "No se han encontrado registros"
+
+#: books/table_easy.py:154
 msgid "Actions"
 msgstr "Acciones"
 
-#: books/table_easy.py:121
-msgid "Update"
-msgstr "Actualizar"
-
-#: books/table_easy.py:122
-msgid "Delete"
-msgstr "Borrar"
-
-#: books/table_easy.py:123
-msgid "Export"
-msgstr "Exportar"
-
-#: books/table_easy.py:126
-msgid "Insert"
-msgstr "Añadir"
-
-#: books/table_easy.py:127
+#: books/table_easy.py:184
 msgid "Delete selected"
 msgstr "Borrar seleccionados"
 
-#: books/table_easy.py:128
+#: books/table_easy.py:188
 msgid "Found {} records"
 msgstr "Encontrados {} registros"
 
-#: books/tables.py:23
+#: books/tables.py:36
 msgid "Book title"
 msgstr "Título del libro"
 
-#: books/tables.py:24
+#: books/tables.py:37
 msgid "User mail"
 msgstr "Correo electrónico"
 
-#: books/templatetags/mymenu.py:133
+#: books/templatetags/mymenu.py:136
 msgid "All database"
 msgstr "Toda la base de datos"
 
-#: books/templatetags/mymenu.py:134
+#: books/templatetags/mymenu.py:137
 msgid "My Library"
 msgstr "Mi Biblioteca"
 
-#: books/templatetags/mymenu.py:135
+#: books/templatetags/mymenu.py:138
 msgid "Add author"
 msgstr "Añade un autor"
 
-#: books/templatetags/mymenu.py:136
+#: books/templatetags/mymenu.py:139
 msgid "Add book"
 msgstr "Añade un libro"
 
-#: books/templatetags/mymenu.py:137 templates/valoration.html:8
+#: books/templatetags/mymenu.py:140 templates/valoration.html:8
 msgid "My Valorations"
 msgstr "Mis valoraciones"
 
-#: books/templatetags/mymenu.py:138
+#: books/templatetags/mymenu.py:141
 msgid "Add a valoration"
 msgstr "Añade una valoración"
 
-#: books/templatetags/mymenu.py:139
+#: books/templatetags/mymenu.py:142
 msgid "List of valorations"
 msgstr "Listado de valoraciones"
 
-#: dj_books/views.py:51
+#: dj_books/views.py:31
+msgid "Looking for '{}' in Library database"
+msgstr "Buscando '{}' en la base de datos"
+
+#: dj_books/views.py:127
 msgid "Your profile was successfully updated!"
 msgstr "Tu perfil se ha actualizado correctamente"
 
-#: dj_books/views.py:60
+#: dj_books/views.py:136
 msgid "Your password was successfully updated!"
 msgstr "Tu contraseña se ha actualizado correctamente"
+
+#: templates/account_activation_invalid.html:8
+#: templates/account_activation_sent.html:8
+#: templates/account_activation_valid.html:8
+msgid "Account verification"
+msgstr "Comprobación de cuenta"
+
+#: templates/account_activation_invalid.html:9
+msgid ""
+"The confirmation link was invalid, possibly because it has already been used."
+msgstr "El enlace de confirmación no es valido, posiblemente porque ya ha sido usado."
+
+#: templates/account_activation_sent.html:9
+msgid ""
+"A mail have been sent to your signup email address. Please confirm it, "
+"clicking the url sent in that message."
+msgstr "Se ha mandado un correo electrónico a la dirección del registro. Por favor confírmelo haciendo click en el enlace enviado."
+
+#: templates/account_activation_valid.html:9
+msgid "Your account verification has been successful. Now you're logged in."
+msgstr "Se ha comprobado la cuenta de forma satisfactoria. Ahora estás logueado."
 
 #: templates/base.html:58
 msgid "MY BOOKS LIBRARY"
@@ -151,20 +164,26 @@ msgid "Settings"
 msgstr "Configuración"
 
 #: templates/base.html:78
+msgid "Sign up"
+msgstr "Registrar"
+
+#: templates/base.html:79
 msgid "Login"
 msgstr "Entrar"
 
-#: templates/base.html:81
+#: templates/base.html:82
 msgid "Administration"
 msgstr "Administración"
 
-#: templates/base.html:83
+#: templates/base.html:84
 msgid "Home"
 msgstr "Inicio"
 
 #: templates/books/author_confirm_delete.html:9
-#: templates/books/author_edit.html:9
-#: templates/books/book_confirm_delete.html:9 templates/database.html:9
+#: templates/books/author_edit.html:9 templates/books/author_read.html:9
+#: templates/books/author_read.html:14
+#: templates/books/book_confirm_delete.html:9 templates/books/book_read.html:9
+#: templates/database.html:9 templates/home.html:21
 msgid "Authors"
 msgstr "Autores"
 
@@ -177,7 +196,8 @@ msgstr "Autores"
 msgid "Confirm delete"
 msgstr "Confirmación de borrado"
 
-#: templates/books/author_edit.html:9 templates/books/book_edit.html:9
+#: templates/books/author_edit.html:9 templates/books/author_read.html:9
+#: templates/books/book_edit.html:9 templates/books/book_read.html:9
 #: templates/books/valoration_edit.html:8
 msgid "New"
 msgstr "Nuevo"
@@ -192,6 +212,7 @@ msgid "Save"
 msgstr "Guardar"
 
 #: templates/books/book_edit.html:9 templates/database.html:14
+#: templates/home.html:27
 msgid "Books"
 msgstr "Libros"
 
@@ -200,7 +221,8 @@ msgid "Add or edit a Book"
 msgstr "Añade o actualiza un libro"
 
 #: templates/books/valoration_confirm_delete.html:9
-#: templates/books/valoration_edit.html:8
+#: templates/books/valoration_edit.html:8 templates/database.html:19
+#: templates/home.html:33
 msgid "Valorations"
 msgstr "Valoraciones"
 
@@ -212,13 +234,21 @@ msgstr "Añade o actualiza una valoración"
 msgid "Library database"
 msgstr "Toda la base de datos"
 
-#: templates/home.html:16
+#: templates/home.html:15
 msgid "Search for a Book or an Author:"
 msgstr "Busca un libro o un autor"
 
-#: templates/home.html:17 templates/home.html:18
+#: templates/home.html:16 templates/home.html:17
 msgid "Search"
 msgstr "Buscar"
+
+#: templates/objects/valoration.html:7
+msgid "Author"
+msgstr "Autor"
+
+#: templates/objects/valoration.html:13
+msgid "User"
+msgstr "Usuario"
 
 #: templates/profile.html:13
 msgid "User profile"
