@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 # No se permiten comillas dobles en la inserción a base de datos
-import os, sys, glob, datetime, string, psycopg2, psycopg2.extras, shutil, math, argparse, getpass
+import sys,   psycopg2, psycopg2.extras, argparse, getpass
 import os
 import django
 os.environ["DJANGO_SETTINGS_MODULE"] = 'dj_books.settings'
 django.setup()
 from books.models import *
-from django.contrib.auth.models import Permission,  Group, User
+from django.contrib.auth.models import User
 
 class Mem:
 	def __init__(self):
@@ -25,7 +25,6 @@ class Mem:
 
 
 def Yn(pregunta):
-	ok = False
 	while True:
 		user_input = input(pregunta +" [Y|n]").strip().lower()
 		if not user_input or user_input == 'y':
@@ -46,7 +45,6 @@ args=parser.parse_args()
 print ("Enter database books password")
 password=getpass.getpass()
 
-
 dj_user = User.objects.get(username="worker")
 print(dj_user)
 
@@ -64,10 +62,6 @@ for i, row in enumerate(cur.fetchall()):
 		dj_valoration=Valoration(id=i, book=dj_book, comment=row['comment'], read_start=row['read_start'], read_end=row['read_end'], user=dj_user, valoration=row['valoration']*10)
 	else:
 		dj_valoration=Valoration(id=i, book=dj_book, comment=row['comment'], read_start=row['read_start'], read_end=row['read_end'], user=dj_user, valoration=None)
-	
 	dj_valoration.save()
 cur.close()
-
 mem.disconnect()
-
-
