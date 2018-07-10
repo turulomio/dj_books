@@ -19,9 +19,9 @@ SECRET_KEY = 'dr@0-#9nj4=loa8)j_5(s&m7s=fbmlo=15yeac01q#kiij$cev'
 
 ## @note SECURITY WARNING: don't run with debug turned on in production!
 ## Defines is a Debug environment
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', ]
 
 
 ## Application definitions
