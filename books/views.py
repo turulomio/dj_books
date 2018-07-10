@@ -34,7 +34,7 @@ def database(request):
 
 @login_required
 def valoration(request):
-    valorations= Valoration.objects.order_by('read_start')
+    valorations= Valoration.objects.filter(user=request.user).order_by('read_start')
     tableeasy_valorations=TableEasyValorations(valorations)
     return render(request, 'valoration.html', locals())
     
