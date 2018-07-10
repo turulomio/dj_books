@@ -71,13 +71,12 @@ class Author(models.Model):
         ordering= ["name", "family_name", "birth"]
         managed=True
 
-
-## @todo year must allow to bbe None
+## Class that manages Book database model
 class Book(models.Model):
     id = models.AutoField(primary_key=True, db_column="id_books")
     title = models.CharField(max_length=100,null=False, verbose_name=_("Title"))
-    year = models.IntegerField(null=True, verbose_name=_("Year"))
-    author = models.ForeignKey(Author, models.DO_NOTHING, db_column='id_authors')
+    year = models.IntegerField(blank=True, null=True, verbose_name=_("Year"))
+    author = models.ForeignKey(Author, models.DO_NOTHING, db_column='id_authors', blank=False, null=False)
 
     def __str__(self):
         return "{} ({})".format(self.title, self.year)
