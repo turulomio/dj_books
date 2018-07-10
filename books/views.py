@@ -27,15 +27,15 @@ def database(request):
     authors= Author.objects.order_by('name')
     books=Book.objects.order_by('title')
     valorations=Valoration.objects.order_by('read_end')
-    tableeasy_authors=TableEasyAuthors(authors)
-    tableeasy_books=TableEasyBooks(books)
-    tableeasy_valorations=TableEasyValorations(valorations)
+    tableeasy_authors=TableEasyAuthors(authors, request)
+    tableeasy_books=TableEasyBooks(books, request)
+    tableeasy_valorations=TableEasyValorations(valorations, request)
     return render(request, 'database.html', locals())
 
 @login_required
 def valoration(request):
     valorations= Valoration.objects.filter(user=request.user).order_by('read_start')
-    tableeasy_valorations=TableEasyValorations(valorations)
+    tableeasy_valorations=TableEasyValorations(valorations, request)
     return render(request, 'valoration.html', locals())
     
 

@@ -1,26 +1,61 @@
 from abc import ABC, abstractmethod
 from django.utils.translation import gettext_lazy as _
 
+##  Type Class with visibility mode
+## - Permissions: Use user permissions to show action buttons
+## - Hide: Hide action button always
+## - Show: Show action button always
+class UrlAccessVisibilityMode:
+    Permissions=1
+    Hide=2
+    Show=3
+
 ## Class to store an url and associated permissions. Permissions is an array
 class UrlAccess:
     def __init__(self):
         self.url=None
         self.permissions=[]
-        self.visible=False
+        ## Attribute to force s
+        self.setVisibilityMode(UrlAccessVisibilityMode.Permissions)
+        
+    def setVisibilityMode(self, mode):
+        self.__visibilityMode=mode
+        
+    def visibilityMode(self):
+        return self.__visibilityMode
     
     def isSet(self):
         if self.url!=None:
             return True
         return False
         
-    def set(self, url, permissions, visible):
+    def set(self, url, permissions):
         self.url=url
         self.permissions=permissions
-        self.visible=visible
-
+        
+    ## Returns a bbolean if user has all UrlAccess permissions
+    ## @return Boolean
+    def __user_has_all_permissions(self, user):
+        userpers=user.get_all_permissions()
+        for p in self.permissions:
+            if p not in userpers:
+                return False
+        return True
+        
+    ## Returns a boolean if widget must be shown
+    def mustBeShown(self, user):
+        if self.visibilityMode()==UrlAccessVisibilityMode.Permissions:
+            if self.__user_has_all_permissions(user):
+                return True
+            return False
+        elif self.visibilityMode()==UrlAccessVisibilityMode.Hide:
+            return False
+        elif self.visibilityMode()==UrlAccessVisibilityMode.Show:
+            return True
 
 class TableEasy(ABC):
-    def __init__(self, name):
+    def __init__(self, name, request):
+        self.request=request
         self._width="100%"
         self._height="100%"
         self.setName(name)
@@ -33,8 +68,8 @@ class TableEasy(ABC):
 
 
     ## Returns if all urls and buttons are invisible
-    def allInvisible(self):
-        if self.create.visible==False and self.read.visible==False and self.update.visible==False and self.delete.visible==False and self.export.visible==False:
+    def allColumnActionsButtonInvisible(self):
+        if self.read.mustBeShown(self.request.user)==False and self.update.mustBeShown(self.request.user)==False and self.delete.mustBeShown(self.request.user)==False:
             return True
         return False
     def selectable(self):
@@ -59,7 +94,6 @@ class TableEasy(ABC):
     @height.setter
     def height(self, value):
         self._height = value
-        
 
     @abstractmethod
     def render(self):
@@ -75,18 +109,14 @@ class TableEasy(ABC):
 
         
     ## CRUDE Create, Read, Update, Delete, Export
-    ## url es url, per permissions, vis, visibility
+    ## url es url, per permissions
     ## Permissions is an array
-    def setCRUDE(self, c_url, c_per, c_vis, r_url, r_per, r_vis,  u_url, u_per, u_vis,  d_url, d_per, d_vis,  e_url, e_per,  e_vis):
-        self.create.set(c_url, c_per, c_vis)
-        self.read.set(r_url, r_per, r_vis)
-        self.update.set(u_url, u_per, u_vis)
-        self.delete.set(d_url, d_per,  d_vis)
-        self.export.set(e_url, e_per,  e_vis)
-        
-    ## @todo Function that overrides visibility and sets visibility with permissions
-    def setVisibilityWithPermissions(self, userpers):
-        pass
+    def setCRUDE(self, c_url, c_per, r_url, r_per, u_url, u_per,  d_url, d_per, e_url, e_per):
+        self.create.set(c_url, c_per)
+        self.read.set(r_url, r_per)
+        self.update.set(u_url, u_per)
+        self.delete.set(d_url, d_per)
+        self.export.set(e_url, e_per)
 
     def setName(self, name):
         self._name=name
@@ -125,10 +155,11 @@ class TableEasy(ABC):
                 return self.queryset.model._meta.get_field(sf).verbose_name
             if len(a)==2:#book.valoration coge el book
                 return sf
-##getattr(o, field.name, None)
+
+
 class TableEasyFromModel(TableEasy):
-    def __init__(self, name, model, queryset):
-        TableEasy.__init__(self, name)
+    def __init__(self, name, model, queryset, request):
+        TableEasy.__init__(self, name, request)
         self.model=model
         self.queryset=queryset
 
@@ -150,7 +181,7 @@ class TableEasyFromModel(TableEasy):
             r=r+"""<th><input type="checkbox" id="{0}_chkAll" class="TableEasyCheckBoxAll" onclick="TableEasy_chkAll_onclick('{0}');" /></th>\n""".format(self.name())
         for header in self.headers:
             r=r+"""<th>{}</th>\n""".format(header)
-        if self.allInvisible()==False:
+        if self.allColumnActionsButtonInvisible()==False:
             r=r+'<th>{}</th>\n'.format(_("Actions"))
         r=r+"        </tr>\n"
         ##Data
@@ -167,22 +198,22 @@ class TableEasyFromModel(TableEasy):
                     r=r+"""<td style="text-align: right;">{}</td>\n""".format(value)
                 else:
                     r=r+"""<td>{}</td>\n""".format(value)
-            if self.allInvisible()==False:
+            if self.allColumnActionsButtonInvisible()==False:
                 r=r+"""<td>\n"""
-                if self.read.visible:
+                if self.read.mustBeShown(self.request.user):
                     r=r+"""<button type="button" class="btn btn-default" name="cmd_read"  onclick="window.location.href='{}';"><span class="glyphicon glyphicon-eye-open"></span></button>""".format(self.read.url.replace("###",str(pk_id)))
-                if self.update.visible:
+                if self.update.mustBeShown(self.request.user):
                     r=r+"""<button type="button" class="btn btn-default" name="cmd_update"  onclick="window.location.href='{}';"><span class="glyphicon glyphicon-edit"></span></button>""".format(self.update.url.replace("###",str(pk_id)))
-                if self.delete.visible:
+                if self.delete.mustBeShown(self.request.user):
                     r=r+"""<button type="button" class="btn btn-default" name="cmd_delete"  onclick="window.location.href='{}';"><span class="glyphicon glyphicon-remove"></span></button>""".format(self.delete.url.replace("###",str(pk_id)))
                 r=r+"""</td>\n"""
             r=r+"        </tr>\n"
         r=r+"    </table>\n"
-        if self.create.visible:
+        if self.create.mustBeShown(self.request.user):
             r=r+"""<button type="button" class="btn btn-default" name="cmd_insert" onclick="window.location.href='{}';" ><span class="glyphicon glyphicon-plus"></span></button>\n""".format(self.create.url)
-        if self.selectable() and self.delete.visible:
+        if self.selectable() and self.delete.mustBeShown(self.request.user):
             r=r+"""<button type="button" class="btn btn-default" name="cmd_delete_selected" onclick="window.location.href='{}';" ><span class="glyphicon glyphicon-remove-circle"></span></button>\n""".format(self.delete.url, _("Delete selected"))
-        if self.export.visible:
+        if self.export.mustBeShown(self.request.user):
             r=r+"""<button type="button" class="btn btn-default" name="cmd_export"  onclick="window.location.href='{}';"><span class="glyphicon glyphicon-export"></span></button>""".format(self.export.url.replace("###",str(pk_id)))
 
         r=r+"""<label class="TableEasyRecords" id="{}_records">""".format(self.name()) + _("Found {} records").format(len(self.queryset)) + """</label>\n"""
