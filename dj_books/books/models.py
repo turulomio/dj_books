@@ -95,7 +95,7 @@ class Book(models.Model):
 class Valoration(models.Model):
     id=models.AutoField(primary_key=True, db_column="id")
     book = models.ForeignKey(Book,  models.DO_NOTHING, db_column="id_books", verbose_name=_("Book"))
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, models.DO_NOTHING)
     comment = models.TextField(blank=True, null=True)
     valoration = models.IntegerField(blank=True, null=True, verbose_name="Valoration [0-100]", validators=[MaxValueValidator(100),MinValueValidator(0)])
     read_start = models.DateField(blank=True, null=True,verbose_name="Date read started")
