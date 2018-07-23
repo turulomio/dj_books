@@ -41,14 +41,14 @@ class Command(BaseCommand):
 
 
         if options['add_example_users']==True:
-            userWorker=User.objects.create_user('worker', password='worker')
+            userWorker=User.objects.create_user('worker', password='changeme')
             userWorker.save()
             groupWorker.user_set.add(userWorker)
 
-            userUser=User.objects.create_user('user', password='user')
+            userUser=User.objects.create_user('user', password='changeme')
             userUser.save()
             groupUser.user_set.add(userUser)
-            self.stdout.write(self.style.SUCCESS('Successfully created users: user with password user and worker with password worker'))
+            self.stdout.write(self.style.SUCCESS('Successfully created users: user and worker with password changeme'))
 
     def add_permission(self, group, model, arrCodename):
         ct = ContentType.objects.get_for_model(model)

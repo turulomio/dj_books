@@ -28,7 +28,7 @@ Installation
 In postgresql, first we create database
 
 @code
-createdb -U postgres library_borrar
+createdb -U postgres mylibrary
 @endcode
 
 We edit django/setting.py to set connection information
@@ -37,13 +37,13 @@ We run
 
 @code
 python manage.py migrate
-python manage.py createsuperuser
+python manage.py createpermissions [-add_example_users is optional to create users: user and worker with password changeme]
+python manage.py changepassword
 python manage.py runserver
 @endcode
 
 Installation in apache
 ======================
-
 
 You must configure apache with mod_wsgi support. In gentoo
 @code
