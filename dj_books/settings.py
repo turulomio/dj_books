@@ -21,7 +21,7 @@ SECRET_KEY = 'dr@0-#9nj4=loa8)j_5(s&m7s=fbmlo=15yeac01q#kiij$cev'
 ## Defines is a Debug environment
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', ]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1' ]
 
 
 ## Application definitions
