@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib.auth.views import LoginView, logout_then_login
 from django.contrib import admin
-#from django.urls import reverse_lazy, include, path
+from django.urls import path
 
 ## @todo Change views import to a generic way
 from . import views as dj_books_views
@@ -39,6 +39,7 @@ urlpatterns = [
     url(r'^$', books_view.home, name='home'),
     url(r'^database/$', books_view.database, name='database'), 
     url(r'^profile/$', dj_books_views.profile_edit, name="profile"), 
+    path('statistics/', books_view.statistics, name='statistics'),
 
     url(r'^books/author/create/$', books_view.AuthorCreate.as_view(), name='author-add'),
     url(r'^books/author/(?P<pk>\d+)/$', books_view.author_read, name='author-read'), 

@@ -145,6 +145,10 @@ def mymenu(user):
     grQuerys=Group(1, _("Queries"), "12")
     grQuerys.append(Action(_("Last books"),['books.search_author','books.search_book'], reverse_lazy("query-books-last")))
     grQuerys.append(Action(_("Most valued books"),['books.search_author','books.search_book'], reverse_lazy("query-books-valued")))
+    
+    
+    grQuerys=Group(1, _("Statistics"), "13")
+    grQuerys.append(Action(_("Global"),['books.search_author','books.search_book'], reverse_lazy("statistics")))
     menu.append(grLibrary)
     menu.append(grQuerys)
     return menu.render()

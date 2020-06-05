@@ -95,3 +95,4 @@ def profile_edit(request):
         change_password_form = PasswordChangeForm(request.user)
     change_password_form.fields['old_password'].widget.attrs.pop("autofocus", None)
     return render(request, 'profile.html', locals())
+

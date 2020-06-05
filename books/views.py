@@ -26,6 +26,13 @@ def home(request):
         if request.user.has_perm('books.search_valoration'):
             valorations=Valoration.objects.filter(comment__icontains=search)
     return render(request, 'home.html', locals())
+    
+@login_required
+def statistics(request):
+    books= Book.objects.count()
+    authors= Author.objects.count()
+    valorations= Valoration.objects.count()
+    return render(request,  "statistics.html", locals())
 
 @login_required
 def database(request):

@@ -42,12 +42,19 @@
             {% block head_css_page %}
             {% endblock head_css_page %}
         {% endblock head_css %}
+        
+        
+        {% block head_js %}
+            {% block head_js_site %}
                 <script type="text/javascript" src="{% static "jquery.js" %}"></script>
                 <script type="text/javascript" src="{% static "jquery-ui.js" %}"></script>
                 <script type="text/javascript" src="{% static "js/bootstrap.min.js" %}"></script>
                 <script type="text/javascript" src="{% static "jquery_my.js" %}"></script>
                 <script type="text/javascript" src="{% static "table_easy.js" %}"></script>
-
+            {% endblock head_js_site %}
+            {% block head_js_section %}
+            {% endblock head_js_section %}
+        {% endblock head_js %}
     </head>
 <body>
 
