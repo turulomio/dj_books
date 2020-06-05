@@ -1,0 +1,50 @@
+{% extends 'base_chartjs.html' %}
+
+{% load i18n %}
+{% load static %}
+{% load mytranslation %}
+{% set_language user.profile.language %}
+
+{% block content %}
+    <h1>{% trans "Statistics" %}</h1>
+    <h2>{% trans "Registers" %}</h2>
+
+
+	<div id="canvas-holder" style="width:40%">
+		<canvas id="chart-area"></canvas>
+	</div>
+	<script>
+		var config = {
+			type: 'pie',
+			data: {
+				datasets: [{
+					data: [
+						{{books}},
+						{{authors}},
+						{{valorations}},
+					],
+					backgroundColor: [
+						 'rgb(255, 99, 132)',
+                          'rgb(132, 255, 99)',
+                           'rgb(99, 132, 255',
+					],
+					label: 'Dataset 1'
+				}],
+				labels: [
+					'Books',
+					'Authors',
+					'Valorations',
+				]
+			},
+			options: {
+				responsive: true
+			}
+		};
+
+		window.onload = function() {
+			var ctx = document.getElementById('chart-area').getContext('2d');
+			window.myPie = new Chart(ctx, config);
+		};
+</script>
+
+{% endblock %}

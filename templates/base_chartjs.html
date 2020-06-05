@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% load static %}
+{% load mytranslation %}
+{% set_language user.profile.language %}
+
+{% block head_css_section %} 
+    <link rel="stylesheet" type="text/css" href="https://github.com/chartjs/Chart.js/releases/download/v2.9.3/Chart.css" >
+{% endblock head_css_section %}
+{% block head_js_section %} 
+<script type="text/javascript" src="https://github.com/chartjs/Chart.js/releases/download/v2.9.3/Chart.js"></script>
+{% endblock head_js_section %}
+
+
+
+{% block content %}
+{% endblock content %}
