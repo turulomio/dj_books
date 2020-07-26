@@ -9,9 +9,9 @@ from django.contrib import admin# Need to import this since auth models get regi
 
 
 class AuthorAdmin(admin.ModelAdmin):
-    list_display = ('name', 'family_name', 'birth', 'death')
-    search_fields = ('name', 'family_name', 'birth', 'death')
-    list_filter = ('birth','death')
+    list_display = ('name', 'family_name', 'birth', 'death', 'gender')
+    search_fields = ('name', 'family_name', 'birth', 'death', 'gender')
+    list_filter = ('birth','death', 'gender')
 
 class BookAdmin(admin.ModelAdmin):
     list_display = ('title',  'author','year')

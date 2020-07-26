@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-29 10:09+0000\n"
+"POT-Creation-Date: 2020-07-26 17:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,14 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-
-#: books/admin.py:17 books/admin.py:20
-msgid "My personal Django"
-msgstr ""
-
-#: books/admin.py:23
-msgid "My personal Django administration"
-msgstr ""
 
 #: books/models.py:28
 msgid "Language"
@@ -50,35 +42,47 @@ msgstr ""
 msgid "Death year"
 msgstr ""
 
-#: books/models.py:78
+#: books/models.py:52
+msgid "Man"
+msgstr ""
+
+#: books/models.py:53
+msgid "Woman"
+msgstr ""
+
+#: books/models.py:56
+msgid "Gender"
+msgstr ""
+
+#: books/models.py:84
 msgid "Title"
 msgstr ""
 
-#: books/models.py:79
+#: books/models.py:85
 msgid "Year"
 msgstr ""
 
-#: books/models.py:98 templates/objects/valoration.html:10
+#: books/models.py:104 templates/objects/valoration.html:10
 msgid "Book"
 msgstr ""
 
-#: books/models.py:106
+#: books/models.py:112
 msgid "Valoration of {} ({}) by {}: {}"
 msgstr ""
 
-#: books/table_easy.py:142
+#: books/table_easy.py:173
 msgid "No records found"
 msgstr ""
 
-#: books/table_easy.py:154
+#: books/table_easy.py:185
 msgid "Actions"
 msgstr ""
 
-#: books/table_easy.py:184
+#: books/table_easy.py:215
 msgid "Delete selected"
 msgstr ""
 
-#: books/table_easy.py:188
+#: books/table_easy.py:219
 msgid "Found {} records"
 msgstr ""
 
@@ -118,15 +122,39 @@ msgstr ""
 msgid "List of valorations"
 msgstr ""
 
-#: dj_books/views.py:31
+#: books/templatetags/mymenu.py:145
+msgid "Queries"
+msgstr ""
+
+#: books/templatetags/mymenu.py:146
+msgid "Last books"
+msgstr ""
+
+#: books/templatetags/mymenu.py:147
+msgid "Most valued books"
+msgstr ""
+
+#: books/views.py:18
 msgid "Looking for '{}' in Library database"
 msgstr ""
 
-#: dj_books/views.py:127
+#: dj_books/admin.py:17 dj_books/admin.py:20
+msgid "My personal Django"
+msgstr ""
+
+#: dj_books/admin.py:23
+msgid "My personal Django administration"
+msgstr ""
+
+#: dj_books/forms.py:24
+msgid "Required. Inform a valid email address."
+msgstr ""
+
+#: dj_books/views.py:81
 msgid "Your profile was successfully updated!"
 msgstr ""
 
-#: dj_books/views.py:136
+#: dj_books/views.py:90
 msgid "Your password was successfully updated!"
 msgstr ""
 
@@ -151,31 +179,31 @@ msgstr ""
 msgid "Your account verification has been successful. Now you're logged in."
 msgstr ""
 
-#: templates/base.html:58
+#: templates/base.html:56
 msgid "MY BOOKS LIBRARY"
 msgstr ""
 
-#: templates/base.html:75
+#: templates/base.html:71
 msgid "Logout"
 msgstr ""
 
-#: templates/base.html:76 templates/profile.html:8 templates/profile.html:12
+#: templates/base.html:72 templates/profile.html:8 templates/profile.html:12
 msgid "Settings"
 msgstr ""
 
-#: templates/base.html:78
+#: templates/base.html:74 templates/signup.html:9 templates/signup.html:26
 msgid "Sign up"
 msgstr ""
 
-#: templates/base.html:79
+#: templates/base.html:75
 msgid "Login"
 msgstr ""
 
-#: templates/base.html:82
+#: templates/base.html:78
 msgid "Administration"
 msgstr ""
 
-#: templates/base.html:84
+#: templates/base.html:80
 msgid "Home"
 msgstr ""
 

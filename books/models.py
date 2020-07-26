@@ -47,6 +47,13 @@ class Author(models.Model):
     family_name = models.CharField(max_length=100,blank=True, null=True, verbose_name=_("Family name"))
     birth = models.IntegerField(blank=True, null=True, verbose_name=_("Birth year"))
     death = models.IntegerField(blank=True, null=True, verbose_name=_("Death year"))
+    
+    GENDER= (
+        (0, _('Man')),
+        (1, _('Woman')),
+        )
+
+    gender= models.IntegerField(default=0, choices=GENDER, verbose_name=_("Gender"))
 
     def __str__(self):
         b=self.birth if self.birth!=None else "####"

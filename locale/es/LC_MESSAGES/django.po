@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-29 10:09+0000\n"
+"POT-Creation-Date: 2020-07-26 17:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,14 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: books/admin.py:17 books/admin.py:20
-msgid "My personal Django"
-msgstr "Mi Django personal"
-
-#: books/admin.py:23
-msgid "My personal Django administration"
-msgstr "Administración de mi Django personal"
 
 #: books/models.py:28
 msgid "Language"
@@ -50,35 +42,47 @@ msgstr "Año de nacimiento"
 msgid "Death year"
 msgstr "Año de defunción"
 
-#: books/models.py:78
+#: books/models.py:52
+msgid "Man"
+msgstr "Hombre"
+
+#: books/models.py:53
+msgid "Woman"
+msgstr "Mujer"
+
+#: books/models.py:56
+msgid "Gender"
+msgstr "Género"
+
+#: books/models.py:84
 msgid "Title"
 msgstr "Título"
 
-#: books/models.py:79
+#: books/models.py:85
 msgid "Year"
 msgstr "Año"
 
-#: books/models.py:98 templates/objects/valoration.html:10
+#: books/models.py:104 templates/objects/valoration.html:10
 msgid "Book"
 msgstr "Libros"
 
-#: books/models.py:106
+#: books/models.py:112
 msgid "Valoration of {} ({}) by {}: {}"
 msgstr "Valoración de {} ({}) por {}: {}"
 
-#: books/table_easy.py:142
+#: books/table_easy.py:173
 msgid "No records found"
 msgstr "No se han encontrado registros"
 
-#: books/table_easy.py:154
+#: books/table_easy.py:185
 msgid "Actions"
 msgstr "Acciones"
 
-#: books/table_easy.py:184
+#: books/table_easy.py:215
 msgid "Delete selected"
 msgstr "Borrar seleccionados"
 
-#: books/table_easy.py:188
+#: books/table_easy.py:219
 msgid "Found {} records"
 msgstr "Encontrados {} registros"
 
@@ -118,15 +122,39 @@ msgstr "Añade una valoración"
 msgid "List of valorations"
 msgstr "Listado de valoraciones"
 
-#: dj_books/views.py:31
+#: books/templatetags/mymenu.py:145
+msgid "Queries"
+msgstr "Consultas"
+
+#: books/templatetags/mymenu.py:146
+msgid "Last books"
+msgstr "Últimos libros"
+
+#: books/templatetags/mymenu.py:147
+msgid "Most valued books"
+msgstr "Libros mejor valorados"
+
+#: books/views.py:18
 msgid "Looking for '{}' in Library database"
 msgstr "Buscando '{}' en la base de datos"
 
-#: dj_books/views.py:127
+#: dj_books/admin.py:17 dj_books/admin.py:20
+msgid "My personal Django"
+msgstr "Mi Django personal"
+
+#: dj_books/admin.py:23
+msgid "My personal Django administration"
+msgstr "Administración de mi Django personal"
+
+#: dj_books/forms.py:24
+msgid "Required. Inform a valid email address."
+msgstr "Obligatorio. Introduzca una dirección de correo electrónico válida"
+
+#: dj_books/views.py:81
 msgid "Your profile was successfully updated!"
 msgstr "Tu perfil se ha actualizado correctamente"
 
-#: dj_books/views.py:136
+#: dj_books/views.py:90
 msgid "Your password was successfully updated!"
 msgstr "Tu contraseña se ha actualizado correctamente"
 
@@ -139,43 +167,47 @@ msgstr "Comprobación de cuenta"
 #: templates/account_activation_invalid.html:9
 msgid ""
 "The confirmation link was invalid, possibly because it has already been used."
-msgstr "El enlace de confirmación no es valido, posiblemente porque ya ha sido usado."
+msgstr ""
+"El enlace de confirmación no es valido, posiblemente porque ya ha sido usado."
 
 #: templates/account_activation_sent.html:9
 msgid ""
 "A mail have been sent to your signup email address. Please confirm it, "
 "clicking the url sent in that message."
-msgstr "Se ha mandado un correo electrónico a la dirección del registro. Por favor confírmelo haciendo click en el enlace enviado."
+msgstr ""
+"Se ha mandado un correo electrónico a la dirección del registro. Por favor "
+"confírmelo haciendo click en el enlace enviado."
 
 #: templates/account_activation_valid.html:9
 msgid "Your account verification has been successful. Now you're logged in."
-msgstr "Se ha comprobado la cuenta de forma satisfactoria. Ahora estás logueado."
+msgstr ""
+"Se ha comprobado la cuenta de forma satisfactoria. Ahora estás logueado."
 
-#: templates/base.html:58
+#: templates/base.html:56
 msgid "MY BOOKS LIBRARY"
 msgstr "MI BIBLIOTECA"
 
-#: templates/base.html:75
+#: templates/base.html:71
 msgid "Logout"
 msgstr "Salir"
 
-#: templates/base.html:76 templates/profile.html:8 templates/profile.html:12
+#: templates/base.html:72 templates/profile.html:8 templates/profile.html:12
 msgid "Settings"
 msgstr "Configuración"
 
-#: templates/base.html:78
+#: templates/base.html:74 templates/signup.html:9 templates/signup.html:26
 msgid "Sign up"
 msgstr "Registrar"
 
-#: templates/base.html:79
+#: templates/base.html:75
 msgid "Login"
 msgstr "Entrar"
 
-#: templates/base.html:82
+#: templates/base.html:78
 msgid "Administration"
 msgstr "Administración"
 
-#: templates/base.html:84
+#: templates/base.html:80
 msgid "Home"
 msgstr "Inicio"
 

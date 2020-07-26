@@ -53,7 +53,7 @@ def author_read(request, pk):
 @method_decorator(permission_required('books.add_author',raise_exception=True), name='dispatch')
 class AuthorCreate(CreateView):
     model = Author
-    fields = ['name', 'family_name', 'birth', 'death']
+    fields = ['name', 'family_name', 'birth', 'death', 'gender']
     template_name="books/author_edit.html"
 
     def get_success_url(self):
@@ -63,7 +63,7 @@ class AuthorCreate(CreateView):
 @method_decorator(permission_required('books.change_author',raise_exception=True), name='dispatch')
 class AuthorUpdate(UpdateView):
     model = Author
-    fields = ['name', 'family_name', 'birth', 'death']
+    fields = ['name', 'family_name', 'birth', 'death', 'gender']
     template_name="books/author_edit.html"
     success_url = reverse_lazy('home')
 
