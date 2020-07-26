@@ -10,6 +10,7 @@
 ##https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
+from django.urls import reverse_lazy
 
 ## Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -123,8 +124,9 @@ USE_L10N = False
 DATE_FORMAT = "Y-m-d"
 
 USE_TZ = True
-LOGIN_REDIRECT_URL = './'
-LOGOUT_URL = "./"
+LOGIN_URL = reverse_lazy("login")
+LOGIN_REDIRECT_URL = reverse_lazy("home")
+LOGOUT_REDIRECT_URL = reverse_lazy("login")
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
