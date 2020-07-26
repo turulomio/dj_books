@@ -15,7 +15,7 @@ from books.tables import TableEasyAuthors,  TableEasyValorations, TableEasyBooks
 def home(request):
     search = request.GET.get('search')
     if search!=None:
-        searchtitle=_("Looking for '{}' in Library database".format(search))
+        searchtitle=_("Looking for '{}' in Library database").format(search)
         books=Book.objects.filter(Q(title__icontains=search) | Q(year__icontains=search))
         authors=Author.objects.filter(Q(name__icontains=search) | Q(family_name__icontains=search))
         if request.user.has_perm('books.search_valoration'):

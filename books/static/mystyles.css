@@ -203,3 +203,53 @@ label {
     color: orange;
     background-color: transparent;
 }
+
+
+
+/* Author */
+
+
+.Author {
+    background: linear-gradient(#D5D5F0, white);
+    border-radius: 14px;
+    border: 1px solid #BBBBBB;
+    padding: 8px;	
+    margin-left: 0px;
+    margin-right: 5px;
+    margin-bottom: 8px;
+    display: inline-block;
+}
+
+.Author img{
+  color: black;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 8px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+
+/* Book */
+.Book {
+    background: linear-gradient(#D5D5F0, white);
+    border-radius: 14px;
+    border: 1px solid #BBBBBB;
+    padding: 8px;	
+    margin-left: 0px;
+    margin-right: 5px;
+    margin-bottom: 8px;
+    display: inline-block;
+}
+
+.Book img{
+  color: black;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 8px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+

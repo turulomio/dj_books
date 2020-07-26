@@ -1,7 +1,15 @@
+{% load i18n %}
+{% load mytranslation %}
+{% set_language request.user.profile.language %}
+
+{% load static %}
+<div class="Book">
+
+<img src="{% static 'book2.png' %}" height="50px" width="50px"/>
 {% if author %}
-    <p><strong>Author: </strong><a href="{% url 'author-read' author.id %}">{{ author }}</a></p>
+    <p><strong>{% trans "Author" %}: </strong><a href="{% url 'author-read' author.id %}">{{ author }}</a></p>
 {% endif %}
 
-<p><strong>Title: </strong><a href="{% url 'book-read' book.id %}">{{ book.title }}</a></p>
-<p><strong>Year: </strong> {{ book.year }}</p>
-<hr>
+<p><strong>{% trans "Title" %}: </strong><a href="{% url 'book-read' book.id %}">{{ book.title }}</a></p>
+<p><strong>{% trans "Year" %}: </strong> {{ book.year }}</p>
+</div><!-- End div Book -->

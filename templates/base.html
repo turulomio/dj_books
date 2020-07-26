@@ -9,7 +9,7 @@
 
 {# Make modifiable head elements #}
     <head>
-        <title>{% block title %}Home{% endblock title %}</title>
+        <title>{% block title %}MyLibrary{% endblock title %}</title>
         {% block head_favicon %}
             <link rel="icon" href="{% static "favicon.ico" %}">
         {% endblock head_favicon %}
@@ -60,7 +60,7 @@
 {% mymenu user %}
 {% endautoescape %}
 
-<p class="github"><a href="https://github.com/turulomio/dj_books" target="_blank"><img src="{% static "github.png" %}" height="25px" width="25px"/>  Desarrollado por Turulomio</a></p>
+<p class="github"><a href="https://github.com/turulomio/dj_books" target="_blank"><img src="{% static 'github.png' %}" height="25px" width="25px"/>  Desarrollado por Turulomio</a></p>
 </div>{# sidebar#}
 
 <div class="layVertical">

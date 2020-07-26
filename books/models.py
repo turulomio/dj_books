@@ -13,9 +13,6 @@ from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import MaxValueValidator, MinValueValidator
 
-
-
-
 class Profile(models.Model):    
     SPANISH= 'ES'
     ENGLISH = 'EN'
@@ -48,12 +45,12 @@ class Author(models.Model):
     birth = models.IntegerField(blank=True, null=True, verbose_name=_("Birth year"))
     death = models.IntegerField(blank=True, null=True, verbose_name=_("Death year"))
     
-    GENDER= (
-        (0, _('Man')),
-        (1, _('Woman')),
+    GENDER=(
+        (0,  _("Man")), 
+        (1,  _("Woman"))
         )
 
-    gender= models.IntegerField(default=0, choices=GENDER, verbose_name=_("Gender"))
+    gender= models.IntegerField(choices=GENDER, default=0,  verbose_name=_("Gender"))
 
     def __str__(self):
         b=self.birth if self.birth!=None else "####"

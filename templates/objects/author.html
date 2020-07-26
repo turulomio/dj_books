@@ -1,4 +1,15 @@
-<p><strong>Title: </strong><a href="{% url 'author-read' author.id %}">{{ author.name }} {{ author.family_name }}</a></p>
-<p><strong>Birth: </strong>{{ author.birth }}</p>
-<p><strong>Death: </strong>{{ author.death }}</p>
-<hr>
+{% load i18n %}
+{% load mytranslation %}
+{% set_language request.user.profile.language %}
+
+{% load static %}
+<div class="Author">
+{% if author.gender == 0 %}
+<img src="{% static 'boy.svg' %}" height="50px" width="50px"/>
+{% else %}
+<img src="{% static 'girl.svg' %}" height="50px" width="50px"/>
+{% endif %}
+<p><strong>{% trans "Title" %}: </strong><a href="{% url 'author-read' author.id %}">{{ author.name }} {{ author.family_name }}</a></p>
+<p><strong>{% trans "Birth" %}: </strong>{{ author.birth }}</p>
+<p><strong>{% trans "Death" %}: </strong>{{ author.death }}</p>
+</div><!-- End div Author -->
