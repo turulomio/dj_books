@@ -60,3 +60,4 @@ urlpatterns = [
 
 ]
 
+handler403 = 'books.views.error_403'

@@ -9,6 +9,11 @@ from books.models import Author,  Book, Valoration
 from books.tables import TableEasyAuthors,  TableEasyValorations, TableEasyBooks
 
 
+
+def error_403(request, exception):
+        data = {}
+        return render(request,'403.html', data)
+
 ## @todo Add search to search field to repeat search
 ## @todo Limit search minimum 3 and maximum 50
 ## @todo Add a tab Widget, author, books, valorations with number in ttab
