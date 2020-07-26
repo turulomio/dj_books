@@ -13,8 +13,11 @@
 
   <h1>Title: {{ book.title }}</h1>
 
-  <p><strong>Author:</strong> <a href="{% url 'author-read' book.author.id %}">{{ book.author }}</a></p> 
+  <p><strong>{% trans "Author" %}:</strong> <a href="{% url 'author-read' book.author.id %}">{{ book.author }}</a></p> 
+  <p><strong>{% trans "Year" %}:</strong> {{ book.year }}</p> 
   
+  <a href="{% url 'book-edit' pk=book.id %}">{% trans "Update" %}</a>
+  <a href="{% url 'book-delete' pk=book.id %}">{% trans "Delete" %}</a>
   <h2>Valorations</h2>
     {% for valoration in valorations %}
        {% include "objects/valoration.html" with valoration=valoration only %}

@@ -65,7 +65,9 @@ class AuthorUpdate(UpdateView):
     model = Author
     fields = ['name', 'family_name', 'birth', 'death', 'gender']
     template_name="books/author_edit.html"
-    success_url = reverse_lazy('home')
+
+    def get_success_url(self):
+        return reverse_lazy('author-read',args=(self.object.id,))
 
 @method_decorator(login_required, name='dispatch')
 @method_decorator(permission_required('books.delete_author',raise_exception=True), name='dispatch')
@@ -81,7 +83,7 @@ class BookCreate(CreateView):
     template_name="books/book_edit.html"
 
     def get_success_url(self):
-        return reverse_lazy('author-read',args=(self.object.author.id,))
+        return reverse_lazy('book-read',args=(self.object.id,))
 
 @method_decorator(login_required, name='dispatch')
 @method_decorator(permission_required('books.change_book',raise_exception=True), name='dispatch')
@@ -89,7 +91,9 @@ class BookUpdate(UpdateView):
     model = Book
     fields = ['title', 'year', 'author']
     template_name="books/book_edit.html"
-    success_url = reverse_lazy('home')
+
+    def get_success_url(self):
+        return reverse_lazy('book-read',args=(self.object.id,))
 
 
 @method_decorator(login_required, name='dispatch')
