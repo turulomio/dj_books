@@ -30,7 +30,7 @@
 
         {% block head_css %}
             {% block head_css_site %}
-                <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.min.css" %}">
+              <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.min.css" %}">
                 <link rel="stylesheet" type="text/css" href="{% static "jquery-ui.css" %}">
                 <link rel="stylesheet" type="text/css" href="{% static "table_easy.css" %}">
                 <link rel="stylesheet" type="text/css" href="{% static "mystyles.css" %}">
@@ -53,16 +53,14 @@
 
 <div class="layHorizontal">
 <div class="sidebar">
-    <p class="title">{% trans "MY BOOKS LIBRARY" %}</p>
-    <p class="title"><img src="{% static "book.png" %}" height="50px" width="50px"/></p>
+    <p class="title"><a href="{% url 'home' %}">{% trans "MY BOOKS LIBRARY" %}</a></p>
+    <p class="title"><a href="{% url 'home' %}"><img src="{% static "book.png" %}" height="50px" width="50px"/></a></p>
 
 {% autoescape off %}
 {% mymenu user %}
 {% endautoescape %}
 
-<p>
-<hr>
-<center>Desarrollado por Turulomio</center>
+<p class="github"><a href="https://github.com/turulomio/dj_books" target="_blank"><img src="{% static "github.png" %}" height="25px" width="25px"/>  Desarrollado por Turulomio</a></p>
 </div>{# sidebar#}
 
 <div class="layVertical">

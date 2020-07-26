@@ -38,9 +38,36 @@ p.normal {
 }
 
 p.title {
+    text-decoration: none;
+    background-color: transparent;
     text-align: center;
     padding-top: 10px;
     font-size: 130%;
+}
+
+p.title > a{
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    padding-top: 10px;
+    font-size: 130%;
+    background-color: transparent;
+}
+p.github{
+    text-decoration: none;
+    background-color: transparent;
+    text-align: center;
+    padding-top: 10px;
+    font-size: 80%;
+}
+
+p.github > a{
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    padding-top: 10px;
+    font-size: 80%;
+    background-color: transparent;
 }
 
 /* DJANGO ALERTS
