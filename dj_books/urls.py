@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from django.contrib.auth import views as auth_views
+from django.contrib.auth.views import LoginView
 from django.contrib import admin
 from django.urls import reverse_lazy, include, path
 
@@ -33,7 +33,7 @@ urlpatterns = [
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',  dj_books_views.activate, name='activate'),
     
     url(r'^admin/', admin.site.urls,  name="admin-site"),
-#    url(r'^accounts/login/$', auth_views.login, {'template_name': 'admin/login.html'}, name="login"), 
+    url(r'^login/$', LoginView.as_view(template_name='login.html'), name="login"), 
 #    url(r'^logout/$', auth_views.logout, {'next_page': reverse_lazy('home')}, name="logout"), 
     url(r'^$', books_view.home, name='home'),
     url(r'^database/$', books_view.database, name='database'), 
