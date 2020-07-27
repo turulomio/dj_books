@@ -6,6 +6,7 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 #from __future__ import unicode_literals
+from datetime import date
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.db import models
@@ -70,9 +71,25 @@ class Author(models.Model):
         elif self.name!=None and self.family_name!=None:
             return "{} {}".format(self.name,self.family_name)
 
+    def lifetime_string(self):
+        if self.birth is None:
+            return ""
+        if self.death is None:
+            return _("{}-").format(self.birth)
+        else:
+            return "{}-{}".format(self.birth, self.death)
+
+    def age_string(self):
+        if self.birth is None:
+            return ""
+        if self.death is None:
+            return _("{} years").format(date.today().year-self.birth)
+        else:
+            return _("Lived {} years").format(self.death-self.birth)
+
     class Meta:
         db_table = 'authors'
-        ordering= ["name", "family_name", "birth"]
+        ordering= ["name", "family_name", "birth", "death", "gender"]
         managed=True
 
 ## Class that manages Book database model

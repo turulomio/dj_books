@@ -4,12 +4,15 @@
 
 {% load static %}
 <div class="Author">
+
 {% if author.gender == 0 %}
-<img src="{% static 'boy.svg' %}" height="50px" width="50px"/>
+<img src="{% static 'boy.svg' %}" height="50px" width="50px" title="{{ author.get_gender_display }}"/><!-- Gets text of choices-->
 {% else %}
-<img src="{% static 'girl.svg' %}" height="50px" width="50px"/>
+<img src="{% static 'girl.svg' %}" height="50px" width="50px" title="{{ author.get_gender_display }}"/>
 {% endif %}
-<p><strong>{% trans "Title" %}: </strong><a href="{% url 'author-read' author.id %}">{{ author.name }} {{ author.family_name }}</a></p>
-<p><strong>{% trans "Birth" %}: </strong>{{ author.birth }}</p>
-<p><strong>{% trans "Death" %}: </strong>{{ author.death }}</p>
+
+<p><strong>{% trans "Author" %}: </strong><a href="{% url 'author-read' author.id %}">{{ author.name }} {{ author.family_name }}</a></p>
+<p><strong>{% trans "Lifetime" %}: </strong>{{ author.lifetime_string }}</p>
+<p><strong>{% trans "Age" %}: </strong>{{ author.age_string }}</p>
+
 </div><!-- End div Author -->

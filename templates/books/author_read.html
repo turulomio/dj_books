@@ -10,13 +10,9 @@
 {% endblock %}
 
 {% block content %}
-
-  <h1>{% trans "Author" %}: {{ author.name }} {{ author.family_name }}</h1>
-
-  <p><strong>{% trans "Birth" %}: </strong> {{ author.birth }}</a></p> 
-  <p><strong>{% trans "Death" %}: </strong> {{ author.death }}</a></p> 
-  <p><strong>{% trans "Gender" %}: </strong> {{ author.get_gender_display }}</a></p> 
-  
+    <h1>{% trans "Author details" %}</h1>
+   {% include "objects/author.html" with author=author only %}
+  <p>
   <a href="{% url 'author-edit' pk=author.id %}">{% trans "Update" %}</a>
   <a href="{% url 'author-delete' pk=author.id %}">{% trans "Delete" %}</a>
   
