@@ -24,19 +24,19 @@ urlpatterns +=i18n_patterns(
     path('profile/', dj_books_views.profile_edit, name="profile"), 
 
     path('books/author/create/', books_view.AuthorCreate.as_view(), name='author-add'),
-#    path('books/author/(?P<pk>\d+)/', books_view.author_read, name='author-read'), 
-#    path('books/author/(?P<pk>\d+)/update/', books_view.AuthorUpdate.as_view(), name='author-edit'),
-#    path('books/author/(?P<pk>\d+)/delete/', books_view.AuthorDelete.as_view(), name='author-delete'),
+    path('books/author/<int:pk>/', books_view.author_read, name='author-read'), 
+    path('books/author/<int:pk>/update/', books_view.AuthorUpdate.as_view(), name='author-edit'),
+    path('books/author/<int:pk>/delete/', books_view.AuthorDelete.as_view(), name='author-delete'),
 
     path('books/book/create/', books_view.BookCreate.as_view(), name='book-add'),
-#    path('books/book/(?P<pk>\d+)/', books_view.book_read, name='book-read'),
-#    path('books/book/(?P<pk>\d+)/update/', books_view.BookUpdate.as_view(), name='book-edit'),
-#    path('books/book/(?P<pk>\d+)/delete/', books_view.BookDelete.as_view(), name='book-delete'),
+    path('books/book/<int:pk>/', books_view.book_read, name='book-read'),
+    path('books/book/<int:pk>/update/', books_view.BookUpdate.as_view(), name='book-edit'),
+    path('books/book/<int:pk>/delete/', books_view.BookDelete.as_view(), name='book-delete'),
 
     path('books/valoration/list/', books_view.valoration, name='valoration-list'),
     path('books/valoration/create/', books_view.ValorationCreate.as_view(), name='valoration-add'),
-#    path('books/valoration/(?P<pk>\d+)/update/', books_view.ValorationUpdate.as_view(), name='valoration-edit'),
-#    path('books/valoration/(?P<pk>\d+)/delete/', books_view.ValorationDelete.as_view(), name='valoration-delete'),
+    path('books/valoration/<int:valoration_id>/update/', books_view.ValorationUpdate.as_view(), name='valoration-edit'),
+    path('books/valoration/<int:valoration_id>/delete/', books_view.ValorationDelete.as_view(), name='valoration-delete'),
 
     path('books/querys/last/', books_view.valoration, name='query-books-last'),
     path('books/querys/valued/', books_view.valoration, name='query-books-valued'),

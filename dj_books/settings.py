@@ -76,7 +76,7 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': 'mypassword',
         'HOST': '127.0.0.1',
-        'PORT': '5433',
+        'PORT': '5432',
     }
 }
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

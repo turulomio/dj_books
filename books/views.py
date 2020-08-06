@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.utils.translation import gettext_lazy as _
 from django.utils.decorators import method_decorator
 from django.db.models import Q
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.shortcuts import render,  get_object_or_404
 from books.models import Author,  Book, Valoration
 from books.tables import TableEasyAuthors,  TableEasyValorations, TableEasyBooks
