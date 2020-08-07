@@ -67,24 +67,28 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'dj_books.wsgi.application'
 
-
+from sys import path
+path.append("dj_books/reusing/")
+from myconfigparser import MyConfigParser
+myconfigparser=MyConfigParser("/etc/dj_books/settings.conf")
 ## Database connection definitions
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mylibrary_empty',
+        'NAME': 'mylibrary',
         'USER': 'postgres',
-        'PASSWORD': 'mypassword',
+        'PASSWORD': myconfigparser.cget("db", "password"),
         'HOST': '127.0.0.1',
         'PORT': '5433',
     }
 }
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-django_send_mail=open("/etc/django_send_mail", "r").read().split("\t")
-EMAIL_HOST_USER = django_send_mail[0]
-EMAIL_HOST_PASSWORD =django_send_mail[1]
+EMAIL_HOST_USER = myconfigparser.cget("smtp", "user")
+EMAIL_HOST_PASSWORD =myconfigparser.cget("smtp", "password")
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER

@@ -8,8 +8,8 @@ class Action:
         self.permissions=permissions
         self.url=url
 
-    def render(self, userpers):
-        if self.__has_all_user_permissions(userpers) or userpers.is_superuser():
+    def render(self, userpers, user):
+        if self.__has_all_user_permissions(userpers) or user.is_superuser:
             return """<li><a href="{}">{}</a></li>\n""".format(self.url,self.name)
         else:
             return ""
@@ -71,17 +71,17 @@ class Group:
                     r.add(p)
         return r
     
-    def render(self, userpers):
+    def render(self, userpers, user):
         r=""
         #        print("Group render", self.get_all_permissions(), userpers, self.__user_has_some_children_permissions(userpers))
-        if self.__user_has_some_children_permissions(userpers) or userpers.is_superuser():
+        if self.__user_has_some_children_permissions(userpers) or user.is_superuser:
             r=r+"""<li><a href="#" class="toggle-custom" id="btn-{0}" data-toggle="collapse" data-target="#submenu{0}" aria-expanded="false">{1} ...</a>\n""".format(self.id,self.name)
             r=r+"""<ul class="nav collapse nav_level_{0}" id="submenu{1}" role="menu" aria-labelledby="btn-{1}">\n""".format(self.level+1,self.id)
             for item in self.arr:
                 if item.__class__==Group:
-                    r=r+item.render(userpers)
+                    r=r+item.render(userpers, user)
                 else:#Action
-                    r=r+item.render(userpers)
+                    r=r+item.render(userpers, user)
             r=r+"""</ul>\n"""
             r=r+"""</li>\n"""
         return r
@@ -103,7 +103,7 @@ class Menu:
         r="<nav>\n"
         r=r+"""<ul class="nav nav_level_1">\n"""
         for item in self.arr:
-            r=r+item.render(self.user.get_all_permissions())#Inherited from group and from user)
+            r=r+item.render(self.user.get_all_permissions(), self.user)#Inherited from group and from user)
         r=r+"""</ul>\n"""
         r=r+"</nav>\n"
         r=r+"<p>"
