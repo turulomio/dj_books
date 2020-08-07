@@ -69,8 +69,6 @@ def activate(request, uidb64, token):
 @transaction.atomic
 def profile_edit(request):
     if request.method == 'POST':
-
-        print(request.POST.dict())
         if "button_profile" in request.POST.dict():
             user_form = UserForm(request.POST, instance=request.user)
             profile_form = ProfileForm(request.POST, instance=request.user.profile)

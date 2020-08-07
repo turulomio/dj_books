@@ -8,7 +8,7 @@
     <head>
         <title>{% block title %}MyLibrary{% endblock title %}</title>
         {% block head_favicon %}
-            <link rel="icon" href="{% static "favicon.ico" %}">
+            <link rel="icon" href='{% static "images/favicon.ico" %}'>
         {% endblock head_favicon %}
 
         {% block head_meta %}
@@ -27,10 +27,10 @@
 
         {% block head_css %}
             {% block head_css_site %}
-              <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.min.css" %}">
-                <link rel="stylesheet" type="text/css" href="{% static "jquery-ui.css" %}">
-                <link rel="stylesheet" type="text/css" href="{% static "table_easy.css" %}">
-                <link rel="stylesheet" type="text/css" href="{% static "mystyles.css" %}">
+              <link rel="stylesheet" type="text/css" href='{% static "css/bootstrap.min.css" %}'>
+                <link rel="stylesheet" type="text/css" href='{% static "css/jquery-ui.css" %}'>
+                <link rel="stylesheet" type="text/css" href='{% static "css/table_easy.css" %}'>
+                <link rel="stylesheet" type="text/css" href='{% static "css/mystyles.css" %}'>
             {% endblock head_css_site %}
 
             {% block head_css_section %}
@@ -43,11 +43,11 @@
         
         {% block head_js %}
             {% block head_js_site %}
-                <script type="text/javascript" src="{% static "jquery.js" %}"></script>
-                <script type="text/javascript" src="{% static "jquery-ui.js" %}"></script>
-                <script type="text/javascript" src="{% static "js/bootstrap.min.js" %}"></script>
-                <script type="text/javascript" src="{% static "jquery_my.js" %}"></script>
-                <script type="text/javascript" src="{% static "table_easy.js" %}"></script>
+                <script type="text/javascript" src='{% static "js/jquery.js" %}'></script>
+                <script type="text/javascript" src='{% static "js/jquery-ui.js" %}'></script>
+                <script type="text/javascript" src='{% static "js/bootstrap.min.js" %}'></script>
+                <script type="text/javascript" src='{% static "js/jquery_my.js" %}'></script>
+                <script type="text/javascript" src='{% static "js/table_easy.js" %}'></script>
             {% endblock head_js_site %}
             {% block head_js_section %}
             {% endblock head_js_section %}
@@ -58,13 +58,13 @@
 <div class="layHorizontal">
 <div class="sidebar">
     <p class="title"><a href="{% url 'home' %}">{% trans "MY BOOKS LIBRARY" %}</a></p>
-    <p class="title"><a href="{% url 'home' %}"><img src="{% static "book.png" %}" height="50px" width="50px"/></a></p>
+    <p class="title"><a href="{% url 'home' %}"><img src='{% static "images/book.png" %}' height="50px" width="50px"/></a></p>
 
 {% autoescape off %}
 {% mymenu user %}
 {% endautoescape %}
 
-<p class="github"><a href="https://github.com/turulomio/dj_books" target="_blank"><img src="{% static 'github.png' %}" height="25px" width="25px"/>  Desarrollado por Turulomio</a></p>
+<p class="github"><a href="https://github.com/turulomio/dj_books" target="_blank"><img src="{% static 'images/github.png' %}" height="25px" width="25px"/>  Desarrollado por Turulomio</a></p>
 </div>{# sidebar#}
 
 <div class="layVertical">

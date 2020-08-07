@@ -137,8 +137,9 @@ LOGOUT_REDIRECT_URL = reverse_lazy("login")
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_URL = '/dj_books/static/'
-STATIC_ROOT = BASE_DIR+ "/static"
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR+ "/books/static/"
+print (STATIC_ROOT, STATIC_URL)
 
 ## Sets session timeout in seconds.
 SESSION_COOKIE_AGE = 600
