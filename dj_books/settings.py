@@ -93,6 +93,8 @@ EMAIL_USE_TLS = myconfigparser.getBoolean("smtp", "tls",  False)
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
 
+print(f"Smtp server: smtp://{EMAIL_HOST_USER}@{EMAIL_HOST}:{EMAIL_PORT} (Tls: {EMAIL_USE_TLS})")
+
 
 ## Locale paths in source distribution
 LOCALE_PATHS = (

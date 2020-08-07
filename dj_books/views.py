@@ -58,7 +58,7 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.profile.email_confirmed = True
         user.save()
-        groupUser=Group.objects.get(name="LibraryUser")
+        groupUser=Group.objects.get(name="Default library users")
         groupUser.user_set.add(user)
         login(request, user)
         return render(request, 'account_activation_valid.html')
