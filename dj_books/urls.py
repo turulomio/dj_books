@@ -8,9 +8,9 @@ from . import views as dj_books_views
 from books import views as books_view
 
 urlpatterns = [
-    path('admin/', admin.site.urls,  name="admin-site"),
     ]
 urlpatterns +=i18n_patterns(
+    path('admin/', admin.site.urls,  name="admin-site"),
     path('statistics/', books_view.statistics, name='statistics'),
     path('signup/', dj_books_views.signup, name='signup'),
     
