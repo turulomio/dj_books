@@ -29,6 +29,13 @@ class Profile(models.Model):
     email_confirmed = models.BooleanField(default=False)
     class Meta:
         db_table = 'profiles'
+        permissions=(
+            ("statistics_global",  "Can see global statistics"), 
+            ("statistics_user",  "Can see user statistics"), 
+            ('search_book', 'Can search books'), 
+            ('search_author', 'Can search authors'), 
+            ('search_valoration', 'Can search valorations'), 
+        )
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
@@ -156,3 +163,5 @@ class FileBooks(models.Model):
         choices=FORMATS,
         default=ODT,
     )
+
+
