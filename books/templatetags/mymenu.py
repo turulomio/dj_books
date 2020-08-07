@@ -9,8 +9,7 @@ class Action:
         self.url=url
 
     def render(self, userpers):
-        #print("Action render", self.permissions, userpers, self.__has_all_user_permissions(userpers))
-        if self.__has_all_user_permissions(userpers):
+        if self.__has_all_user_permissions(userpers) or userpers.is_superuser():
             return """<li><a href="{}">{}</a></li>\n""".format(self.url,self.name)
         else:
             return ""
@@ -75,7 +74,7 @@ class Group:
     def render(self, userpers):
         r=""
         #        print("Group render", self.get_all_permissions(), userpers, self.__user_has_some_children_permissions(userpers))
-        if self.__user_has_some_children_permissions(userpers):
+        if self.__user_has_some_children_permissions(userpers) or userpers.is_superuser():
             r=r+"""<li><a href="#" class="toggle-custom" id="btn-{0}" data-toggle="collapse" data-target="#submenu{0}" aria-expanded="false">{1} ...</a>\n""".format(self.id,self.name)
             r=r+"""<ul class="nav collapse nav_level_{0}" id="submenu{1}" role="menu" aria-labelledby="btn-{1}">\n""".format(self.level+1,self.id)
             for item in self.arr:
@@ -148,7 +147,8 @@ def mymenu(user):
     
     
     grQuerys=Group(1, _("Statistics"), "13")
-    grQuerys.append(Action(_("Global"),['books.search_author','books.search_book'], reverse_lazy("statistics")))
+    grQuerys.append(Action(_("Global"),['books.statistics_global',], reverse_lazy("statistics")))
+    grQuerys.append(Action(_("User"),['books.statistics_user',], reverse_lazy("statistics")))
     menu.append(grLibrary)
     menu.append(grQuerys)
     return menu.render()
