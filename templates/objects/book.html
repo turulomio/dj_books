@@ -1,11 +1,9 @@
 {% load i18n %}
-{% load mytranslation %}
-{% set_language request.user.profile.language %}
 
 {% load static %}
 <div class="Book">
 
-<img src="{% static 'book2.png' %}" height="50px" width="50px"/>
+<img src="{% static 'images/book2.png' %}" height="50px" width="50px"/>
 {% if author %}
     <p><strong>{% trans "Author" %}: </strong><a href="{% url 'author-read' author.id %}">{{ author }}</a></p>
 {% endif %}

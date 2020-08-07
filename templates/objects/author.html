@@ -1,14 +1,12 @@
 {% load i18n %}
-{% load mytranslation %}
-{% set_language request.user.profile.language %}
 
 {% load static %}
 <div class="Author">
 
 {% if author.gender == 0 %}
-<img src="{% static 'boy.svg' %}" height="50px" width="50px" title="{{ author.get_gender_display }}"/><!-- Gets text of choices-->
+<img src="{% static 'images/boy.svg' %}" height="50px" width="50px" title="{{ author.get_gender_display }}"/><!-- Gets text of choices-->
 {% else %}
-<img src="{% static 'girl.svg' %}" height="50px" width="50px" title="{{ author.get_gender_display }}"/>
+<img src="{% static 'images/girl.svg' %}" height="50px" width="50px" title="{{ author.get_gender_display }}"/>
 {% endif %}
 
 <p><strong>{% trans "Author" %}: </strong><a href="{% url 'author-read' author.id %}">{{ author.name }} {{ author.family_name }}</a></p>

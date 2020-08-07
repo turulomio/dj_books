@@ -4,10 +4,10 @@
 {% load static %}
 
 {% block head_css_section %} 
-    <link rel="stylesheet" type="text/css" href="https://github.com/chartjs/Chart.js/releases/download/v2.9.3/Chart.css" >
+    <link rel="stylesheet" type="text/css" href='{% static "css/Chart.css" %}' >
 {% endblock head_css_section %}
 {% block head_js_section %} 
-<script type="text/javascript" src="https://github.com/chartjs/Chart.js/releases/download/v2.9.3/Chart.js"></script>
+<script type="text/javascript" src='{% static "js/Chart.js" %}'></script>
 {% endblock head_js_section %}
 
 

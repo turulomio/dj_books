@@ -2,13 +2,11 @@
 
 {% load i18n %}
 {% load static %}
-{% load mytranslation %}
-{% set_language user.profile.language %}
 
 {% block content %}
     <h1> </h1>
     <h2> </h2>
-    <center><img src="{% static "images/book.png" %}" height="150px" width="150px"/></center>
+    <center><img src='{% static "images/book.png" %}' height="150px" width="150px"/></center>
     <h2> </h2>
     <center>
     <form id="searchform" action="{# url 'blog_search_list_view' #}" method="get" accept-charset="utf-8">
