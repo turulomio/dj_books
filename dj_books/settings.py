@@ -75,21 +75,21 @@ myconfigparser=MyConfigParser("/etc/dj_books/settings.conf")
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mylibrary',
-        'USER': 'postgres',
-        'PASSWORD': myconfigparser.cget("db", "password"),
-        'HOST': '127.0.0.1',
-        'PORT': '5433',
+        'NAME': myconfigparser.get("db", "db", "mylibrary"),
+        'USER': myconfigparser.cget("db", "user", "postgres"),
+        'PASSWORD': myconfigparser.cget("db", "password", "mypass"),
+        'HOST': myconfigparser.get("db", "server", "127.0.0.1"),
+        'PORT': myconfigparser.getInteger("db", "port", 5432),
     }
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = myconfigparser.cget("smtp", "user")
-EMAIL_HOST_PASSWORD =myconfigparser.cget("smtp", "password")
-EMAIL_USE_TLS = True
+EMAIL_HOST = myconfigparser.get("smtp", "server", "127.0.0.1")
+EMAIL_PORT = myconfigparser.getInteger("smtp", "port", 25)
+EMAIL_HOST_USER = myconfigparser.cget("smtp", "user",  "user")
+EMAIL_HOST_PASSWORD =myconfigparser.cget("smtp", "password",  "mypass")
+EMAIL_USE_TLS = myconfigparser.getBoolean("smtp", "tls",  False)
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
 
