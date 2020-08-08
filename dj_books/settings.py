@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sitetree', 
     'books',
 ]
 
@@ -93,7 +94,7 @@ EMAIL_USE_TLS = myconfigparser.getBoolean("smtp", "tls",  False)
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
 
-print(f"Smtp server: smtp://{EMAIL_HOST_USER}@{EMAIL_HOST}:{EMAIL_PORT} (Tls: {EMAIL_USE_TLS})")
+#print(f"Smtp server: smtp://{EMAIL_HOST_USER}@{EMAIL_HOST}:{EMAIL_PORT} (Tls: {EMAIL_USE_TLS})")
 
 
 ## Locale paths in source distribution
@@ -139,7 +140,6 @@ LOGOUT_REDIRECT_URL = reverse_lazy("login")
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR+ "/books/static/"
-print (STATIC_ROOT, STATIC_URL)
 
 ## Sets session timeout in seconds.
 SESSION_COOKIE_AGE = 600

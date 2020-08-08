@@ -11,16 +11,6 @@ from django.contrib.auth.admin import UserAdmin
 from django.urls import reverse_lazy
 from django.contrib import admin# Need to import this since auth models get registered on import.
 
-admin.site.unregister(User)
-admin.site.unregister(Group)
-## Text to put at the end of each page's <title>.
-admin.site.site_title = ugettext_lazy('My personal Django')
-
-## Text to put in each page's <h1> (and above login form).
-admin.site.site_header = ugettext_lazy('My personal Django')
-
-## Text to put at the top of the admin index page.
-admin.site.index_title = ugettext_lazy('My personal Django administration')
 
 class ProfileInline(admin.StackedInline):
     model = Profile
@@ -41,13 +31,21 @@ class CustomUserAdmin(UserAdmin):
         if not obj:
             return list()
         return super(CustomUserAdmin, self).get_inline_instances(request, obj)
+        
+admin.site.unregister(User)
+admin.site.unregister(Group)
+## Text to put at the end of each page's <title>.
+admin.site.site_title = ugettext_lazy('My library')
+
+## Text to put in each page's <h1> (and above login form).
+admin.site.site_header = ugettext_lazy('My library')
+
+## Text to put at the top of the admin index page.
+admin.site.index_title = ugettext_lazy('My library Django administration')
+
 admin.site.register(Permission, PermissionAdmin)
 admin.site.register(User, CustomUserAdmin)
 admin.site.register(Group)
     
 admin.site.site_url = reverse_lazy('home') 
-admin.site.logout_template='admin/login.html'
-
-
-#Removes default delete_selected action
-admin.site.disable_action('delete_selected')
+admin.site.logout_template=reverse_lazy('home')

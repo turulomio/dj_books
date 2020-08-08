@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 {% load i18n %}
-{% load mymenu %}
 {% load static %}
+{% load sitetree %}
 
 {# Make modifiable head elements #}
     <head>
-        <title>{% block title %}MyLibrary{% endblock title %}</title>
+        <title>{% block title %}MyLibrary{% endblock title %} > {% sitetree_page_title from "main" %}</title>
         {% block head_favicon %}
             <link rel="icon" href='{% static "images/favicon.ico" %}'>
         {% endblock head_favicon %}
@@ -56,40 +56,43 @@
 <body>
 
 <div class="layHorizontal">
-<div class="sidebar">
-    <p class="title"><a href="{% url 'home' %}">{% trans "MY BOOKS LIBRARY" %}</a></p>
-    <p class="title"><a href="{% url 'home' %}"><img src='{% static "images/book.png" %}' height="50px" width="50px"/></a></p>
+    <div class="sidebar">
+        <p class="title"><a href="{% url 'home' %}">{% trans "MY BOOKS LIBRARY" %}</a></p>
+        <p class="title"><a href="{% url 'home' %}"><img src='{% static "images/book.png" %}' height="50px" width="50px"/></a></p>
 
-{% autoescape off %}
-{% mymenu user %}
-{% endautoescape %}
+        <div class="navbar">
+    <div class="navbar-inner">
+        {% sitetree_menu from "main" include "this-parent-siblings" template "sitetree/menu_bootstrap4.html" %}
+     </div>
+</div>
+    <p class="github"><a href="https://github.com/turulomio/dj_books" target="_blank"><img src="{% static 'images/github.png' %}" height="25px" width="25px"/>  Desarrollado por Turulomio</a></p>
+    </div>{# sidebar#}
 
-<p class="github"><a href="https://github.com/turulomio/dj_books" target="_blank"><img src="{% static 'images/github.png' %}" height="25px" width="25px"/>  Desarrollado por Turulomio</a></p>
-</div>{# sidebar#}
+    <div class="layVertical">
 
-<div class="layVertical">
+        <div class="header">
+            <ul class="nav-ul">
+                {% if request.user.is_authenticated %}
+                    <li class="nav-li"><a href="{% url 'logout' %}">{% trans "Logout" %} {{ user.username|upper }}</a></li>
+                    <li class="nav-li"><a href="{% url 'profile' %}">{% trans "Settings" %}</a></li>
+                {% else %}
+                     <li class="nav-li"><a href="{% url 'signup' %}">{% trans "Sign up" %}</a></li>
+                     <li class="nav-li"><a href="{% url 'login' %}?next={%url 'home' %}">{% trans "Login" %}</a></li>
+                {% endif %}
+                {% if request.user.is_superuser %}
+                    <li class="nav-li"><a href="{% url 'admin:index' %}">{% trans "Administration" %}</a></li>
+                {% endif %}
+              <li class="nav-li"><a href="{% url 'home' %}">{% trans "Home" %}</a></li>
+            </ul>
+        </div> {# header #}
 
-<div class="header">
-<ul class="nav-ul">
-    {% if request.user.is_authenticated %}
-        <li class="nav-li"><a href="{% url 'logout' %}">{% trans "Logout" %} {{ user.username|upper }}</a></li>
-        <li class="nav-li"><a href="{% url 'profile' %}">{% trans "Settings" %}</a></li>
-    {% else %}
-         <li class="nav-li"><a href="{% url 'signup' %}">{% trans "Sign up" %}</a></li>
-         <li class="nav-li"><a href="{% url 'login' %}?next={%url 'home' %}">{% trans "Login" %}</a></li>
-    {% endif %}
-    {% if request.user.is_superuser %}
-        <li class="nav-li"><a href="{% url 'admin:index' %}">{% trans "Administration" %}</a></li>
-    {% endif %}
-  <li class="nav-li"><a href="{% url 'home' %}">{% trans "Home" %}</a></li>
-</ul>
-</div> {# header #}
-
-<div class="content">
-{% block content %}
-{% endblock content %}
-</div> {# content #}
-</div> {# layVertical #}
+        <div class="content"> 
+        
+        {% sitetree_breadcrumbs from "main" template "sitetree/breadcrumbs_bootstrap4.html" %}
+        {% block content %}
+        {% endblock content %}
+        </div> {# content #}
+    </div> {# layVertical #}
 </div> {# layHorizontal #}
 </body>
 </html>
