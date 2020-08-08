@@ -1,3 +1,4 @@
+
 /*Menu header*/
 .nav-ul {
     list-style-type: none;
@@ -22,7 +23,7 @@
 h1 {
     text-align: left;
     font-weight: bold;
-    color=#333333;
+    color:#333333;
 }
 
 
@@ -153,43 +154,54 @@ label {
 
 /* Bootstrap minified CSS included as External Resource*/
 .nav_level_1{
-    list-style-type: disc;
-    line-height:75%;
+    list-style-type: circle;
+    line-height:120%;
+    display: block;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size:130%;
 }
 
 .nav_level_1 a{
     color: white;
     font-weight: bold;
+    display: block;
 }
 
 .nav_level_2{
     list-style-type: disc;
-    line-height:65%;
+    line-height:110%;
+    display: block;
 }
 
 .nav_level_2 li {
     padding-left: 30px;
+    display: block;
 }
 
 .nav_level_2 a {
     color: #DFDFDF;
     font-weight: bold;
-    font-size:95%;
+    font-size:110%;
+    display: block;
 }
 
 .nav_level_3{
     list-style-type: square;
-    line-height:55%;
+    line-height:100%;
+    display: block;
 }
 
 .nav_level_3 li {
     padding-left: 30px;
+    display: block;
 }
 
 .nav_level_3 a {
     color: #BFBFBF;
     font-weight: bold;
-    font-size:90%;
+    font-size:100%;
+    display: block;
 }
 
 
@@ -197,11 +209,13 @@ label {
 .nav > li > a:focus, .nav > li > a:hover {
     text-decoration: none;
     background-color: transparent;
+    display: block;
 }
 
 .nav_level_1 a:hover {
     color: orange;
     background-color: transparent;
+    display: block;
 }
 
 

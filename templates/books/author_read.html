@@ -14,6 +14,8 @@
   <a href="{% url 'author-delete' pk=author.id %}">{% trans "Delete" %}</a>
   
   <h2>{% trans "Books" %}</h2>
+  <p>
+  <a href="{% url 'book-add' %}">{% trans "Add a book" %}</a>
     {% for book in books %}
        {% include "objects/book.html" with book=book only %}
     {% endfor %}

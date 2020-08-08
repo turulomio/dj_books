@@ -33,7 +33,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'sitetree', 
     'books',
 ]
 
@@ -66,7 +65,6 @@ TEMPLATES = [
     },
 ]
 
-SITETREE_DYNAMIC_ONLY = True
 
 WSGI_APPLICATION = 'dj_books.wsgi.application'
 

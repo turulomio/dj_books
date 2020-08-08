@@ -2,6 +2,11 @@ from django import template
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse_lazy
 
+"""
+    Esta clase la cree después de probar la app django-sitemaps, tenía cosas buenas, tree, breadcumb, title
+    Era muy complicada y luego me liaba cuando el menu necesitaba parámetros
+"""
+
 class Action:
     def __init__(self,name,permissions,url):
         self.name=name
@@ -132,10 +137,10 @@ def mymenu(user):
         books.add_author
     """
     menu=Menu(user)
+    menu.append(Action(_("Search"),['books.search_author', 'books.search_book'],  reverse_lazy("home")))
     menu.append(Action(_("All database"),['books.search_author', 'books.search_book'],  reverse_lazy("database")))
     grLibrary=Group(1,_("My Library"),"10")
     grLibrary.append(Action(_("Add author"),['books.add_author', ], reverse_lazy("author-add")))
-    grLibrary.append(Action(_("Add book"),['books.add_book', ],reverse_lazy("book-add")))
     grVal=Group(2,_("My Valorations"), "11")
     grVal.append(Action(_("Add a valoration"),['books.add_valoration'], reverse_lazy("valoration-add")))
     grVal.append(Action(_("List of valorations"),['books.search_valoration'], reverse_lazy("valoration-list")))
