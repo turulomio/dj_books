@@ -66,6 +66,8 @@ TEMPLATES = [
     },
 ]
 
+SITETREE_DYNAMIC_ONLY = True
+
 WSGI_APPLICATION = 'dj_books.wsgi.application'
 
 from sys import path

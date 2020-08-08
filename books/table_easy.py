@@ -201,20 +201,20 @@ class TableEasyFromModel(TableEasy):
             if self.allColumnActionsButtonInvisible()==False:
                 r=r+"""<td>\n"""
                 if self.read.mustBeShown(self.request.user):
-                    r=r+"""<button type="button" class="btn btn-default" name="cmd_read"  onclick="window.location.href='{}';"><span class="glyphicon glyphicon-eye-open"></span></button>""".format(self.read.url.replace("###",str(pk_id)))
+                    r=r+"""<button type="button" class="btn btn-default" name="cmd_read"  onclick="window.location.href='{}';">Read</button>""".format(self.read.url.replace("###",str(pk_id)))
                 if self.update.mustBeShown(self.request.user):
-                    r=r+"""<button type="button" class="btn btn-default" name="cmd_update"  onclick="window.location.href='{}';"><span class="glyphicon glyphicon-edit"></span></button>""".format(self.update.url.replace("###",str(pk_id)))
+                    r=r+"""<button type="button" class="btn btn-default" name="cmd_update"  onclick="window.location.href='{}';">Update</button>""".format(self.update.url.replace("###",str(pk_id)))
                 if self.delete.mustBeShown(self.request.user):
-                    r=r+"""<button type="button" class="btn btn-default" name="cmd_delete"  onclick="window.location.href='{}';"><span class="glyphicon glyphicon-remove"></span></button>""".format(self.delete.url.replace("###",str(pk_id)))
+                    r=r+"""<button type="button" class="btn btn-default" name="cmd_delete"  onclick="window.location.href='{}';">Delete</button>""".format(self.delete.url.replace("###",str(pk_id)))
                 r=r+"""</td>\n"""
             r=r+"        </tr>\n"
         r=r+"    </table>\n"
         if self.create.mustBeShown(self.request.user):
-            r=r+"""<button type="button" class="btn btn-default" name="cmd_insert" onclick="window.location.href='{}';" ><span class="glyphicon glyphicon-plus"></span></button>\n""".format(self.create.url)
+            r=r+"""<button type="button" class="btn btn-default" name="cmd_insert" onclick="window.location.href='{}';" >Insert</button>\n""".format(self.create.url)
         if self.selectable() and self.delete.mustBeShown(self.request.user):
-            r=r+"""<button type="button" class="btn btn-default" name="cmd_delete_selected" onclick="window.location.href='{}';" ><span class="glyphicon glyphicon-remove-circle"></span></button>\n""".format(self.delete.url, _("Delete selected"))
+            r=r+"""<button type="button" class="btn btn-default" name="cmd_delete_selected" onclick="window.location.href='{}';" >Delete</button>\n""".format(self.delete.url)
         if self.export.mustBeShown(self.request.user):
-            r=r+"""<button type="button" class="btn btn-default" name="cmd_export"  onclick="window.location.href='{}';"><span class="glyphicon glyphicon-export"></span></button>""".format(self.export.url.replace("###",str(pk_id)))
+            r=r+"""<button type="button" class="btn btn-default" name="cmd_export"  onclick="window.location.href='{}';">Export</button>""".format(self.export.url.replace("###",str(pk_id)))
 
         r=r+"""<label class="TableEasyRecords" id="{}_records">""".format(self.name()) + _("Found {} records").format(len(self.queryset)) + """</label>\n"""
         r=r+"</div>\n"
