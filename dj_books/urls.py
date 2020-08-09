@@ -26,7 +26,7 @@ urlpatterns =i18n_patterns(
     path('books/author/<int:pk>/update/', books_view.AuthorUpdate.as_view(), name='author-edit'),
     path('books/author/<int:pk>/delete/', books_view.AuthorDelete.as_view(), name='author-delete'),
 
-    path('books/book/create/', books_view.BookCreate.as_view(), name='book-add'),
+    path('books/book/create/<int:author_id>', books_view.book_new, name='book-add'),
     path('books/book/<int:pk>/', books_view.book_read, name='book-read'),
     path('books/book/<int:pk>/update/', books_view.BookUpdate.as_view(), name='book-edit'),
     path('books/book/<int:pk>/delete/', books_view.BookDelete.as_view(), name='book-delete'),

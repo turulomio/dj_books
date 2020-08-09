@@ -15,7 +15,7 @@
   
   <h2>{% trans "Books" %}</h2>
   <p>
-  <a href="{% url 'book-add' %}">{% trans "Add a book" %}</a>
+  <a href="{% url 'book-add' author_id=author.id %}">{% trans "Add a book" %}</a>
     {% for book in books %}
        {% include "objects/book.html" with book=book only %}
     {% endfor %}

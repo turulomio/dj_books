@@ -1,10 +1,13 @@
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.db.models import Q
 from django.contrib.auth.decorators import login_required, permission_required
+from django.http import HttpResponseRedirect
+from django.shortcuts import render,  get_object_or_404
+from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.utils.decorators import method_decorator
-from django.db.models import Q
-from django.urls import reverse_lazy, reverse
-from django.shortcuts import render,  get_object_or_404
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
+from books.forms import BookAddForm
 from books.models import Author,  Book, Valoration
 from books.tables import TableEasyAuthors,  TableEasyValorations, TableEasyBooks
 
@@ -60,9 +63,28 @@ def author_read(request, pk):
     author=get_object_or_404(Author, pk=pk)
     books=Book.objects.filter(author=author)
     return render(request, 'books/author_read.html', locals())
+    
+def book_new(request, author_id):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = BookAddForm(request.POST)
+        if form.is_valid():
+            book=Book()
+            book.title= form.cleaned_data['title']
+            book.author= get_object_or_404(Author, pk=author_id)
+            book.year= form.cleaned_data['year']
+            book.save()
+            return HttpResponseRedirect( reverse_lazy('author-read',args=(author_id,)))
+            #return render(request, 'books/author_read.html', locals())
 
-@method_decorator(login_required, name='dispatch')
-@method_decorator(permission_required('books.add_author',raise_exception=True), name='dispatch')
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = BookAddForm()
+        author=get_object_or_404(Author, pk=author_id)
+        form.fields['author'].initial=author
+
+    return render(request, 'books/book_edit.html', {'form': form})
 class AuthorCreate(CreateView):
     model = Author
     fields = ['name', 'family_name', 'birth', 'death', 'gender']

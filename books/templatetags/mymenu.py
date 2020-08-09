@@ -123,8 +123,8 @@ class Menu:
 register = template.Library()
 
 
-@register.simple_tag
-def mymenu(user):
+@register.simple_tag(takes_context=True)
+def mymenu(context):
     """
         books.change_valoration
         books.add_valoration
@@ -136,6 +136,12 @@ def mymenu(user):
         books.delete_author
         books.add_author
     """
+    user=context['user']
+    url_name=context['request'].resolver_match.url_name
+    dir(url_name)
+    print(url_name)#"home", 
+    
+    
     menu=Menu(user)
     menu.append(Action(_("Search"),['books.search_author', 'books.search_book'],  reverse_lazy("home")))
     menu.append(Action(_("All database"),['books.search_author', 'books.search_book'],  reverse_lazy("database")))
@@ -157,4 +163,9 @@ def mymenu(user):
     menu.append(grLibrary)
     menu.append(grQuerys)
     return menu.render()
+
+@register.simple_tag(takes_context=True)
+def mypagetitle():
+    
+    pass
 
