@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy as _
 from django.utils.decorators import method_decorator
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
-from books.forms import BookAddForm
+from books.forms import BookAddForm, ValorationAddForm
 from books.models import Author,  Book, Valoration
 from books.tables import TableEasyAuthors,  TableEasyValorations, TableEasyBooks
 
@@ -65,26 +65,57 @@ def author_read(request, pk):
     return render(request, 'books/author_read.html', locals())
     
 def book_new(request, author_id):
-    # if this is a POST request we need to process the form data
+    author=get_object_or_404(Author, pk=author_id)
     if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
         form = BookAddForm(request.POST)
         if form.is_valid():
             book=Book()
             book.title= form.cleaned_data['title']
-            book.author= get_object_or_404(Author, pk=author_id)
+            book.author= author
             book.year= form.cleaned_data['year']
             book.save()
             return HttpResponseRedirect( reverse_lazy('author-read',args=(author_id,)))
-            #return render(request, 'books/author_read.html', locals())
-
-    # if a GET (or any other method) we'll create a blank form
     else:
         form = BookAddForm()
-        author=get_object_or_404(Author, pk=author_id)
         form.fields['author'].initial=author
-
     return render(request, 'books/book_edit.html', {'form': form})
+    
+@permission_required('books.add_valoration')
+def valoration_new(request, book_id):
+    book=get_object_or_404(Book, pk=book_id)
+    if request.method == 'POST':
+        form = ValorationAddForm(request.POST)
+        if form.is_valid():
+            valoration=Valoration()
+            valoration.book=book
+            valoration.user=request.user
+            valoration.comment=form.cleaned_data['comment']
+            valoration.read_start=form.cleaned_data['read_start']
+            valoration.read_end=form.cleaned_data['read_end']
+            valoration.save()
+            return HttpResponseRedirect( reverse_lazy('valoration-list'))
+    else:
+        form = ValorationAddForm()
+        form.fields['book'].initial=book
+        form.fields['user'].initial=request.user
+    return render(request, 'books/valoration_edit.html', {'form': form})
+
+
+### @todo user must not be asked
+#class ValorationCreate(CreateView):
+#    model = Valoration
+#    fields = ['book', 'user', 'comment','valoration','read_start','read_end']
+#    template_name="books/valoration_edit.html"
+#    success_url = reverse_lazy('valoration-list')
+#
+#    def get_form(self, form_class=None): 
+#        if form_class is None: 
+#            form_class = self.get_form_class()
+#        form = super(ValorationCreate, self).get_form(form_class)
+#        form.fields['read_start'].widget.attrs['class'] ='datepicker'
+#        form.fields['read_end'].widget.attrs['class'] ='datepicker'
+#        return form
+
 class AuthorCreate(CreateView):
     model = Author
     fields = ['name', 'family_name', 'birth', 'death', 'gender']
@@ -110,16 +141,6 @@ class AuthorDelete(DeleteView):
     success_url = reverse_lazy('home')
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(permission_required('books.add_book',raise_exception=True), name='dispatch')
-class BookCreate(CreateView):
-    model = Book
-    fields = ['title', 'year', 'author']
-    template_name="books/book_edit.html"
-
-    def get_success_url(self):
-        return reverse_lazy('book-read',args=(self.object.id,))
-
-@method_decorator(login_required, name='dispatch')
 @method_decorator(permission_required('books.change_book',raise_exception=True), name='dispatch')
 class BookUpdate(UpdateView):
     model = Book
@@ -139,20 +160,6 @@ class BookDelete(DeleteView):
 
 
 
-## @todo user must not be asked
-class ValorationCreate(CreateView):
-    model = Valoration
-    fields = ['book', 'user', 'comment','valoration','read_start','read_end']
-    template_name="books/valoration_edit.html"
-    success_url = reverse_lazy('valoration-list')
-
-    def get_form(self, form_class=None): 
-        if form_class is None: 
-            form_class = self.get_form_class()
-        form = super(ValorationCreate, self).get_form(form_class)
-        form.fields['read_start'].widget.attrs['class'] ='datepicker'
-        form.fields['read_end'].widget.attrs['class'] ='datepicker'
-        return form
 
 class ValorationUpdate(UpdateView):
     model = Valoration

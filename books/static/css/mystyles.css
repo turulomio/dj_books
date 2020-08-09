@@ -265,3 +265,26 @@ label {
   text-align: center;
 }
 
+/* Valoration */
+
+
+.Valoration {
+    background: linear-gradient(#F0D5D5, white);
+    border-radius: 14px;
+    border: 1px solid #BBBBBB;
+    padding: 8px;	
+    margin-left: 0px;
+    margin-right: 5px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.Valoration img{
+  color: black;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 8px;
+  text-align: center;
+}
+

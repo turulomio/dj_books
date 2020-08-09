@@ -1,5 +1,13 @@
 {% load i18n %}
 
+{% load static %}
+<div class="Valoration">
+<table>
+<tr>
+<td>
+<img src="{% static 'images/valoration.svg' %}" height="150px" width="150px"/>
+</td>
+<td>
 {% if author %}
     <p><strong>{% trans "Author" %}: </strong><a href="{% url 'author-read' author.id %}">{{ author }}</a></p>
 {% endif %}
@@ -15,4 +23,7 @@
 {% endif %}
 <p><strong>Valoration [0-100]: </strong> {{ valoration.valoration }}</p>
 <p><strong>Comment: </strong> {{ valoration.comment }}</p>
-<hr>
+</td>
+</tr>
+</table>
+</div><!-- End div Book -->

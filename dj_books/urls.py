@@ -32,7 +32,7 @@ urlpatterns =i18n_patterns(
     path('books/book/<int:pk>/delete/', books_view.BookDelete.as_view(), name='book-delete'),
 
     path('books/valoration/list/', books_view.valoration, name='valoration-list'),
-    path('books/valoration/create/', books_view.ValorationCreate.as_view(), name='valoration-add'),
+    path('books/valoration/create/<int:book_id>', books_view.valoration_new, name='valoration-add'),
     path('books/valoration/<int:valoration_id>/update/', books_view.ValorationUpdate.as_view(), name='valoration-edit'),
     path('books/valoration/<int:valoration_id>/delete/', books_view.ValorationDelete.as_view(), name='valoration-delete'),
 

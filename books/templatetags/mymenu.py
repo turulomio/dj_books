@@ -147,10 +147,7 @@ def mymenu(context):
     menu.append(Action(_("All database"),['books.search_author', 'books.search_book'],  reverse_lazy("database")))
     grLibrary=Group(1,_("My Library"),"10")
     grLibrary.append(Action(_("Add author"),['books.add_author', ], reverse_lazy("author-add")))
-    grVal=Group(2,_("My Valorations"), "11")
-    grVal.append(Action(_("Add a valoration"),['books.add_valoration'], reverse_lazy("valoration-add")))
-    grVal.append(Action(_("List of valorations"),['books.search_valoration'], reverse_lazy("valoration-list")))
-    grLibrary.append(grVal)
+    menu.append(Action(_("My valorations"),['books.search_valoration'], reverse_lazy("valoration-list")))
 
     grQuerys=Group(1, _("Queries"), "12")
     grQuerys.append(Action(_("Last books"),['books.search_author','books.search_book'], reverse_lazy("query-books-last")))
