@@ -5,8 +5,8 @@
 {% block content %}
 <h1>{% trans "My Valorations" %}</h1>
 
-    {% autoescape off %}
-    {{ tableeasy_valorations.render }}
-    {% endautoescape %}
+    {% for valoration in valorations %}
+       {% include "objects/valoration.html" with valoration=valoration book=valoration.book author=valoration.book.author only %}
+    {% endfor %}
 {% endblock %}
 

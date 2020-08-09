@@ -21,7 +21,7 @@
 {% else %}
     <p><strong>Read took place from: </strong>{{ valoration.read_start }}<strong> to </strong>{{ valoration.read_end }} ( {{ valoration.read_took }} days ) </p>
 {% endif %}
-<p><strong>Valoration [0-100]: </strong> {{ valoration.valoration }}</p>
+<p><strong>Valoration [0-100]: </strong> <a href="{% url 'valoration-read' valoration.id %}">{{ valoration.valoration }}</a></p>
 <p><strong>Comment: </strong> {{ valoration.comment }}</p>
 </td>
 </tr>

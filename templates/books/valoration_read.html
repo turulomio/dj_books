@@ -1,0 +1,16 @@
+
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block head %}
+<title>My Library</title>
+{% endblock %}
+
+{% block content %}
+  <h1>{% trans "Valoration details" %}</h1>
+
+       {% include "objects/valoration.html" with valoration=valoration author=valoration.book.author  book=valoration.book only %}
+  <p>
+  <a href="{% url 'valoration-update' pk=valoration.id %}">{% trans "Update" %}</a>
+  <a href="{% url 'valoration-delete' pk=valoration.id %}">{% trans "Delete" %}</a>
+{% endblock %}

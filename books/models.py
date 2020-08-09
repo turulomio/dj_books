@@ -35,6 +35,7 @@ class Profile(models.Model):
             ('search_book', 'Can search books'), 
             ('search_author', 'Can search authors'), 
             ('search_valoration', 'Can search valorations'), 
+            ('database_all_view', 'Can see a view with all database'), 
         )
 
 @receiver(post_save, sender=User)

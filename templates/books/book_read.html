@@ -10,12 +10,12 @@
 
   <h1>{% trans "Book details" %}</h1>
 
-       {% include "objects/book.html" with book=book only %}
+       {% include "objects/book.html" with book=book author=book.author only %}
   <p>
   <a href="{% url 'book-edit' pk=book.id %}">{% trans "Update" %}</a>
   <a href="{% url 'book-delete' pk=book.id %}">{% trans "Delete" %}</a>
   <h2>Valorations</h2>
-  <a href="{% url 'valoration-add' book_id=book.id %}">{% trans "Add a book valoration" %}</a>
+  <a href="{% url 'valoration-create' book_id=book.id %}">{% trans "Add a book valoration" %}</a>
   <p>
     {% for valoration in valorations %}
        {% include "objects/valoration.html" with valoration=valoration only %}

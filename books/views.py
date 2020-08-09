@@ -1,3 +1,5 @@
+
+from django import forms
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required, permission_required
 from django.http import HttpResponseRedirect
@@ -48,11 +50,13 @@ def database(request):
     return render(request, 'database.html', locals())
 
 @login_required
-def valoration(request):
+def valoration_list(request):
     valorations= Valoration.objects.filter(user=request.user).order_by('read_start')
-    tableeasy_valorations=TableEasyValorations(valorations, request)
     return render(request, 'valoration.html', locals())
     
+def valoration_read(request, valoration_id):
+    valoration=get_object_or_404(Valoration, pk=valoration_id)
+    return render(request, 'books/valoration_read.html', locals())
 
 def book_read(request, pk):
     book=get_object_or_404(Book, pk=pk)
@@ -93,13 +97,12 @@ def valoration_new(request, book_id):
             valoration.read_start=form.cleaned_data['read_start']
             valoration.read_end=form.cleaned_data['read_end']
             valoration.save()
-            return HttpResponseRedirect( reverse_lazy('valoration-list'))
+            return HttpResponseRedirect(reverse_lazy('valoration-read',args=(valoration.id,)))
     else:
         form = ValorationAddForm()
         form.fields['book'].initial=book
         form.fields['user'].initial=request.user
     return render(request, 'books/valoration_edit.html', {'form': form})
-
 
 ### @todo user must not be asked
 #class ValorationCreate(CreateView):
@@ -171,11 +174,17 @@ class ValorationUpdate(UpdateView):
         if form_class is None: 
             form_class = self.get_form_class()
         form = super(ValorationUpdate, self).get_form(form_class)
+        form.fields['book'].widget = forms.HiddenInput()
+        form.fields['user'].widget = forms.HiddenInput()
         form.fields['read_start'].widget.attrs['class'] ='datepicker'
         form.fields['read_end'].widget.attrs['class'] ='datepicker'
         return form
 
+    def get_success_url(self):
+        return reverse_lazy('valoration-read',args=(self.object.id,))
 class ValorationDelete(DeleteView):
     model = Valoration
     success_url = reverse_lazy('valoration-list')
+    def get_success_url(self):
+        return reverse_lazy('book-read',args=(self.object.book.id,))
 
