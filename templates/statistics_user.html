@@ -1,0 +1,13 @@
+{% extends 'base_chartjs.html' %}
+
+{% load i18n %}
+{% load static %}
+
+
+{% block content %}
+	<h1>{% trans "Statistics" %}</h1>
+	<p>{% blocktrans %} You have made {{ valorations_number }} valorations.{% endblocktrans %}</p>
+
+
+
+{% endblock %}

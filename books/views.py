@@ -32,12 +32,19 @@ def home(request):
             valorations=Valoration.objects.filter(comment__icontains=search)
     return render(request, 'home.html', locals())
     
-@login_required
-def statistics(request):
+
+@permission_required('books.statistics_global')
+def statistics_global(request):
     books= Book.objects.count()
     authors= Author.objects.count()
     valorations= Valoration.objects.count()
-    return render(request,  "statistics.html", locals())
+    return render(request,  "statistics_global.html", locals())    
+
+
+@permission_required('books.statistics_user')
+def statistics_user(request):
+    valorations_number= Valoration.objects.filter(user=request.user).count()
+    return render(request,  "statistics_user.html", locals())
 
 @permission_required('books.database_all_view')
 def database(request):

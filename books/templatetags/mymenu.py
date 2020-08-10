@@ -155,8 +155,8 @@ def mymenu(context):
     
     
     grQuerys=Group(1, _("Statistics"), "13")
-    grQuerys.append(Action(_("Global"),['books.statistics_global',], reverse_lazy("statistics")))
-    grQuerys.append(Action(_("User"),['books.statistics_user',], reverse_lazy("statistics")))
+    grQuerys.append(Action(_("Global"),['books.statistics_global',], reverse_lazy("statistics-global")))
+    grQuerys.append(Action(_("User"),['books.statistics_user',], reverse_lazy("statistics-user")))
     menu.append(grLibrary)
     menu.append(grQuerys)
     return menu.render()

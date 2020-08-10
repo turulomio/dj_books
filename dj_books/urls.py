@@ -9,7 +9,6 @@ from books import views as books_view
 
 urlpatterns =i18n_patterns(
     path('admin/', admin.site.urls,  name="admin-site"),
-    path('statistics/', books_view.statistics, name='statistics'),
     path('signup/', dj_books_views.signup, name='signup'),
     
     path('account_activation_sent/', dj_books_views.account_activation_sent, name='account_activation_sent'),
@@ -40,6 +39,8 @@ urlpatterns =i18n_patterns(
 #    path('books/querys/last/', books_view.valoration, name='query-books-last'),
 #    path('books/querys/valued/', books_view.valoration, name='query-books-valued'),
 
+    path('statistics_global/', books_view.statistics_global, name='statistics-global'),
+    path('statistics_user/', books_view.statistics_user, name='statistics-user'),
 )
 
 handler403 = 'books.views.error_403'
