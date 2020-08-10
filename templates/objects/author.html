@@ -10,9 +10,9 @@
 <img src="{% static 'images/girl.svg' %}" height="50px" width="50px" title="{{ author.get_gender_display }}"/>
 {% endif %}
 
-<p><strong>{% trans "Author" %}: </strong><a href="{% url 'author-read' author.id %}">{{ author.name }} {{ author.family_name }}</a></p>
-<p><strong>{% trans "Lifetime" %}: </strong>{{ author.lifetime_string }}</p>
-<p><strong>{% trans "Age" %}: </strong>{{ author.age_string }}</p>
+<p class="object"><strong>{% trans "Author" %}: </strong><a href="{% url 'author-read' author.id %}">{{ author.name }} {{ author.family_name }}</a></p>
+<p class="object"><strong>{% trans "Lifetime" %}: </strong>{{ author.lifetime_string }}</p>
+<p class="object"><strong>{% trans "Age" %}: </strong>{{ author.age_string }}</p>
 
 <a href="{{ author.wikipedia_query }}" target="_blank"><img src="{% static 'images/wikipedia.svg' %}" height="24px" width="24px" title="{% trans 'Search in wikipedia' %}"></img></a>
 </div><!-- End div Author -->

@@ -9,7 +9,7 @@
     <center><img src='{% static "images/book.png" %}' height="150px" width="150px"/></center>
     <h2> </h2>
     <center>
-    <form id="searchform" action="{# url 'blog_search_list_view' #}" method="get" accept-charset="utf-8">
+    <form class="search" id="searchform" action="{# url 'blog_search_list_view' #}" method="get" accept-charset="utf-8">
       <label>{% trans "Search for a Book or an Author:" %}</label>
       <input class="searchfield" id="searchbox"  class="form-control" name="search" type="text" placeholder="{% trans "Search" %}">
       <button class="searchbutton" type="submit">{% trans "Search" %}</button>

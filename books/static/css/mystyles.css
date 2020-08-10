@@ -56,21 +56,23 @@ p.title > a{
     font-size: 130%;
     background-color: transparent;
 }
-p.github{
-    text-decoration: none;
-    background-color: transparent;
-    text-align: center;
-    padding-top: 10px;
-    font-size: 80%;
-}
-
-p.github > a{
+p.github, p.github > a{
     color: white;
     text-decoration: none;
+    background-color: transparent;
     text-align: center;
     padding-top: 10px;
-    font-size: 80%;
+    font-size: 9    0%;
+}
+
+p.object{
+    text-decoration: none;
     background-color: transparent;
+    text-align: justify;
+    padding-top: 0px;
+    font-size: 100%;
+    line-height: 120%;
+    margin-bottom: 0rem;
 }
 
 /* DJANGO ALERTS
@@ -89,7 +91,17 @@ p.github > a{
 /*
  * DJANGO FORM TABLES
  */
-form {
+form.search{
+    background: linear-gradient(#F0D5D5, white);
+    border-radius: 14px;
+    border: 1px solid #BBBBBB;
+    padding: 8px;	
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+}
+
+form{
     background: linear-gradient(#F0D5D5, white);
     border-radius: 14px;
     border: 1px solid #BBBBBB;
@@ -100,6 +112,43 @@ form {
 }
 
 
+
+
+
+
+
+
+form.big{
+    background: linear-gradient(#F0D5D5, white);
+    border-radius: 14px;
+    border: 1px solid #BBBBBB;
+    padding: 8px;	
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+
+form.big > table  {
+    padding: 8px;	
+    width: 100%;
+
+}
+
+
+table td input {
+    width: 100%;   
+   }
+/* To debug
+td {
+    border: 1px solid black;
+  }
+*/
+
+
+
+
+/* DIVS */
 div.layVertical {
     display: grid;
     grid-template-columns:100%;

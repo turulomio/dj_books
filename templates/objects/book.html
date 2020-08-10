@@ -5,9 +5,9 @@
 
 <img src="{% static 'images/book2.png' %}" height="50px" width="50px"/>
 {% if author %}
-    <p><strong>{% trans "Author" %}: </strong><a href="{% url 'author-read' author.id %}">{{ author }}</a></p>
+    <p class="object"><strong>{% trans "Author" %}: </strong><a href="{% url 'author-read' author.id %}">{{ author }}</a></p>
 {% endif %}
 
-<p><strong>{% trans "Title" %}: </strong><a href="{% url 'book-read' book.id %}">{{ book.title }}</a></p>
-<p><strong>{% trans "Year" %}: </strong> {{ book.year }}</p>
+<p class="object"><strong>{% trans "Title" %}: </strong><a href="{% url 'book-read' book.id %}">{{ book.title }}</a></p>
+<p class="object"><strong>{% trans "Year" %}: </strong> {{ book.year }}</p>
 </div><!-- End div Book -->

@@ -8,7 +8,7 @@
 
 {% block content %}
     <h1>{% trans "Add or edit a Book" %}</h1>
-    <form method="post" class="form_table">
+    <form method="post" class="big">
     <table>
         {% csrf_token %}
         {{ form.as_table }}

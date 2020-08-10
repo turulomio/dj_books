@@ -110,6 +110,8 @@ def valoration_new(request, book_id):
         form = ValorationAddForm()
         form.fields['book'].initial=book
         form.fields['user'].initial=request.user
+        form.fields['read_start'].widget.attrs['class'] ='datepicker'
+        form.fields['read_end'].widget.attrs['class'] ='datepicker'
     return render(request, 'books/valoration_edit.html', {'form': form})
 
 @method_decorator(login_required, name='dispatch')
@@ -153,6 +155,7 @@ class BookUpdate(UpdateView):
             form_class = self.get_form_class()
         form = super(BookUpdate, self).get_form(form_class)
         form.fields['author'].widget = forms.HiddenInput()
+        form.fields['title'].widget.attrs.update({'class': 'big'})
         return form
 
 

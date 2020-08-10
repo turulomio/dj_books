@@ -5,24 +5,24 @@
 <table>
 <tr>
 <td>
-<img src="{% static 'images/valoration.svg' %}" height="150px" width="150px"/>
+<img src="{% static 'images/valoration.svg' %}" height="125px" width="125px"/>
 </td>
 <td>
 {% if author %}
-    <p><strong>{% trans "Author" %}: </strong><a href="{% url 'author-read' author.id %}">{{ author }}</a></p>
+    <p class="object"><strong>{% trans "Author" %}: </strong><a href="{% url 'author-read' author.id %}">{{ author }}</a></p>
 {% endif %}
 {% if book %}
-    <p><strong>{% trans "Book" %}: </strong><a href="{% url 'book-read' book.id %}">{{ book.title }} ({{book.year}})</a></p>
+    <p class="object"><strong>{% trans "Book" %}: </strong><a href="{% url 'book-read' book.id %}">{{ book.title }} ({{book.year}})</a></p>
 {% endif %}
 
-<p><strong>{% trans "User" %}: </strong>{{ valoration.user }}</p>
+<p class="object"><strong>{% trans "User" %}: </strong>{{ valoration.user }}</p>
 {% if valoration.read_end is None %}
-    <p><strong>Read start: </strong>{{ valoration.read_start }}</p>
+    <p class="object"><strong>Read start: </strong>{{ valoration.read_start }}</p>
 {% else %}
-    <p><strong>Read took place from: </strong>{{ valoration.read_start }}<strong> to </strong>{{ valoration.read_end }} ( {{ valoration.read_took }} days ) </p>
+    <p class="object"><strong>Read took place from: </strong>{{ valoration.read_start }}<strong> to </strong>{{ valoration.read_end }} ( {{ valoration.read_took }} days ) </p>
 {% endif %}
-<p><strong>Valoration [0-100]: </strong> <a href="{% url 'valoration-read' valoration.id %}">{{ valoration.valoration }}</a></p>
-<p><strong>Comment: </strong> {{ valoration.comment }}</p>
+<p class="object"><strong>Valoration [0-100]: </strong> <a href="{% url 'valoration-read' valoration.id %}">{{ valoration.valoration }}</a></p>
+<p class="object"><strong>Comment: </strong> {{ valoration.comment }}</p>
 </td>
 </tr>
 </table>
