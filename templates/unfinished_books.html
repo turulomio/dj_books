@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block content %}
+<h1>{% trans "Unfinished books" %}</h1>
+
+<p>{% trans "These are the books with an unfinished valorarion" %}</p>
+
+    {% for valoration in valorations %}
+       {% include "objects/book.html" with book=valoration.book only %}
+    {% endfor %}
+{% endblock %}
+

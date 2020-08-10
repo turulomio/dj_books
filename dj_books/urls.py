@@ -17,7 +17,6 @@ urlpatterns =i18n_patterns(
     path('login/', LoginView.as_view(template_name='login.html'), name="login"), 
     path('logout/', logout_then_login, name="logout"), 
     path('', books_view.home, name='home'),
-    path('database/', books_view.database, name='database'), 
     path('profile/', dj_books_views.profile_edit, name="profile"), 
 
     path('books/author/create/', books_view.AuthorCreate.as_view(), name='author-add'),
@@ -38,6 +37,7 @@ urlpatterns =i18n_patterns(
 
 #    path('books/querys/last/', books_view.valoration, name='query-books-last'),
 #    path('books/querys/valued/', books_view.valoration, name='query-books-valued'),
+    path('unfinished_books/', books_view.unfinished_books, name='unfinished-books'),
 
     path('statistics_global/', books_view.statistics_global, name='statistics-global'),
     path('statistics_user/', books_view.statistics_user, name='statistics-user'),

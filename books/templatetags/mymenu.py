@@ -144,7 +144,6 @@ def mymenu(context):
     
     menu=Menu(user)
     menu.append(Action(_("Search"), ['books.search_author', 'books.search_book'],  reverse_lazy("home")))
-    menu.append(Action(_("All database"), ['database_all_view', ],  reverse_lazy("database")))
     grLibrary=Group(1,_("My Library"),"10")
     grLibrary.append(Action(_("Add author"), ['books.add_author', ], reverse_lazy("author-add")))
     menu.append(Action(_("My valorations"), ['books.search_valoration'], reverse_lazy("valoration-list")))
@@ -154,10 +153,14 @@ def mymenu(context):
     grQuerys.append(Action(_("Most valued books"),['books.search_author','books.search_book'], reverse_lazy("query-books-valued")))
     
     
-    grQuerys=Group(1, _("Statistics"), "13")
-    grQuerys.append(Action(_("Global"),['books.statistics_global',], reverse_lazy("statistics-global")))
-    grQuerys.append(Action(_("User"),['books.statistics_user',], reverse_lazy("statistics-user")))
+    grStatistics=Group(1, _("Statistics"), "13")
+    grStatistics.append(Action(_("Global"),['books.statistics_global',], reverse_lazy("statistics-global")))
+    grStatistics.append(Action(_("User"),['books.statistics_user',], reverse_lazy("statistics-user")))
+    
+    grQuerys=Group(1, _("Queries"), "14")
+    grQuerys.append(Action(_("Unfinished books"),['books.unfinished-books',], reverse_lazy("unfinished-books")))
     menu.append(grLibrary)
+    menu.append(grStatistics)
     menu.append(grQuerys)
     return menu.render()
 

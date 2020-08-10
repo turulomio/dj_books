@@ -11,7 +11,6 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from books.forms import BookAddForm, ValorationAddForm
 from books.models import Author,  Book, Valoration
-from books.tables import TableEasyAuthors,  TableEasyValorations, TableEasyBooks
 
 
 
@@ -45,16 +44,6 @@ def statistics_global(request):
 def statistics_user(request):
     valorations_number= Valoration.objects.filter(user=request.user).count()
     return render(request,  "statistics_user.html", locals())
-
-@permission_required('books.database_all_view')
-def database(request):
-    authors= Author.objects.order_by('name')
-    books=Book.objects.order_by('title')
-    valorations=Valoration.objects.order_by('read_end')
-    tableeasy_authors=TableEasyAuthors(authors, request)
-    tableeasy_books=TableEasyBooks(books, request)
-    tableeasy_valorations=TableEasyValorations(valorations, request)
-    return render(request, 'database.html', locals())
 
 @login_required
 def valoration_list(request):
@@ -194,3 +183,8 @@ class ValorationDelete(DeleteView):
     def get_success_url(self):
         return reverse_lazy('book-read',args=(self.object.book.id,))
 
+
+@login_required
+def unfinished_books(request):
+    valorations=Valoration.objects.filter(read_end=None)
+    return render(request, 'unfinished_books.html', locals())

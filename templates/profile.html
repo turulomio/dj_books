@@ -21,7 +21,8 @@
     {% if user_form.is_valid or profile_form.is_valid %}
         {% include "messages.html" %}
     {% endif %}
-
+   
+    <p></p>
     <h2>{% trans "Change password" %}</h2>
     <p>{% trans "If you wish you can change your password here:" %}</p>
     <form method="post" class="form_table">
