@@ -46,7 +46,7 @@
             <link rel="stylesheet" type="text/css" href='{% static "css/jquery-ui.css" %}'>
             <link rel="stylesheet" type="text/css" href='{% static "css/bootstrap.css" %}' >
             <link rel="stylesheet" type="text/css" href='{% static "css/table_easy.css" %}'>
-            <link rel="stylesheet" type="text/css" href='{% static "css/mystyles.css" %}'>
+            <link rel="stylesheet" type="text/css" href='{% static "css/mystyles.css" %}?dev=' + Math.floor(Math.random() * 100)>
             {% endblock head_css_site %}
 
             {% block head_css_section %}

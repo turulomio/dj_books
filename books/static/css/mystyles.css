@@ -22,6 +22,7 @@
 
 h1 {
     padding-top: 40px;
+    padding-bottom: 15px;
     text-align: left;
     font-weight: bold;
     color:#333333;
@@ -130,6 +131,7 @@ div.sidebar{
     text-decoration: none;
     height:100vh;
     overflow-y:auto;
+    padding-left: 20px;
 }
 
 div.content {
@@ -155,54 +157,63 @@ label {
 
 /* Bootstrap minified CSS included as External Resource*/
 .nav_level_1{
-    list-style-type: circle;
-    line-height:120%;
     display: block;
     padding-top: 10px;
     padding-bottom: 10px;
-    font-size:130%;
+    font-size:110%;
+    line-height:140%;
 }
 
 .nav_level_1 a{
     color: white;
     font-weight: bold;
     display: block;
+    font-size:110%;
+    line-height:140%;
 }
 
 .nav_level_2{
     list-style-type: disc;
-    line-height:110%;
     display: block;
+    font-size:100%;
+    line-height:120%;
 }
 
 .nav_level_2 li {
     padding-left: 30px;
     display: block;
+    font-size:100%;
+    line-height:120%;
 }
 
 .nav_level_2 a {
     color: #DFDFDF;
     font-weight: bold;
-    font-size:110%;
     display: block;
+    font-size:100%;
+    line-height:120%;
 }
 
 .nav_level_3{
     list-style-type: square;
-    line-height:100%;
     display: block;
+    font-size:90%;
+    line-height:100%;
 }
 
 .nav_level_3 li {
     padding-left: 30px;
     display: block;
+    font-size:90%;
+    line-height:100%;
 }
 
 .nav_level_3 a {
     color: #BFBFBF;
     font-weight: bold;
-    font-size:100%;
     display: block;
+    font-size:90%;
+    line-height:100%;
 }
 
 
