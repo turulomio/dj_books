@@ -11,7 +11,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.db import models
 from django.dispatch import receiver
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_lazy as _, get_language
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Profile(models.Model):    
@@ -94,6 +94,9 @@ class Author(models.Model):
             return _("{} years").format(date.today().year-self.birth)
         else:
             return _("Lived {} years").format(self.death-self.birth)
+
+    def wikipedia_query(self):
+        return "https://{}.wikipedia.org/wiki/{}".format(get_language(), self.full_name())
 
     class Meta:
         db_table = 'authors'

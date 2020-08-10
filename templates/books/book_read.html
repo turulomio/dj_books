@@ -12,10 +12,17 @@
 
        {% include "objects/book.html" with book=book author=book.author only %}
   <p>
+  {% if perms.books.change_book%}
   <a href="{% url 'book-edit' pk=book.id %}">{% trans "Update" %}</a>
+{% endif %}
+{% if perms.books.delete_book%}
   <a href="{% url 'book-delete' pk=book.id %}">{% trans "Delete" %}</a>
+{% endif %}
   <h2>Valorations</h2>
+  
+{% if perms.books.add_valoration%}
   <a href="{% url 'valoration-create' book_id=book.id %}">{% trans "Add a book valoration" %}</a>
+{% endif %}
   <p>
     {% for valoration in valorations %}
        {% include "objects/valoration.html" with valoration=valoration only %}

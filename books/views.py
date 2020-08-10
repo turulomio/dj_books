@@ -39,7 +39,7 @@ def statistics(request):
     valorations= Valoration.objects.count()
     return render(request,  "statistics.html", locals())
 
-@login_required
+@permission_required('books.database_all_view')
 def database(request):
     authors= Author.objects.order_by('name')
     books=Book.objects.order_by('title')
@@ -68,6 +68,7 @@ def author_read(request, pk):
     books=Book.objects.filter(author=author)
     return render(request, 'books/author_read.html', locals())
     
+@permission_required('books.add_book')
 def book_new(request, author_id):
     author=get_object_or_404(Author, pk=author_id)
     if request.method == 'POST':
@@ -119,6 +120,8 @@ def valoration_new(request, book_id):
 #        form.fields['read_end'].widget.attrs['class'] ='datepicker'
 #        return form
 
+@method_decorator(login_required, name='dispatch')
+@method_decorator(permission_required('books.add_author',raise_exception=True), name='dispatch')
 class AuthorCreate(CreateView):
     model = Author
     fields = ['name', 'family_name', 'birth', 'death', 'gender']
@@ -164,6 +167,8 @@ class BookDelete(DeleteView):
 
 
 
+@method_decorator(login_required, name='dispatch')
+@method_decorator(permission_required('books.change_valoration',raise_exception=True), name='dispatch')
 class ValorationUpdate(UpdateView):
     model = Valoration
     fields = ['book', 'user', 'comment','valoration','read_start','read_end']
@@ -182,6 +187,9 @@ class ValorationUpdate(UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('valoration-read',args=(self.object.id,))
+        
+@method_decorator(login_required, name='dispatch')
+@method_decorator(permission_required('books.delete_valoration',raise_exception=True), name='dispatch')
 class ValorationDelete(DeleteView):
     model = Valoration
     success_url = reverse_lazy('valoration-list')

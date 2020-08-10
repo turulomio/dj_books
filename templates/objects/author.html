@@ -1,6 +1,7 @@
 {% load i18n %}
 
 {% load static %}
+
 <div class="Author">
 
 {% if author.gender == 0 %}
@@ -13,4 +14,5 @@
 <p><strong>{% trans "Lifetime" %}: </strong>{{ author.lifetime_string }}</p>
 <p><strong>{% trans "Age" %}: </strong>{{ author.age_string }}</p>
 
+<a href="{{ author.wikipedia_query }}" target="_blank"><img src="{% static 'images/wikipedia.svg' %}" height="24px" width="24px" title="{% trans 'Search in wikipedia' %}"></img></a>
 </div><!-- End div Author -->

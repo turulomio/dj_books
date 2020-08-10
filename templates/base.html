@@ -25,14 +25,12 @@
             {% endblock head_meta_viewport %}
         {% endblock head_meta %}
 
-
-        
-        
         {% block head_js %}
             {% block head_js_site %}
                 <!--
                 -->
                 <script type="text/javascript" src='{% static "js/jquery.js" %}'></script>
+                <script type="text/javascript" src='{% static "js/jquery-ui.js" %}'></script>
                 <script type="text/javascript" src='{% static "js/bootstrap.js" %}'></script>
                 <script type="text/javascript" src='{% static "js/jquery_my.js" %}'></script>
                 <script type="text/javascript" src='{% static "js/table_easy.js" %}'></script>
@@ -40,16 +38,15 @@
             {% block head_js_section %}
             {% endblock head_js_section %}
         {% endblock head_js %}
-        
-        
+
             {% block head_css %}
             {% block head_css_site %}
-             <!--     
+            <!--
             -->
-             <link rel="stylesheet" type="text/css" href='{% static "css/jquery-ui.css" %}'>
+            <link rel="stylesheet" type="text/css" href='{% static "css/jquery-ui.css" %}'>
             <link rel="stylesheet" type="text/css" href='{% static "css/bootstrap.css" %}' >
-                <link rel="stylesheet" type="text/css" href='{% static "css/table_easy.css" %}'>
-                <link rel="stylesheet" type="text/css" href='{% static "css/mystyles.css" %}'>
+            <link rel="stylesheet" type="text/css" href='{% static "css/table_easy.css" %}'>
+            <link rel="stylesheet" type="text/css" href='{% static "css/mystyles.css" %}'>
             {% endblock head_css_site %}
 
             {% block head_css_section %}
@@ -91,9 +88,10 @@
         </div> {# header #}
 
         <div class="content"> 
-        
+
         {% block content %}
         {% endblock content %}
+
         </div> {# content #}
     </div> {# layVertical #}
 </div> {# layHorizontal #}
