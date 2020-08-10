@@ -105,21 +105,6 @@ def valoration_new(request, book_id):
         form.fields['user'].initial=request.user
     return render(request, 'books/valoration_edit.html', {'form': form})
 
-### @todo user must not be asked
-#class ValorationCreate(CreateView):
-#    model = Valoration
-#    fields = ['book', 'user', 'comment','valoration','read_start','read_end']
-#    template_name="books/valoration_edit.html"
-#    success_url = reverse_lazy('valoration-list')
-#
-#    def get_form(self, form_class=None): 
-#        if form_class is None: 
-#            form_class = self.get_form_class()
-#        form = super(ValorationCreate, self).get_form(form_class)
-#        form.fields['read_start'].widget.attrs['class'] ='datepicker'
-#        form.fields['read_end'].widget.attrs['class'] ='datepicker'
-#        return form
-
 @method_decorator(login_required, name='dispatch')
 @method_decorator(permission_required('books.add_author',raise_exception=True), name='dispatch')
 class AuthorCreate(CreateView):
@@ -156,16 +141,19 @@ class BookUpdate(UpdateView):
     def get_success_url(self):
         return reverse_lazy('book-read',args=(self.object.id,))
 
+    def get_form(self, form_class=None): 
+        if form_class is None: 
+            form_class = self.get_form_class()
+        form = super(BookUpdate, self).get_form(form_class)
+        form.fields['author'].widget = forms.HiddenInput()
+        return form
+
 
 @method_decorator(login_required, name='dispatch')
 @method_decorator(permission_required('books.delete_book',raise_exception=True), name='dispatch')
 class BookDelete(DeleteView):
     model = Book
     success_url = reverse_lazy('home')
-
-
-
-
 
 @method_decorator(login_required, name='dispatch')
 @method_decorator(permission_required('books.change_valoration',raise_exception=True), name='dispatch')
