@@ -99,7 +99,8 @@ form.languages{
     margin-left: 0px;
     margin-right: 0px;
     padding: 0px;	
-    display: inline-block;
+    display: inline;
+    text-align: center;   
 }
 
 form.search{

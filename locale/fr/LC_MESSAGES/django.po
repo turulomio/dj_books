@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-12 13:38+0000\n"
+"POT-Creation-Date: 2020-08-12 14:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,67 +18,63 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: books/models.py:26
-msgid "Language"
-msgstr ""
-
-#: books/models.py:28
+#: books/models.py:19
 msgid "Birth date"
 msgstr ""
 
-#: books/models.py:52
+#: books/models.py:43
 msgid "Name"
 msgstr ""
 
-#: books/models.py:53
+#: books/models.py:44
 msgid "Family name"
 msgstr ""
 
-#: books/models.py:54
+#: books/models.py:45
 msgid "Birth year"
 msgstr ""
 
-#: books/models.py:55
+#: books/models.py:46
 msgid "Death year"
 msgstr ""
 
-#: books/models.py:58
+#: books/models.py:49
 msgid "Man"
 msgstr ""
 
-#: books/models.py:59
+#: books/models.py:50
 msgid "Woman"
 msgstr ""
 
-#: books/models.py:62
+#: books/models.py:53
 msgid "Gender"
 msgstr ""
 
-#: books/models.py:86
+#: books/models.py:77
 msgid "{}-"
 msgstr ""
 
-#: books/models.py:94
+#: books/models.py:85
 msgid "{} years"
 msgstr ""
 
-#: books/models.py:96
+#: books/models.py:87
 msgid "Lived {} years"
 msgstr ""
 
-#: books/models.py:109 templates/objects/book.html:11
+#: books/models.py:100 templates/objects/book.html:11
 msgid "Title"
 msgstr ""
 
-#: books/models.py:110 templates/objects/book.html:12
+#: books/models.py:101 templates/objects/book.html:12
 msgid "Year"
 msgstr ""
 
-#: books/models.py:129 templates/objects/valoration.html:15
+#: books/models.py:120 templates/objects/valoration.html:15
 msgid "Book"
 msgstr ""
 
-#: books/models.py:137
+#: books/models.py:128
 msgid "Valoration of {} ({}) by {}: {}"
 msgstr ""
 
@@ -196,32 +192,28 @@ msgstr ""
 msgid "MY BOOKS LIBRARY"
 msgstr ""
 
-#: templates/base.html:79
+#: templates/base.html:96
 msgid "Logout"
 msgstr ""
 
-#: templates/base.html:80 templates/profile.html:6 templates/profile.html:10
+#: templates/base.html:97 templates/profile.html:6 templates/profile.html:10
 msgid "Settings"
 msgstr ""
 
-#: templates/base.html:82 templates/signup.html:7 templates/signup.html:24
+#: templates/base.html:99 templates/signup.html:7 templates/signup.html:24
 msgid "Sign up"
 msgstr ""
 
-#: templates/base.html:83
+#: templates/base.html:100
 msgid "Login"
 msgstr ""
 
-#: templates/base.html:86
+#: templates/base.html:103
 msgid "Administration"
 msgstr ""
 
-#: templates/base.html:88
+#: templates/base.html:105
 msgid "Home"
-msgstr ""
-
-#: templates/base.html:90
-msgid "Select your language"
 msgstr ""
 
 #: templates/books/author_confirm_delete.html:6
