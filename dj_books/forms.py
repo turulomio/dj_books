@@ -17,7 +17,7 @@ class ProfileForm(ModelForm):
         self.fields['birth_date'].widget.attrs['class']="datepicker"
     class Meta:
         model = Profile
-        fields = ('language', 'birth_date')
+        fields = ('birth_date', )
 
 
 class SignUpForm(UserCreationForm):
