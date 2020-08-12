@@ -83,7 +83,7 @@ def book_new(request, author_id):
         form = BookAddForm()
         form.fields['author'].initial=author
     return render(request, 'books/book_edit.html', {'form': form})
-    
+
 @permission_required('books.add_valoration')
 def valoration_new(request, book_id):
     book=get_object_or_404(Book, pk=book_id)

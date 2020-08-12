@@ -1,25 +1,3 @@
-
-/*Menu header*/
-.nav-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
-
-.nav-li {
-    float: right;
-    padding: 0px;
-}
-
-.nav-li a, .nav-title a {
-    display: inline-block;
-    color: white;
-    padding: 7px 7px;
-    text-decoration: none;
-}
-
-
 h1 {
     padding-top: 40px;
     padding-bottom: 15px;
@@ -171,8 +149,6 @@ td {
 
 /* DIVS */
 div.layVertical {
-    display: grid;
-    grid-template-columns:100%;
     padding: 0px;
     margin: 0px;
 
@@ -180,10 +156,9 @@ div.layVertical {
 
 div.layHorizontal {
     background: linear-gradient(#333333,#AAAAAA);
-    display: grid;
-    grid-template-columns: 25vw 75vw;
     padding: 0px;
     margin: 0px;
+    line-height: 1;
 
 }
 
@@ -191,26 +166,26 @@ div.header{
     color: white;
     font-weight:bold;
     top: 0;
-    height: 5vh;
-    position:sticky;
+}
+
+div.headeritem > a  {
+    display: inline;
+    color: white;
+    padding: 7px;
+    text-decoration: none;
 }
 
 div.sidebar{
     color: white;
     font-weight:bold;
     text-decoration: none;
-    height:100vh;
-    overflow-y:auto;
-    padding-left: 20px;
+    overflow-y:none;
+    padding: 20px;
 }
 
 div.content {
-    top: 5vh;
-    left: 25vw;
-    height: 95vh;
+    padding: 20px;
     overflow-y: auto;
-    padding-left: 5vh;
-    padding-right: 5vh;
     background-color: white;
     border-top-left-radius: 30px;
 }
