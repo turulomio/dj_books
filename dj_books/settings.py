@@ -121,8 +121,11 @@ AUTH_PASSWORD_VALIDATORS = [
 ## Language code
 LANGUAGE_CODE = 'en-us'
 LANGUAGES=[
+    ("en", "English"),  
     ("es",  "Español"), 
-    ("en", "English")
+    ("fr", "Français") , 
+    ("ro", "Romanian"), 
+    ("ru", "Russian"), 
 ]
 ## Timezone definition
 TIME_ZONE = 'UTC'
