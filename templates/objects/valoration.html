@@ -1,6 +1,9 @@
 {% load i18n %}
 
 {% load static %}
+<!-- Can receive view_link to hide noview 0 hide 1 show-->
+
+
 <div class="Valoration">
 <table>
 <tr>
@@ -25,11 +28,11 @@
 <p class="object"><strong>Valoration [0-100]: </strong>{{ valoration.valoration }}</p>
 <p class="object"><strong>Comment: </strong> {{ valoration.comment }}</p>
 </td>
-<td>
-    <a href="{% url 'valoration-update' pk=valoration.id %}">{% trans "Update" %}</a>
-        <a href="{% url 'valoration-delete' pk=valoration.id %}">{% trans "Delete" %}</a>
-    {{request.user}}
+{% if view_link == "1" %}
+<td>    
+    <a href="{% url 'valoration-read' pk=valoration.id %}">{% trans "View" %}</a>
 </td>
+{%endif%}
 </tr>
 </table>
 </div><!-- End div Book -->

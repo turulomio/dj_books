@@ -25,6 +25,6 @@
 {% endif %}
   <p>
     {% for valoration in valorations %}
-       {% include "objects/valoration.html" with valoration=valoration only %}
+       {% include "objects/valoration.html" with valoration=valoration view_link="1" only %}
     {% endfor %}
 {% endblock %}

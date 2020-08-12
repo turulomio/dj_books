@@ -50,10 +50,10 @@ def statistics_user(request):
 @login_required
 def valoration_list(request):
     valorations= Valoration.objects.filter(user=request.user).order_by('read_start')
-    return render(request, 'valoration.html', locals())
+    return render(request, 'valoration_list.html', locals())
     
-def valoration_read(request, valoration_id):
-    valoration=get_object_or_404(Valoration, pk=valoration_id)
+def valoration_read(request, pk):
+    valoration=get_object_or_404(Valoration, pk=pk)
     return render(request, 'books/valoration_read.html', locals())
 
 def book_read(request, pk):
