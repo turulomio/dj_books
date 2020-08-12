@@ -193,5 +193,5 @@ def unfinished_books(request):
 
 @login_required
 def most_valuated_books(request):
-    valorations=Valoration.objects.filter(user=request.user).order_by('-valoration')[:5]
+    valorations=Valoration.objects.filter(user=request.user, valoration__isnull=False).order_by('-valoration')[:10]
     return render(request, 'most_valuated_books.html', locals())

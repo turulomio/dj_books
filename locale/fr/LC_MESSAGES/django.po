@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-10 21:40+0000\n"
+"POT-Creation-Date: 2020-08-12 04:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -82,50 +82,45 @@ msgstr ""
 msgid "Valoration of {} ({}) by {}: {}"
 msgstr ""
 
-#: books/templatetags/mymenu.py:146 templates/home.html:14
+#: books/templatetags/mymenu.py:184
+msgid "My Library"
+msgstr ""
+
+#: books/templatetags/mymenu.py:185 templates/home.html:14
 #: templates/home.html:15
 msgid "Search"
 msgstr ""
 
-#: books/templatetags/mymenu.py:147
-msgid "My Library"
-msgstr ""
-
-#: books/templatetags/mymenu.py:148
+#: books/templatetags/mymenu.py:187
 msgid "Add author"
 msgstr ""
 
-#: books/templatetags/mymenu.py:149
+#: books/templatetags/mymenu.py:189
 msgid "My valorations"
 msgstr ""
 
-#: books/templatetags/mymenu.py:151 books/templatetags/mymenu.py:160
+#: books/templatetags/mymenu.py:191
 msgid "Queries"
 msgstr ""
 
-#: books/templatetags/mymenu.py:152
-msgid "Last books"
-msgstr ""
-
-#: books/templatetags/mymenu.py:153
+#: books/templatetags/mymenu.py:192
 msgid "Most valued books"
 msgstr ""
 
-#: books/templatetags/mymenu.py:156 templates/statistics_global.html:8
-#: templates/statistics_user.html:8
+#: books/templatetags/mymenu.py:193 templates/unfinished_books.html:6
+msgid "Unfinished books"
+msgstr ""
+
+#: books/templatetags/mymenu.py:196
 msgid "Statistics"
 msgstr ""
 
-#: books/templatetags/mymenu.py:157
+#: books/templatetags/mymenu.py:197
 msgid "Global"
 msgstr ""
 
-#: books/templatetags/mymenu.py:158 templates/objects/valoration.html:18
+#: books/templatetags/mymenu.py:198 templates/objects/valoration.html:18
 msgid "User"
-msgstr ""
-
-#: books/templatetags/mymenu.py:161 templates/unfinished_books.html:6
-msgid "Unfinished books"
 msgstr ""
 
 #: books/views.py:27
@@ -197,31 +192,31 @@ msgstr ""
 msgid "Your account verification has been successful. Now you're logged in."
 msgstr ""
 
-#: templates/base.html:63
+#: templates/base.html:64
 msgid "MY BOOKS LIBRARY"
 msgstr ""
 
-#: templates/base.html:77
+#: templates/base.html:78
 msgid "Logout"
 msgstr ""
 
-#: templates/base.html:78 templates/profile.html:6 templates/profile.html:10
+#: templates/base.html:79 templates/profile.html:6 templates/profile.html:10
 msgid "Settings"
 msgstr ""
 
-#: templates/base.html:80 templates/signup.html:7 templates/signup.html:24
+#: templates/base.html:81 templates/signup.html:7 templates/signup.html:24
 msgid "Sign up"
 msgstr ""
 
-#: templates/base.html:81
+#: templates/base.html:82
 msgid "Login"
 msgstr ""
 
-#: templates/base.html:84
+#: templates/base.html:85
 msgid "Administration"
 msgstr ""
 
-#: templates/base.html:86
+#: templates/base.html:87
 msgid "Home"
 msgstr ""
 
@@ -260,12 +255,12 @@ msgid "Author details"
 msgstr ""
 
 #: templates/books/author_read.html:14 templates/books/book_read.html:16
-#: templates/books/valoration_read.html:15
+#: templates/books/valoration_read.html:16 templates/objects/valoration.html:29
 msgid "Update"
 msgstr ""
 
 #: templates/books/author_read.html:17 templates/books/book_read.html:19
-#: templates/books/valoration_read.html:18
+#: templates/books/valoration_read.html:19 templates/objects/valoration.html:30
 msgid "Delete"
 msgstr ""
 
@@ -312,6 +307,14 @@ msgstr ""
 msgid "Search for a Book or an Author:"
 msgstr ""
 
+#: templates/most_valuated_books.html:6
+msgid "Most valuated books"
+msgstr ""
+
+#: templates/most_valuated_books.html:8
+msgid "These are your most rated books:"
+msgstr ""
+
 #: templates/objects/author.html:13 templates/objects/book.html:8
 #: templates/objects/valoration.html:12
 msgid "Author"
@@ -341,25 +344,38 @@ msgstr ""
 msgid "Save profile changes"
 msgstr ""
 
-#: templates/profile.html:25 templates/profile.html:32
+#: templates/profile.html:26 templates/profile.html:33
 msgid "Change password"
 msgstr ""
 
-#: templates/profile.html:26
+#: templates/profile.html:27
 msgid "If you wish you can change your password here:"
 msgstr ""
 
-#: templates/statistics_global.html:9
+#: templates/statistics_global.html:6
+msgid "Global statistics"
+msgstr ""
+
+#: templates/statistics_global.html:7 templates/statistics_user.html:8
+#, python-format
+msgid " Your average book reading time is %(avg_reading_time_user)s days."
+msgstr ""
+
+#: templates/statistics_global.html:8
 msgid "Registers"
 msgstr ""
 
-#: templates/statistics_user.html:9
+#: templates/statistics_user.html:6
+msgid "User statistics"
+msgstr ""
+
+#: templates/statistics_user.html:7
 #, python-format
 msgid " You have made %(valorations_number)s valorations."
 msgstr ""
 
 #: templates/unfinished_books.html:8
-msgid "These are the books with an unfinished valorarion"
+msgid "These are your unfinished valorations"
 msgstr ""
 
 #: templates/valoration.html:6
