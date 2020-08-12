@@ -17,12 +17,18 @@ class Action:
 
     def render(self, userpers, user, current_url_name):
         if self.__has_all_user_permissions(userpers) or user.is_superuser:
-            if current_url_name==self.url:
+            if self.is_selected(current_url_name):
                 return """<li class="Selected"><a class="Selected" href="{}">{}</a></li>\n""".format(reverse_lazy(self.url),self.name)
             else:
                 return """<li><a href="{}">{}</a></li>\n""".format(reverse_lazy(self.url),self.name)
         else:
             return ""
+
+    ## @return boolean if item is the selected one
+    def is_selected(self, current_url_name):
+        if current_url_name==self.url:
+            return True
+        return False
        
        
     def __has_all_user_permissions(self, userpers):
@@ -91,10 +97,10 @@ class Group:
     
     def render(self, userpers, user, current_url_name):
         r=""
-        #        print("Group render", self.get_all_permissions(), userpers, self.__user_has_some_children_permissions(userpers))
         if self.__user_has_some_children_permissions(userpers) or user.is_superuser:
+            collapsing="" if self.has_selected_actions(current_url_name) is True else "collapse"
             r=r+"""<li><a href="#" class="toggle-custom" id="btn-{0}" data-toggle="collapse" data-target="#submenu{0}" aria-expanded="false">{1} ...</a>\n""".format(self.id,self.name)
-            r=r+"""<ul class="nav collapse nav_level_{0}" id="submenu{1}" role="menu" aria-labelledby="btn-{1}">\n""".format(self.level+1,self.id)
+            r=r+"""<ul class="nav """+collapsing+""" nav_level_{0}" id="submenu{1}" role="menu" aria-labelledby="btn-{1}">\n""".format(self.level+1,self.id)
             for item in self.arr:
                 if item.__class__==Group:
                     r=r+item.render(userpers, user,current_url_name)
@@ -106,6 +112,16 @@ class Group:
 
     def append(self,o):
         self.arr.append(o)
+
+    def has_selected_actions(self,current_url_name):
+        for item in self.arr:
+            if item.__class__==Action:
+                if item.is_selected(current_url_name) is True:
+                    return True
+            else: #Group
+                return self.has_selected_actions(current_url_name)
+        return False
+
 
 
 

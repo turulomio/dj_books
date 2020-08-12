@@ -3,6 +3,7 @@
 {% load i18n %}
 {% load static %}
 {% load mymenu %}
+{% load random_numbers %}
 
 {# Make modifiable head elements #}
     <head>
@@ -46,7 +47,7 @@
             <link rel="stylesheet" type="text/css" href='{% static "css/jquery-ui.css" %}'>
             <link rel="stylesheet" type="text/css" href='{% static "css/bootstrap.css" %}' >
             <link rel="stylesheet" type="text/css" href='{% static "css/table_easy.css" %}'>
-            <link rel="stylesheet" type="text/css" href='{% static "css/mystyles.css" %}?dev=' + Math.floor(Math.random() * 100)>
+            <link rel="stylesheet" type="text/css" href='{% static "css/mystyles.css" %}?dev={% random_integer 0 10000 %}'
             {% endblock head_css_site %}
 
             {% block head_css_section %}

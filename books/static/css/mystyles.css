@@ -191,7 +191,7 @@ div.content {
     padding-left: 5vh;
     padding-right: 5vh;
     background-color: white;
-    border-radius: 28px;
+    border-top-left-radius: 30px;
 }
 
 
@@ -265,8 +265,8 @@ label {
     line-height:100%;
 }
 
-.nav li.Selected, a.Selected{
-    color: rgb(121, 61, 61);
+a.Selected{
+    color: orange
 }
 
 
@@ -278,7 +278,7 @@ label {
 }
 
 .nav_level_1 a:hover {
-    color: orange;
+    color: orangered;
     background-color: transparent;
     display: block;
 }

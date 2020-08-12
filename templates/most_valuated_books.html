@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block content %}
+<h1>{% trans "Most valuated books" %}</h1>
+
+<p>{% trans "These are your most rated books:" %}</p>
+
+    {% for valoration in valorations %}
+       {% include "objects/valoration.html" with valoration=valoration book=valoration.book author=valoration.book.author perms=request.user.perms only %}
+    {% endfor %}
+{% endblock %}
+
