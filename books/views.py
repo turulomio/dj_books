@@ -29,6 +29,7 @@ def home(request):
         authors=Author.objects.filter(Q(name__icontains=search) | Q(family_name__icontains=search))
         if request.user.has_perm('books.search_valoration'):
             valorations=Valoration.objects.filter(comment__icontains=search)
+    print(locals())
     return render(request, 'home.html', locals())
     
 

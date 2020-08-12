@@ -47,7 +47,7 @@
             <link rel="stylesheet" type="text/css" href='{% static "css/jquery-ui.css" %}'>
             <link rel="stylesheet" type="text/css" href='{% static "css/bootstrap.css" %}' >
             <link rel="stylesheet" type="text/css" href='{% static "css/table_easy.css" %}'>
-            <link rel="stylesheet" type="text/css" href='{% static "css/mystyles.css" %}?dev={% random_integer 0 10000 %}'
+            <link rel="stylesheet" type="text/css" href='{% static "css/mystyles.css" %}?dev={% random_integer 0 10000 %}'>
             {% endblock head_css_site %}
 
             {% block head_css_section %}
@@ -62,6 +62,7 @@
 <div class="layHorizontal">
     <div class="sidebar">
         <p class="title"><a href="{% url 'home' %}">{% trans "MY BOOKS LIBRARY" %}</a></p>
+        <p class="version">{% trans "Version:" %} {{VERSION}} ({{VERSIONDATE}})</p>
         <p class="title"><a href="{% url 'home' %}"><img src='{% static "images/book.png" %}' height="50px" width="50px"/></a></p>
     <div class="languages" style="display:flex; flex-direction: row; justify-content: center;">
       <form class="languages" action="{% url 'set_language' %}" method="post">{% csrf_token %}

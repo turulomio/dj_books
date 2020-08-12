@@ -46,6 +46,15 @@ p.title {
     text-align: center;
     padding-top: 10px;
     font-size: 130%;
+    line-height: 1.5;
+}
+p.version {
+    text-decoration: none;
+    background-color: transparent;
+    text-align: center;
+    padding-top: 0px;
+    line-height: 0.1;
+    font-size: 80%;
 }
 
 p.title > a{
@@ -62,7 +71,8 @@ p.github, p.github > a{
     background-color: transparent;
     text-align: center;
     padding-top: 10px;
-    font-size: 9    0%;
+    font-size: 90%;
+    line-height: 1;
 }
 
 p.object{
