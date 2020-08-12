@@ -155,7 +155,9 @@ class BookUpdate(UpdateView):
 @method_decorator(permission_required('books.delete_book',raise_exception=True), name='dispatch')
 class BookDelete(DeleteView):
     model = Book
-    success_url = reverse_lazy('home')
+    def get_success_url(self):
+        return reverse_lazy('author-read',args=(self.object.author.id,))
+
 
 @method_decorator(login_required, name='dispatch')
 @method_decorator(permission_required('books.change_valoration',raise_exception=True), name='dispatch')
