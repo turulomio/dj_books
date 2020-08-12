@@ -11,10 +11,11 @@
 
        {% include "objects/valoration.html" with valoration=valoration author=valoration.book.author  book=valoration.book only %}
   <p>
-{% if perms.books.change_valoration%}
+{% if perms.books.change_valoration %}
+    HOLA
   <a href="{% url 'valoration-update' pk=valoration.id %}">{% trans "Update" %}</a>
 {% endif %}
-{% if perms.books.delete_valoration%}
+{% if perms.books.delete_valoration or user.is_superuser %}
   <a href="{% url 'valoration-delete' pk=valoration.id %}">{% trans "Delete" %}</a>
 {% endif %}
 {% endblock %}

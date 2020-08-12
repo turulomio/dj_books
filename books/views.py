@@ -1,6 +1,6 @@
 
 from django import forms
-from django.db.models import Q
+from django.db.models import Q, Avg, F
 from django.contrib.auth.decorators import login_required, permission_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render,  get_object_or_404
@@ -36,13 +36,15 @@ def home(request):
 def statistics_global(request):
     books= Book.objects.count()
     authors= Author.objects.count()
-    valorations= Valoration.objects.count()
+    valorations= Valoration.objects.count()    
+    avg_reading_time_user=Valoration.objects.all().aggregate(average_difference=Avg(F('read_end') - F('read_start')))['average_difference'].days
     return render(request,  "statistics_global.html", locals())    
 
 
 @permission_required('books.statistics_user')
 def statistics_user(request):
     valorations_number= Valoration.objects.filter(user=request.user).count()
+    avg_reading_time_user=Valoration.objects.filter(user=request.user).aggregate(average_difference=Avg(F('read_end') - F('read_start')))['average_difference'].days
     return render(request,  "statistics_user.html", locals())
 
 @login_required
@@ -186,5 +188,10 @@ class ValorationDelete(DeleteView):
 
 @login_required
 def unfinished_books(request):
-    valorations=Valoration.objects.filter(read_end=None)
+    valorations=Valoration.objects.filter(read_end=None, user=request.user)
     return render(request, 'unfinished_books.html', locals())
+
+@login_required
+def most_valuated_books(request):
+    valorations=Valoration.objects.filter(user=request.user).order_by('-valoration')[:5]
+    return render(request, 'most_valuated_books.html', locals())

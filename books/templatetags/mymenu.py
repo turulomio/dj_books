@@ -8,19 +8,27 @@ from django.urls import reverse_lazy
 """
 
 class Action:
+    ## @param name
+    ## @param permissions. List of string if None is always showed
     def __init__(self,name,permissions,url):
         self.name=name
         self.permissions=permissions
         self.url=url
 
-    def render(self, userpers, user):
+    def render(self, userpers, user, current_url_name):
         if self.__has_all_user_permissions(userpers) or user.is_superuser:
-            return """<li><a href="{}">{}</a></li>\n""".format(self.url,self.name)
+            if current_url_name==self.url:
+                return """<li class="Selected"><a class="Selected" href="{}">{}</a></li>\n""".format(reverse_lazy(self.url),self.name)
+            else:
+                return """<li><a href="{}">{}</a></li>\n""".format(reverse_lazy(self.url),self.name)
         else:
             return ""
        
        
     def __has_all_user_permissions(self, userpers):
+        if self.permissions is None:
+            return True
+
         for p in self.permissions:
             if p not in userpers:
                 return False
@@ -61,6 +69,8 @@ class Group:
     ## Search for some permissions, not all
     def __user_has_some_children_permissions(self, userpers):
         for p in self.get_all_permissions():
+            if p is None:
+                return True
             if p in userpers:
                 return True
         return False
@@ -72,11 +82,14 @@ class Group:
                 for p in item.get_all_permissions():
                     r.add(p)
             else:#Action
+                if item.permissions is None:
+                    r.add(None)
+                    continue
                 for p in item.permissions:
                     r.add(p)
         return r
     
-    def render(self, userpers, user):
+    def render(self, userpers, user, current_url_name):
         r=""
         #        print("Group render", self.get_all_permissions(), userpers, self.__user_has_some_children_permissions(userpers))
         if self.__user_has_some_children_permissions(userpers) or user.is_superuser:
@@ -84,9 +97,9 @@ class Group:
             r=r+"""<ul class="nav collapse nav_level_{0}" id="submenu{1}" role="menu" aria-labelledby="btn-{1}">\n""".format(self.level+1,self.id)
             for item in self.arr:
                 if item.__class__==Group:
-                    r=r+item.render(userpers, user)
+                    r=r+item.render(userpers, user,current_url_name)
                 else:#Action
-                    r=r+item.render(userpers, user)
+                    r=r+item.render(userpers, user, current_url_name)
             r=r+"""</ul>\n"""
             r=r+"""</li>\n"""
         return r
@@ -95,77 +108,79 @@ class Group:
         self.arr.append(o)
 
 
+
+
 class Menu:
-    def __init__(self, user):
+    def __init__(self, appname):
         self.arr=[]
-        self.level=None
-        self.user=user
+        self.appname=appname
 
 
     ## Renders an HTML menu
     ## @todo Leave selected current action
-    def render(self):
+    def render_menu(self, user, current_url_name):
         r="<nav>\n"
         r=r+"""<ul class="nav nav_level_1">\n"""
         for item in self.arr:
-            r=r+item.render(self.user.get_all_permissions(), self.user)#Inherited from group and from user)
+            r=r+item.render(user.get_all_permissions(), user, current_url_name)#Inherited from group and from user)
         r=r+"""</ul>\n"""
         r=r+"</nav>\n"
         r=r+"<p>"
         return r
-    
+
+    ## Renders an HTML menu
+    ## @todo Leave selected current action
+    def render_pagetitle(self,current_url_name):
+        action=self.find_action_by_url(current_url_name)
+        action_name="None" if action is None else action.name
+        return "{} > {}".format(self.appname, action_name)
 
     def append(self,o):
         self.arr.append(o)
-        
-        
+
+    def find_action_by_url(self,url_name):
+        for item in self.arr:
+            if item.__class__==Group:
+                for action in item.arr:
+                    if action.url==url_name:
+                        return action
+            else:#Action
+                if item.url==url_name:
+                    return item
+        return None
 
 register = template.Library()
 
 
 @register.simple_tag(takes_context=True)
 def mymenu(context):
-    """
-        books.change_valoration
-        books.add_valoration
-        books.change_author
-        books.add_book
-        books.delete_book
-        books.change_book
-        books.delete_valoration
-        books.delete_author
-        books.add_author
-    """
     user=context['user']
     url_name=context['request'].resolver_match.url_name
-    dir(url_name)
-    print(url_name)#"home", 
-    
-    
-    menu=Menu(user)
-    menu.append(Action(_("Search"), ['books.search_author', 'books.search_book'],  reverse_lazy("home")))
-    grLibrary=Group(1,_("My Library"),"10")
-    grLibrary.append(Action(_("Add author"), ['books.add_author', ], reverse_lazy("author-add")))
-    menu.append(Action(_("My valorations"), ['books.search_valoration'], reverse_lazy("valoration-list")))
-
-    grQuerys=Group(1, _("Queries"), "12")
-    grQuerys.append(Action(_("Last books"),['books.search_author','books.search_book'], reverse_lazy("query-books-last")))
-    grQuerys.append(Action(_("Most valued books"),['books.search_author','books.search_book'], reverse_lazy("query-books-valued")))
-    
-    
-    grStatistics=Group(1, _("Statistics"), "13")
-    grStatistics.append(Action(_("Global"),['books.statistics_global',], reverse_lazy("statistics-global")))
-    grStatistics.append(Action(_("User"),['books.statistics_user',], reverse_lazy("statistics-user")))
-    
-    grQuerys=Group(1, _("Queries"), "14")
-    grQuerys.append(Action(_("Unfinished books"),['books.unfinished-books',], reverse_lazy("unfinished-books")))
-    menu.append(grLibrary)
-    menu.append(grStatistics)
-    menu.append(grQuerys)
-    return menu.render()
+    return menu.render_menu(user,url_name)
 
 @register.simple_tag(takes_context=True)
-def mypagetitle():
-    
-    pass
+def mypagetitle(context):
+    url_name=context['request'].resolver_match.url_name
+    return  menu.render_pagetitle(url_name)
+
+
+global menu    
+menu=Menu(_("My Library"))
+menu.append(Action(_("Search"), None,  "home"))
+
+menu.append(Action(_("Add author"), ['books.add_author', ], "author-add"))
+
+menu.append(Action(_("My valorations"), ['books.search_valoration'], "valoration-list"))
+
+grQuerys=Group(1, _("Queries"), "12")
+grQuerys.append(Action(_("Most valued books"), None, "query_books_valued"))
+grQuerys.append(Action(_("Unfinished books"), None, "unfinished-books"))
+
+
+grStatistics=Group(1, _("Statistics"), "13")
+grStatistics.append(Action(_("Global"),['books.statistics_global',], "statistics-global"))
+grStatistics.append(Action(_("User"),['books.statistics_user',], "statistics-user"))
+
+menu.append(grQuerys)
+menu.append(grStatistics)
 

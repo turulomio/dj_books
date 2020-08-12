@@ -265,6 +265,10 @@ label {
     line-height:100%;
 }
 
+.nav li.Selected, a.Selected{
+    color: rgb(121, 61, 61);
+}
+
 
 /*Usa el modo developer de firfox capuyo*/
 .nav > li > a:focus, .nav > li > a:hover {

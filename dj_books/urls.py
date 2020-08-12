@@ -35,9 +35,8 @@ urlpatterns =i18n_patterns(
     path('books/valoration/update/<slug:pk>/', books_view.ValorationUpdate.as_view(), name='valoration-update'),
     path('books/valoration/delete/<slug:pk>/', books_view.ValorationDelete.as_view(), name='valoration-delete'),
 
-#    path('books/querys/last/', books_view.valoration, name='query-books-last'),
-#    path('books/querys/valued/', books_view.valoration, name='query-books-valued'),
-    path('unfinished_books/', books_view.unfinished_books, name='unfinished-books'),
+    path('books/querys/valued/', books_view.most_valuated_books, name='query_books_valued'),
+    path('books/querys/unfinished_books/', books_view.unfinished_books, name='unfinished-books'),
 
     path('statistics_global/', books_view.statistics_global, name='statistics-global'),
     path('statistics_user/', books_view.statistics_user, name='statistics-user'),

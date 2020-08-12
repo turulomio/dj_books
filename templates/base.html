@@ -6,7 +6,7 @@
 
 {# Make modifiable head elements #}
     <head>
-        <title>{% block title %}MyLibrary{% endblock title %}</title>
+        <title>{% block title %}{% mypagetitle %}{% endblock title %}</title>
         {% block head_favicon %}
             <link rel="icon" href='{% static "images/favicon.ico" %}'>
         {% endblock head_favicon %}

@@ -16,13 +16,19 @@
 {% endif %}
 
 <p class="object"><strong>{% trans "User" %}: </strong>{{ valoration.user }}</p>
-{% if valoration.read_end is None %}
+{% if valoration.read_end is null %}
     <p class="object"><strong>Read start: </strong>{{ valoration.read_start }}</p>
+    <p class="object"><strong>Read end: </strong>{{ valoration.read_end }}</p>  
 {% else %}
     <p class="object"><strong>Read took place from: </strong>{{ valoration.read_start }}<strong> to </strong>{{ valoration.read_end }} ( {{ valoration.read_took }} days ) </p>
 {% endif %}
-<p class="object"><strong>Valoration [0-100]: </strong> <a href="{% url 'valoration-read' valoration.id %}">{{ valoration.valoration }}</a></p>
+<p class="object"><strong>Valoration [0-100]: </strong>{{ valoration.valoration }}</p>
 <p class="object"><strong>Comment: </strong> {{ valoration.comment }}</p>
+</td>
+<td>
+    <a href="{% url 'valoration-update' pk=valoration.id %}">{% trans "Update" %}</a>
+        <a href="{% url 'valoration-delete' pk=valoration.id %}">{% trans "Delete" %}</a>
+    {{request.user}}
 </td>
 </tr>
 </table>
