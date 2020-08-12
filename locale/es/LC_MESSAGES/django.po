@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-12 04:45+0000\n"
+"POT-Creation-Date: 2020-08-12 13:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -200,29 +200,33 @@ msgstr ""
 msgid "MY BOOKS LIBRARY"
 msgstr "MI BIBLIOTECA"
 
-#: templates/base.html:78
+#: templates/base.html:79
 msgid "Logout"
 msgstr "Salir"
 
-#: templates/base.html:79 templates/profile.html:6 templates/profile.html:10
+#: templates/base.html:80 templates/profile.html:6 templates/profile.html:10
 msgid "Settings"
 msgstr "Configuración"
 
-#: templates/base.html:81 templates/signup.html:7 templates/signup.html:24
+#: templates/base.html:82 templates/signup.html:7 templates/signup.html:24
 msgid "Sign up"
 msgstr "Registrar"
 
-#: templates/base.html:82
+#: templates/base.html:83
 msgid "Login"
 msgstr "Entrar"
 
-#: templates/base.html:85
+#: templates/base.html:86
 msgid "Administration"
 msgstr "Administración"
 
-#: templates/base.html:87
+#: templates/base.html:88
 msgid "Home"
 msgstr "Inicio"
+
+#: templates/base.html:90
+msgid "Select your language"
+msgstr "Selecciona tu idioma"
 
 #: templates/books/author_confirm_delete.html:6
 #: templates/books/author_edit.html:6
@@ -363,7 +367,8 @@ msgstr "Estadísticas globales"
 #: templates/statistics_global.html:7 templates/statistics_user.html:8
 #, python-format
 msgid " Your average book reading time is %(avg_reading_time_user)s days."
-msgstr "Tu tiempo medio de lectura de libros es de  %(avg_reading_time_user)s días"
+msgstr ""
+"Tu tiempo medio de lectura de libros es de  %(avg_reading_time_user)s días"
 
 #: templates/statistics_global.html:8
 msgid "Registers"

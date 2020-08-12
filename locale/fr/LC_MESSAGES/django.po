@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-12 04:45+0000\n"
+"POT-Creation-Date: 2020-08-12 13:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -196,28 +196,32 @@ msgstr ""
 msgid "MY BOOKS LIBRARY"
 msgstr ""
 
-#: templates/base.html:78
+#: templates/base.html:79
 msgid "Logout"
 msgstr ""
 
-#: templates/base.html:79 templates/profile.html:6 templates/profile.html:10
+#: templates/base.html:80 templates/profile.html:6 templates/profile.html:10
 msgid "Settings"
 msgstr ""
 
-#: templates/base.html:81 templates/signup.html:7 templates/signup.html:24
+#: templates/base.html:82 templates/signup.html:7 templates/signup.html:24
 msgid "Sign up"
 msgstr ""
 
-#: templates/base.html:82
+#: templates/base.html:83
 msgid "Login"
 msgstr ""
 
-#: templates/base.html:85
+#: templates/base.html:86
 msgid "Administration"
 msgstr ""
 
-#: templates/base.html:87
+#: templates/base.html:88
 msgid "Home"
+msgstr ""
+
+#: templates/base.html:90
+msgid "Select your language"
 msgstr ""
 
 #: templates/books/author_confirm_delete.html:6

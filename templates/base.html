@@ -71,8 +71,9 @@
     </div>{# sidebar#}
 
     <div class="layVertical">
-
         <div class="header">
+        
+
             <ul class="nav-ul">
                 {% if request.user.is_authenticated %}
                     <li class="nav-li"><a href="{% url 'logout' %}">{% trans "Logout" %} {{ user.username|upper }}</a></li>
@@ -85,6 +86,23 @@
                     <li class="nav-li"><a href="{% url 'admin:index' %}">{% trans "Administration" %}</a></li>
                 {% endif %}
               <li class="nav-li"><a href="{% url 'home' %}">{% trans "Home" %}</a></li>
+              <li class="nav-li">
+              {% trans "Select your language" %}
+      <form class="languages" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+         <input type="hidden" name="next" value="{{redirect_to}}">
+        <div class="form-group">
+            <select name="language" id="" onchange="this.form.submit()">
+            {% get_current_language as LANGUAGE_CODE %}
+            {% get_available_languages as LANGUAGES %}
+            {% get_language_info_list for LANGUAGES as languages %}
+            {% for language in languages %}
+            <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
+                {{ language.name_local }} ({{language.code}})
+            </option>
+            {% endfor %}
+            </select>
+        </div>
+        </form></li>
             </ul>
         </div> {# header #}
 

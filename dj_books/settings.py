@@ -120,7 +120,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 ## Language code
 LANGUAGE_CODE = 'en-us'
-
+LANGUAGES=[
+    ("es",  "Español"), 
+    ("en", "English")
+]
 ## Timezone definition
 TIME_ZONE = 'UTC'
 

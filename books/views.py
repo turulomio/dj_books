@@ -187,6 +187,7 @@ class ValorationDelete(DeleteView):
 
 
 @login_required
+
 def unfinished_books(request):
     valorations=Valoration.objects.filter(read_end=None, user=request.user)
     return render(request, 'unfinished_books.html', locals())
