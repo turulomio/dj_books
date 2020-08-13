@@ -30,7 +30,7 @@
         <br>
         <h2>{% trans "Valorations" %}</h2>
         {% for valoration in valorations %}
-            {% include "objects/valoration.html" with valoration=valoration author=valoration.book.author book=valoration.book only %}
+            {% include "objects/valoration.html" with valoration=valoration show_book=1 %}
         {% endfor %}
     {% endif %}
 

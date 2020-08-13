@@ -6,7 +6,7 @@
 <h1>{% trans "My Valorations" %}</h1>
 
     {% for valoration in valorations %}
-       {% include "objects/valoration.html" with valoration=valoration book=valoration.book author=valoration.book.author view_link="1" only %}
+       {% include "objects/valoration.html" with valoration=valoration show_book=1 %}
     {% endfor %}
 {% endblock %}
 

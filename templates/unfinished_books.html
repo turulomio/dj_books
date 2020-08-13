@@ -8,7 +8,7 @@
 <p>{% trans "These are your unfinished valorations" %}</p>
 
     {% for valoration in valorations %}
-       {% include "objects/valoration.html" with valoration=valoration book=valoration.book author=valoration.book.author perms=request.user.perms only %}
+       {% include "objects/valoration.html" with valoration=valoration show_book=1 %}
     {% endfor %}
 {% endblock %}
 

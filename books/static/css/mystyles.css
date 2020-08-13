@@ -408,6 +408,9 @@ a.Selected{
 
 .Valoration > .objects{
     flex-grow: 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .Valoration > .buttons{
     padding: 7px;

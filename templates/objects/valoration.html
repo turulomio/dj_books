@@ -1,18 +1,17 @@
 {% load i18n %}
 
 {% load static %}
-<!-- Can receive view_link to hide noview 0 hide 1 show-->
-
+<!-- Can receive show_book=1 to show author and book
+     You can't use only tag
+-->
 
 <div class="Valoration">
     <img src="{% static 'images/valoration.svg' %}" height="125px" width="125px"/>
 
     <div class="objects">
-        {% if author %}
-            <p class="object"><strong>{% trans "Author" %}: </strong><a href="{% url 'author-read' author.id %}">{{ author }}</a></p>
-        {% endif %}
-        {% if book %}
-            <p class="object"><strong>{% trans "Book" %}: </strong><a href="{% url 'book-read' book.id %}">{{ book.title }} ({{book.year}})</a></p>
+        {% if show_book %}
+            <p class="object"><strong>{% trans "Author" %}: </strong><a href="{% url 'author-read' valoration.book.author.id %}">{{ valoration.book.author }}</a></p>
+            <p class="object"><strong>{% trans "Book" %}: </strong><a href="{% url 'book-read' valoration.book.id %}">{{ valoration.book.title }} ({{ valoration.book.year }})</a></p>
         {% endif %}
 
         <p class="object"><strong>{% trans "User" %}: </strong>{{ valoration.user }}</p>
@@ -25,7 +24,7 @@
         <p class="object"><strong>Valoration [0-100]: </strong>{{ valoration.valoration }}</p>
         <p class="object"><strong>Comment: </strong> {{ valoration.comment }}</p>
     </div>
-    {% if view_link == "1" %}
+    {% if perms.books.view_valoration %}
     <div class="buttons">   
         <a href="{% url 'valoration-read' pk=valoration.id %}">{% trans "View" %}</a>
     </div>
