@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-12 14:23+0000\n"
+"POT-Creation-Date: 2020-08-13 13:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,7 +70,7 @@ msgstr ""
 msgid "Year"
 msgstr ""
 
-#: books/models.py:120 templates/objects/valoration.html:15
+#: books/models.py:120 templates/objects/valoration.html:14
 msgid "Book"
 msgstr ""
 
@@ -115,7 +115,7 @@ msgstr ""
 msgid "Global"
 msgstr ""
 
-#: books/templatetags/mymenu.py:198 templates/objects/valoration.html:18
+#: books/templatetags/mymenu.py:198 templates/objects/valoration.html:17
 msgid "User"
 msgstr ""
 
@@ -188,32 +188,32 @@ msgstr ""
 msgid "Your account verification has been successful. Now you're logged in."
 msgstr ""
 
-#: templates/base.html:64
+#: templates/base.html:61
 msgid "MY BOOKS LIBRARY"
 msgstr ""
 
-#: templates/base.html:96
+#: templates/base.html:62
+msgid "Version:"
+msgstr ""
+
+#: templates/base.html:87
 msgid "Logout"
 msgstr ""
 
-#: templates/base.html:97 templates/profile.html:6 templates/profile.html:10
+#: templates/base.html:88 templates/profile.html:6 templates/profile.html:10
 msgid "Settings"
 msgstr ""
 
-#: templates/base.html:99 templates/signup.html:7 templates/signup.html:24
+#: templates/base.html:90 templates/signup.html:7 templates/signup.html:24
 msgid "Sign up"
 msgstr ""
 
-#: templates/base.html:100
+#: templates/base.html:91
 msgid "Login"
 msgstr ""
 
-#: templates/base.html:103
+#: templates/base.html:94
 msgid "Administration"
-msgstr ""
-
-#: templates/base.html:105
-msgid "Home"
 msgstr ""
 
 #: templates/books/author_confirm_delete.html:6
@@ -251,12 +251,12 @@ msgid "Author details"
 msgstr ""
 
 #: templates/books/author_read.html:14 templates/books/book_read.html:16
-#: templates/books/valoration_read.html:16 templates/objects/valoration.html:29
+#: templates/books/valoration_read.html:16
 msgid "Update"
 msgstr ""
 
 #: templates/books/author_read.html:17 templates/books/book_read.html:19
-#: templates/books/valoration_read.html:19 templates/objects/valoration.html:30
+#: templates/books/valoration_read.html:19
 msgid "Delete"
 msgstr ""
 
@@ -312,7 +312,7 @@ msgid "These are your most rated books:"
 msgstr ""
 
 #: templates/objects/author.html:13 templates/objects/book.html:8
-#: templates/objects/valoration.html:12
+#: templates/objects/valoration.html:13
 msgid "Author"
 msgstr ""
 
@@ -326,6 +326,10 @@ msgstr ""
 
 #: templates/objects/author.html:17
 msgid "Search in wikipedia"
+msgstr ""
+
+#: templates/objects/valoration.html:29
+msgid "View"
 msgstr ""
 
 #: templates/profile.html:11
@@ -374,6 +378,6 @@ msgstr ""
 msgid "These are your unfinished valorations"
 msgstr ""
 
-#: templates/valoration.html:6
+#: templates/valoration_list.html:6
 msgid "My Valorations"
 msgstr ""
