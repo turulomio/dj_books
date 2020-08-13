@@ -5,34 +5,29 @@
 
 
 <div class="Valoration">
-<table>
-<tr>
-<td>
-<img src="{% static 'images/valoration.svg' %}" height="125px" width="125px"/>
-</td>
-<td>
-{% if author %}
-    <p class="object"><strong>{% trans "Author" %}: </strong><a href="{% url 'author-read' author.id %}">{{ author }}</a></p>
-{% endif %}
-{% if book %}
-    <p class="object"><strong>{% trans "Book" %}: </strong><a href="{% url 'book-read' book.id %}">{{ book.title }} ({{book.year}})</a></p>
-{% endif %}
+    <img src="{% static 'images/valoration.svg' %}" height="125px" width="125px"/>
 
-<p class="object"><strong>{% trans "User" %}: </strong>{{ valoration.user }}</p>
-{% if valoration.read_end is null %}
-    <p class="object"><strong>Read start: </strong>{{ valoration.read_start }}</p>
-    <p class="object"><strong>Read end: </strong>{{ valoration.read_end }}</p>  
-{% else %}
-    <p class="object"><strong>Read took place from: </strong>{{ valoration.read_start }}<strong> to </strong>{{ valoration.read_end }} ( {{ valoration.read_took }} days ) </p>
-{% endif %}
-<p class="object"><strong>Valoration [0-100]: </strong>{{ valoration.valoration }}</p>
-<p class="object"><strong>Comment: </strong> {{ valoration.comment }}</p>
-</td>
-{% if view_link == "1" %}
-<td>    
-    <a href="{% url 'valoration-read' pk=valoration.id %}">{% trans "View" %}</a>
-</td>
-{%endif%}
-</tr>
-</table>
+    <div class="objects">
+        {% if author %}
+            <p class="object"><strong>{% trans "Author" %}: </strong><a href="{% url 'author-read' author.id %}">{{ author }}</a></p>
+        {% endif %}
+        {% if book %}
+            <p class="object"><strong>{% trans "Book" %}: </strong><a href="{% url 'book-read' book.id %}">{{ book.title }} ({{book.year}})</a></p>
+        {% endif %}
+
+        <p class="object"><strong>{% trans "User" %}: </strong>{{ valoration.user }}</p>
+        {% if valoration.read_end is null %}
+            <p class="object"><strong>Read start: </strong>{{ valoration.read_start }}</p>
+            <p class="object"><strong>Read end: </strong>{{ valoration.read_end }}</p>  
+        {% else %}
+            <p class="object"><strong>Read took place from: </strong>{{ valoration.read_start }}<strong> to </strong>{{ valoration.read_end }} ( {{ valoration.read_took }} days ) </p>
+        {% endif %}
+        <p class="object"><strong>Valoration [0-100]: </strong>{{ valoration.valoration }}</p>
+        <p class="object"><strong>Comment: </strong> {{ valoration.comment }}</p>
+    </div>
+    {% if view_link == "1" %}
+    <div class="buttons">   
+        <a href="{% url 'valoration-read' pk=valoration.id %}">{% trans "View" %}</a>
+    </div>
+    {%endif%}
 </div><!-- End div Book -->
