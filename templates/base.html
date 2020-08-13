@@ -34,7 +34,6 @@
                 <script type="text/javascript" src='{% static "js/jquery-ui.js" %}'></script>
                 <script type="text/javascript" src='{% static "js/bootstrap.js" %}'></script>
                 <script type="text/javascript" src='{% static "js/jquery_my.js" %}'></script>
-                <script type="text/javascript" src='{% static "js/table_easy.js" %}'></script>
             {% endblock head_js_site %}
             {% block head_js_section %}
             {% endblock head_js_section %}
@@ -46,7 +45,6 @@
             -->
             <link rel="stylesheet" type="text/css" href='{% static "css/jquery-ui.css" %}'>
             <link rel="stylesheet" type="text/css" href='{% static "css/bootstrap.css" %}' >
-            <link rel="stylesheet" type="text/css" href='{% static "css/table_easy.css" %}'>
             <link rel="stylesheet" type="text/css" href='{% static "css/mystyles.css" %}?dev={% random_integer 0 10000 %}'>
             {% endblock head_css_site %}
 
@@ -58,60 +56,54 @@
         {% endblock head_css %}
     </head>
 <body>
-
-<div class="layHorizontal">
-    <div class="sidebar">
-        <p class="title"><a href="{% url 'home' %}">{% trans "MY BOOKS LIBRARY" %}</a></p>
-        <p class="version">{% trans "Version:" %} {{VERSION}} ({{VERSIONDATE}})</p>
-        <p class="title"><a href="{% url 'home' %}"><img src='{% static "images/book.png" %}' height="50px" width="50px"/></a></p>
-        <div class="languages" style="display:flex; flex-direction: row; justify-content: center;">
-        <form class="languages" action="{% url 'set_language' %}" method="post">{% csrf_token %}
-            <input type="hidden" name="next" value="{{redirect_to}}">
-                <select name="language" id="" onchange="this.form.submit()">
-                {% get_current_language as LANGUAGE_CODE %}
-                {% get_available_languages as LANGUAGES %}
-                {% get_language_info_list for LANGUAGES as languages %}
-                {% for language in languages %}
-                <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
-                    {{ language.name_local|title }}
-                </option>
-                {% endfor %}
-                </select>
-            </form>
-        </div><!--Language-->
-{% autoescape off %}
-{% mymenu %}
-{% endautoescape %}
+    <div class="layHorizontal">
+        <div class="sidebar">
+            <p class="title"><a href="{% url 'home' %}">{% trans "MY BOOKS LIBRARY" %}</a></p>
+            <p class="version">{% trans "Version:" %} {{VERSION}} ({{VERSIONDATE}})</p>
+            <p class="title"><a href="{% url 'home' %}"><img src='{% static "images/book.png" %}' height="50px" width="50px"/></a></p>
+            <div class="languages" style="display:flex; flex-direction: row; justify-content: center;">
+            <form class="languages" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                <input type="hidden" name="next" value="{{redirect_to}}">
+                    <select name="language" id="" onchange="this.form.submit()">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% get_available_languages as LANGUAGES %}
+                        {% get_language_info_list for LANGUAGES as languages %}
+                        {% for language in languages %}
+                        <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
+                            {{ language.name_local|title }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </form>
+            </div><!--Language-->
+            {% mymenu %}
 
 
+            <div class="github" style="flex-grow: 4">
+                <p class="github"><a href="https://github.com/turulomio/dj_books" target="_blank"><img src="{% static 'images/github.png' %}" height="25px" width="25px"/> Desarrollado por Turulomio</a></p>
+            </div><!--Github-->
+        </div><!--Sidebar-->
 
-    <p class="github"><a href="https://github.com/turulomio/dj_books" target="_blank"><img src="{% static 'images/github.png' %}" height="25px" width="25px"/>  Desarrollado por Turulomio</a></p>
-    </div>{# sidebar#}
-
-    <div class="layVertical">
+        <div class="layVertical" style="flex-grow: 4">
             <div class="header">
-
-                    {% if request.user.is_authenticated %}
-                        <div class="headeritem"><a href="{% url 'logout' %}">{% trans "Logout" %} {{ user.username|upper }}</a></div>
-                            <div class="headeritem"><a href="{% url 'profile' %}">{% trans "Settings" %}</a></div>
-                    {% else %}
+                {% if request.user.is_authenticated %}
+                    <div class="headeritem"><a href="{% url 'logout' %}">{% trans "Logout" %} {{ user.username|upper }}</a></div>
+                    <div class="headeritem"><a href="{% url 'profile' %}">{% trans "Settings" %}</a></div>
+                {% else %}
                     <div class="headeritem"><a href="{% url 'signup' %}">{% trans "Sign up" %}</a></div>
-                        <div class="headeritem"><a href="{% url 'login' %}?next={%url 'home' %}">{% trans "Login" %}</a></div>
-                    {% endif %}
-                    {% if request.user.is_superuser %}
+                    <div class="headeritem"><a href="{% url 'login' %}?next={%url 'home' %}">{% trans "Login" %}</a></div>
+                {% endif %}
+                {% if request.user.is_superuser %}
                     <div class="headeritem"><a href="{% url 'admin:index' %}">{% trans "Administration" %}</a></div>
-                    {% endif %}
-                    <div class="headeritem"><a href="{% url 'home' %}">{% trans "Home" %}</a></div>
-
+                {% endif %}
             </div> {# header #}
 
-            <div class="content"> 
-            <!--{% debug %}-->
-            {% block content %}
-            {% endblock content %}
-
+            <div class="content" style="flex-grow:4"> 
+                <!--{% debug %}-->
+                {% block content %}
+                {% endblock content %}
             </div> {# content #}
-    </div> {# layVertical #}
-</div> {# layHorizontal #}
+        </div> {# layVertical #}
+    </div> {# layHorizontal #}
 </body>
 </html>

@@ -1,7 +1,7 @@
 from django import template
+from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse_lazy
-
 """
     Esta clase la cree después de probar la app django-sitemaps, tenía cosas buenas, tree, breadcumb, title
     Era muy complicada y luego me liaba cuando el menu necesitaba parámetros
@@ -172,7 +172,7 @@ register = template.Library()
 def mymenu(context):
     user=context['user']
     url_name=context['request'].resolver_match.url_name
-    return menu.render_menu(user,url_name)
+    return format_html(menu.render_menu(user,url_name))
 
 @register.simple_tag(takes_context=True)
 def mypagetitle(context):
