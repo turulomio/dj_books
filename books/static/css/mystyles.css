@@ -28,10 +28,11 @@ p.normal {
 }
 
 p.title, p.title > a {
+    color: white;
+    white-space: nowrap;
     text-decoration: none;
     background-color: transparent;
     text-align: center;
-    padding-top: 10px;
     font-size: 130%;
     line-height: 1.5;
 }
