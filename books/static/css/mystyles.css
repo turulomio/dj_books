@@ -409,6 +409,12 @@ a.Selected{
 .Valoration > .objects{
     flex-grow: 4;
 }
+.Valoration > .buttons{
+    padding: 7px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
 .Valoration img{
   color: black;
