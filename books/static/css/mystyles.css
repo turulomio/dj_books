@@ -1,3 +1,12 @@
+
+body {
+    margin: 0px;
+}
+
+label {
+    font-weight:bold;
+}
+
 h1 {
     padding-top: 40px;
     padding-bottom: 15px;
@@ -18,7 +27,7 @@ p.normal {
     padding: 2px;
 }
 
-p.title {
+p.title, p.title > a {
     text-decoration: none;
     background-color: transparent;
     text-align: center;
@@ -35,14 +44,6 @@ p.version {
     font-size: 80%;
 }
 
-p.title > a{
-    color: white;
-    text-decoration: none;
-    text-align: center;
-    padding-top: 10px;
-    font-size: 130%;
-    background-color: transparent;
-}
 p.github, p.github > a{
     color: white;
     text-decoration: none;
@@ -148,11 +149,7 @@ td {
 
 
 /* DIVS */
-div.layVertical {
-    padding: 0px;
-    margin: 0px;
 
-}
 
 div.layHorizontal {
     background: linear-gradient(#333333,#AAAAAA);
@@ -160,19 +157,6 @@ div.layHorizontal {
     margin: 0px;
     line-height: 1;
 
-}
-
-div.header{
-    color: white;
-    font-weight:bold;
-    top: 0;
-}
-
-div.headeritem > a  {
-    display: inline;
-    color: white;
-    padding: 7px;
-    text-decoration: none;
 }
 
 div.sidebar{
@@ -183,6 +167,31 @@ div.sidebar{
     padding: 20px;
 }
 
+div.layVertical {
+    padding: 0px;
+    margin: 0px;
+
+}
+
+
+div.header{
+    color: white;
+    font-weight:bold;
+    top: 0;
+}
+
+div.headeritem > a  {
+    color: white;
+    padding: 7px;
+    text-decoration: none;
+}
+
+
+div.headeritem > a:hover {
+    color: orangered;
+    background-color: transparent;
+}
+
 div.content {
     padding: 20px;
     overflow-y: auto;
@@ -191,13 +200,6 @@ div.content {
 }
 
 
-body {
-    margin: 0px;
-}
-
-label {
-    font-weight:bold;
-}
 
 
 /* Bootstrap minified CSS included as External Resource*/
@@ -265,8 +267,6 @@ a.Selected{
     color: orange
 }
 
-
-/*Usa el modo developer de firfox capuyo*/
 .nav > li > a:focus, .nav > li > a:hover {
     text-decoration: none;
     background-color: transparent;
