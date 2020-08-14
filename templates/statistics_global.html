@@ -7,11 +7,11 @@
 	<p>{% blocktrans %} Your average book reading time is {{ avg_reading_time_user }} days.{% endblocktrans %}</p>
     <h2>{% trans "Registers" %}</h2>
     
-	<div id="canvas-holder" style="width:60%">
-		<canvas id="chart-area"></canvas>
+	<div class="chart_js" style="width:50%">
+		<canvas id="chart_1"></canvas>
 	</div>
 	<script>
-		var config = {
+		var config_1 = {
 			type: 'pie',
 			data: {
 				datasets: [{
@@ -38,10 +38,43 @@
 			}
 		};
 
-		window.onload = function() {
-			var ctx = document.getElementById('chart-area').getContext('2d');
-			window.myPie = new Chart(ctx, config);
-		};
 </script>
 
+<h2>{% trans "Books read by all users" %}</h2>
+
+<div class="chart_js" style="width: 50%;">
+	<canvas id="chart_2"></canvas>
+</div>
+<script>
+	var barChartData = {
+		labels: {{years_by_year}},
+		datasets: [{
+			label: 'Books finished',
+			backgroundColor: 'rgb(255, 99, 132)',
+			borderColor: 'rgb(255, 99, 132)',
+			borderWidth: 1,
+			data: {{valorations_by_year}}
+		},]
+
+	};
+
+	window.onload = function() {
+		var ctx_1 = document.getElementById('chart_1').getContext('2d');
+		window.myPie = new Chart(ctx_1, config_1);
+
+		var ctx_2 = document.getElementById('chart_2').getContext('2d');
+		window.myBar = new Chart(ctx_2, {
+			type: 'bar',
+			data: barChartData,
+			options: {
+				responsive: true,
+				legend: {
+					position: 'right',
+				},
+			}
+		});
+
+	};
+
+</script>
 {% endblock %}

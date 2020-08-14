@@ -189,8 +189,8 @@ menu.append(Action(_("Add author"), ['books.add_author', ], "author-add"))
 menu.append(Action(_("My valorations"), ['books.search_valoration'], "valoration-list"))
 
 grQuerys=Group(1, _("Queries"), "12")
-grQuerys.append(Action(_("Most valued books"), None, "query_books_valued"))
-grQuerys.append(Action(_("Unfinished books"), None, "unfinished-books"))
+grQuerys.append(Action(_("Most valued books"), ['books.create_valoration', ], "query_books_valued"))
+grQuerys.append(Action(_("Unfinished books"), ['books.create_valoration', ], "unfinished-books"))
 
 
 grStatistics=Group(1, _("Statistics"), "13")

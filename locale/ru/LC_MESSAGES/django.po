@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-13 13:35+0000\n"
+"POT-Creation-Date: 2020-08-14 04:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -121,7 +121,7 @@ msgstr ""
 msgid "User"
 msgstr ""
 
-#: books/views.py:27
+#: books/views.py:25
 msgid "Looking for '{}' in Library database"
 msgstr ""
 
@@ -367,6 +367,10 @@ msgstr ""
 msgid "Registers"
 msgstr ""
 
+#: templates/statistics_global.html:43
+msgid "Books read by all users"
+msgstr ""
+
 #: templates/statistics_user.html:6
 msgid "User statistics"
 msgstr ""
@@ -374,6 +378,10 @@ msgstr ""
 #: templates/statistics_user.html:7
 #, python-format
 msgid " You have made %(valorations_number)s valorations."
+msgstr ""
+
+#: templates/statistics_user.html:10
+msgid "Books read by user"
 msgstr ""
 
 #: templates/unfinished_books.html:8

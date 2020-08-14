@@ -7,8 +7,9 @@
 	<p>{% blocktrans %} You have made {{ valorations_number }} valorations.{% endblocktrans %}</p>
 	<p>{% blocktrans %} Your average book reading time is {{ avg_reading_time_user }} days.{% endblocktrans %}</p>
 
+<h2>{% trans "Books read by user" %}</h2>
 
-<div id="container" style="width: 75%;">
+<div class="chart_js"  style="width: 50%;">
 	<canvas id="chart-area"></canvas>
 </div>
 <script>
@@ -34,10 +35,6 @@
 				legend: {
 					position: 'right',
 				},
-				title: {
-					display: true,
-					text: 'Books read by user'
-				}
 			}
 		});
 

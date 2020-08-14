@@ -1,4 +1,3 @@
-
 from django import forms
 from django.db import connection
 from django.db.models import Q, Avg, F
@@ -12,8 +11,6 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from books.forms import BookAddForm, ValorationAddForm
 from books.models import Author,  Book, Valoration
-
-
 
 def error_403(request, exception):
         data = {}
@@ -39,6 +36,19 @@ def statistics_global(request):
     authors= Author.objects.count()
     valorations= Valoration.objects.count()    
     avg_reading_time_user=Valoration.objects.all().aggregate(average_difference=Avg(F('read_end') - F('read_start')))['average_difference'].days
+    with connection.cursor() as cursor:
+        cursor.execute("""    select 
+                                            date_part('year',read_end), 
+                                            count(id) 
+                                        from 
+                                            valorations  
+                                        where 
+                                            read_end is not null 
+                                        group by 1 
+                                        order by 1;""")
+        years_by_year,  valorations_by_year=zip(*cursor.fetchall())
+        years_by_year=list(years_by_year)
+        valorations_by_year=list(valorations_by_year)
     return render(request,  "statistics_global.html", locals())    
 
 

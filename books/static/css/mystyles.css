@@ -21,6 +21,8 @@ h1 {
 
 
 h2 {
+    padding-top: 20px;
+    padding-bottom: 10px;
     text-align: left;
     font-weight: bold;
     color: #444444;
@@ -433,3 +435,8 @@ a.Selected{
   text-align: center;
 }
 
+/* CHART JS*/
+
+div.chart_js{
+    padding: 10px;
+}
