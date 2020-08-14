@@ -1,5 +1,6 @@
 
 from django import forms
+from django.db import connection
 from django.db.models import Q, Avg, F
 from django.contrib.auth.decorators import login_required, permission_required
 from django.http import HttpResponseRedirect
@@ -29,7 +30,6 @@ def home(request):
         authors=Author.objects.filter(Q(name__icontains=search) | Q(family_name__icontains=search))
         if request.user.has_perm('books.search_valoration'):
             valorations=Valoration.objects.filter(comment__icontains=search)
-    print(locals())
     return render(request, 'home.html', locals())
     
 
@@ -46,6 +46,20 @@ def statistics_global(request):
 def statistics_user(request):
     valorations_number= Valoration.objects.filter(user=request.user).count()
     avg_reading_time_user=Valoration.objects.filter(user=request.user).aggregate(average_difference=Avg(F('read_end') - F('read_start')))['average_difference'].days
+    with connection.cursor() as cursor:
+        cursor.execute("""    select 
+                                            date_part('year',read_end), 
+                                            count(id) 
+                                        from 
+                                            valorations  
+                                        where 
+                                            read_end is not null AND
+                                            user_id= %s
+                                        group by 1 
+                                        order by 1;""", [request.user.id])
+        years_by_year,  valorations_by_year=zip(*cursor.fetchall())
+        years_by_year=list(years_by_year)
+        valorations_by_year=list(valorations_by_year)
     return render(request,  "statistics_user.html", locals())
 
 @login_required
@@ -190,7 +204,6 @@ class ValorationDelete(DeleteView):
 
 
 @login_required
-
 def unfinished_books(request):
     valorations=Valoration.objects.filter(read_end=None, user=request.user)
     return render(request, 'unfinished_books.html', locals())

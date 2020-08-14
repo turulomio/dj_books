@@ -7,6 +7,10 @@ label {
     font-weight:bold;
 }
 
+button {
+    padding: 3px;
+}
+
 h1 {
     padding-top: 40px;
     padding-bottom: 15px;
@@ -256,12 +260,14 @@ div.headeritem > a  {
     color: white;
     padding: 7px;
     text-decoration: none;
+    font-size:110%;
 }
 
 
 div.headeritem > a:hover {
     color: orangered;
     background-color: transparent;
+    font-size:110%;
 }
 
 
