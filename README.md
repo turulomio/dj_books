@@ -12,3 +12,8 @@
 1. `python manage.py migrate`
 1. `python manage.py createsuperuser`
 1. Log into application. Now you can add your Authors, Books and Valorations
+
+## Documentation
+
+Doxygen:
+    http://turulomio.users.sourceforge.net/doxygen/dj_books/
