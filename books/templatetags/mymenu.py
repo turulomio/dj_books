@@ -192,7 +192,6 @@ grQuerys=Group(1, _("Queries"), "12")
 grQuerys.append(Action(_("Most valued books"), ['books.create_valoration', ], "query_books_valued"))
 grQuerys.append(Action(_("Unfinished books"), ['books.create_valoration', ], "unfinished-books"))
 
-
 grStatistics=Group(1, _("Statistics"), "13")
 grStatistics.append(Action(_("Global"),['books.statistics_global',], "statistics-global"))
 grStatistics.append(Action(_("User"),['books.statistics_user',], "statistics-user"))
