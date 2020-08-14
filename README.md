@@ -11,4 +11,4 @@
 1. Create database. For example mylibrary. I tested this app with postgres: "createdb -U postgres mylibrary"
 1. `python manage.py migrate`
 1. `python manage.py createsuperuser`
-1. Log into application
+1. Log into application. Now you can add your Authors, Books and Valorations

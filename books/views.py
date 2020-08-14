@@ -34,42 +34,44 @@ def home(request):
 def statistics_global(request):
     books= Book.objects.count()
     authors= Author.objects.count()
-    valorations= Valoration.objects.count()    
-    avg_reading_time_user=Valoration.objects.all().aggregate(average_difference=Avg(F('read_end') - F('read_start')))['average_difference'].days
-    with connection.cursor() as cursor:
-        cursor.execute("""    select 
-                                            date_part('year',read_end), 
-                                            count(id) 
-                                        from 
-                                            valorations  
-                                        where 
-                                            read_end is not null 
-                                        group by 1 
-                                        order by 1;""")
-        years_by_year,  valorations_by_year=zip(*cursor.fetchall())
-        years_by_year=list(years_by_year)
-        valorations_by_year=list(valorations_by_year)
+    valorations= Valoration.objects.count()   
+    if valorations>0:#To avoid error with empty databases
+        avg_reading_time_user=Valoration.objects.all().aggregate(average_difference=Avg(F('read_end') - F('read_start')))['average_difference'].days
+        with connection.cursor() as cursor:
+            cursor.execute("""    select 
+                                                date_part('year',read_end), 
+                                                count(id) 
+                                            from 
+                                                valorations  
+                                            where 
+                                                read_end is not null 
+                                            group by 1 
+                                            order by 1;""")
+            years_by_year,  valorations_by_year=zip(*cursor.fetchall())
+            years_by_year=list(years_by_year)
+            valorations_by_year=list(valorations_by_year)
     return render(request,  "statistics_global.html", locals())    
 
 
 @permission_required('books.statistics_user')
 def statistics_user(request):
     valorations_number= Valoration.objects.filter(user=request.user).count()
-    avg_reading_time_user=Valoration.objects.filter(user=request.user).aggregate(average_difference=Avg(F('read_end') - F('read_start')))['average_difference'].days
-    with connection.cursor() as cursor:
-        cursor.execute("""    select 
-                                            date_part('year',read_end), 
-                                            count(id) 
-                                        from 
-                                            valorations  
-                                        where 
-                                            read_end is not null AND
-                                            user_id= %s
-                                        group by 1 
-                                        order by 1;""", [request.user.id])
-        years_by_year,  valorations_by_year=zip(*cursor.fetchall())
-        years_by_year=list(years_by_year)
-        valorations_by_year=list(valorations_by_year)
+    if valorations_number>0:#To avoid error with empty databases
+        avg_reading_time_user=Valoration.objects.filter(user=request.user).aggregate(average_difference=Avg(F('read_end') - F('read_start')))['average_difference'].days
+        with connection.cursor() as cursor:
+            cursor.execute("""    select 
+                                                date_part('year',read_end), 
+                                                count(id) 
+                                            from 
+                                                valorations  
+                                            where 
+                                                read_end is not null AND
+                                                user_id= %s
+                                            group by 1 
+                                            order by 1;""", [request.user.id])
+            years_by_year,  valorations_by_year=zip(*cursor.fetchall())
+            years_by_year=list(years_by_year)
+            valorations_by_year=list(valorations_by_year)
     return render(request,  "statistics_user.html", locals())
 
 @login_required

@@ -78,6 +78,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': myconfigparser.get("db", "db", "mylibrary"),
+        #'NAME': 'mylibrary_borrar', #Used to test empty databases
         'USER': myconfigparser.cget("db", "user", "postgres"),
         'PASSWORD': myconfigparser.cget("db", "password", "mypass"),
         'HOST': myconfigparser.get("db", "server", "127.0.0.1"),
