@@ -261,35 +261,36 @@ def input_YN(pregunta, default="Y"):
                 print (_("Please enter '{}' or '{}'".format(ansyes, ansno)))
 
 #################################
+if __name__ == "__main__":
 
-print("Hidden settings are going to be generated in /etc/dj_books/settings.conf")
-config=MyConfigParser("/etc/dj_books/settings.conf")
+    print("Hidden settings are going to be generated in /etc/dj_books/settings.conf")
+    config=MyConfigParser("/etc/dj_books/settings.conf")
 
-ans=input_YN("Do you want to change database settings?")
-if ans is True:
-    ans = input_string("Add your database server", "127.0.0.1")
-    config.set("db", "server", ans)
-    ans = input_string("Add your database port", "5432")
-    config.set("db", "port", ans)
-    ans = input_string("Add your database name", "mylibrary")
-    config.set("db", "db", ans)
-    ans = input_string("Add your database user", "postgres")
-    config.cset("db", "user", ans)
-    ans = input_string("Add your database password", "your_pass")
-    config.cset("db", "password", ans)
+    ans=input_YN("Do you want to change database settings?")
+    if ans is True:
+        ans = input_string("Add you database server", "127.0.0.1")
+        config.set("db", "server", ans)
+        ans = input_string("Add you database port", "5432")
+        config.set("db", "port", ans)
+        ans = input_string("Add your database name", "postgres")
+        config.set("db", "db", ans)
+        ans = input_string("Add you database user", "postgres")
+        config.cset("db", "user", ans)
+        ans = input_string("Add you database password", "your_pass")
+        config.cset("db", "password", ans)
 
-ans=input_YN("Do you want to change smtp mail server settings?")
-if ans is True:
-    ans = input_string("Add you smtp mail server. For example: smtp-mail.outlook.com","your.imapserver.com")
-    config.set("smtp", "server", ans)
-    ans = input_string("Add you smtp mail port", "25")
-    config.set("smtp", "port", ans)
-    ans = input_YN("Does your server use tls?", "Y")
-    config.set("smtp", "tls", ans)
-    ans = input_string("Add you smtp mail user", "your_user")
-    config.cset("smtp", "user", ans)
-    ans = input_string("Add you smtp mail password", "your_pass")
-    config.cset("smtp", "password", ans)
+    ans=input_YN("Do you want to change smtp mail server settings?")
+    if ans is True:
+        ans = input_string("Add you smtp mail server. For example: smtp-mail.outlook.com","your.imapserver.com")
+        config.set("smtp", "server", ans)
+        ans = input_string("Add you smtp mail port", "25")
+        config.set("smtp", "port", ans)
+        ans = input_YN("Does your server use tls?", "Y")
+        config.set("smtp", "tls", ans)
+        ans = input_string("Add you smtp mail user", "your_user")
+        config.cset("smtp", "user", ans)
+        ans = input_string("Add you smtp mail password", "your_pass")
+        config.cset("smtp", "password", ans)
 
 
-config.save()
+    config.save()
