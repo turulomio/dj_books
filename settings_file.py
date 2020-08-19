@@ -272,7 +272,7 @@ if __name__ == "__main__":
         config.set("db", "server", ans)
         ans = input_string("Add you database port", "5432")
         config.set("db", "port", ans)
-        ans = input_string("Add your database name", "postgres")
+        ans = input_string("Add your database name", "mylibrary")
         config.set("db", "db", ans)
         ans = input_string("Add you database user", "postgres")
         config.cset("db", "user", ans)
