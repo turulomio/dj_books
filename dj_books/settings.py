@@ -69,9 +69,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'dj_books.wsgi.application'
 
-from sys import path
-path.append("dj_books/reusing/")
-from myconfigparser import MyConfigParser
+from settings_file import MyConfigParser
 myconfigparser=MyConfigParser("/etc/dj_books/settings.conf")
 ## Database connection definitions
 DATABASES = {
