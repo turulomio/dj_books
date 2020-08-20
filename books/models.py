@@ -11,6 +11,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.db import models
 from django.dispatch import receiver
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _, get_language
 from django.core.validators import MaxValueValidator, MinValueValidator
 
@@ -121,7 +122,7 @@ class Valoration(models.Model):
     user = models.ForeignKey(User, models.DO_NOTHING)
     comment = models.TextField(blank=True, null=True)
     valoration = models.IntegerField(blank=True, null=True, verbose_name="Valoration [0-100]", validators=[MaxValueValidator(100),MinValueValidator(0)])
-    read_start = models.DateField(blank=True, null=True,verbose_name="Date read started")
+    read_start = models.DateField(blank=False, null=False, default=timezone.now, verbose_name="Date read started")
     read_end = models.DateField(blank=True, null=True,verbose_name="Date read ended")
 
     def __str__(self):

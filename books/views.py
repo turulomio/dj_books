@@ -35,7 +35,7 @@ def statistics_global(request):
     books= Book.objects.count()
     authors= Author.objects.count()
     valorations= Valoration.objects.count()   
-    if valorations>0:#To avoid error with empty databases
+    if Valoration.objects.filter(read_end__isnull=False).count()>0:#To avoid error with empty databases
         avg_reading_time_user=Valoration.objects.all().aggregate(average_difference=Avg(F('read_end') - F('read_start')))['average_difference'].days
         with connection.cursor() as cursor:
             cursor.execute("""    select 
@@ -56,7 +56,7 @@ def statistics_global(request):
 @permission_required('books.statistics_user')
 def statistics_user(request):
     valorations_number= Valoration.objects.filter(user=request.user).count()
-    if valorations_number>0:#To avoid error with empty databases
+    if Valoration.objects.filter(read_end__isnull=False, user=request.user).count()>0:#To avoid error with empty databases
         avg_reading_time_user=Valoration.objects.filter(user=request.user).aggregate(average_difference=Avg(F('read_end') - F('read_start')))['average_difference'].days
         with connection.cursor() as cursor:
             cursor.execute("""    select 

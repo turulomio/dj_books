@@ -5,42 +5,45 @@
 {% block content %}
 	<h1>{% trans "User statistics" %}</h1>
 	<p>{% blocktrans %} You have made {{ valorations_number }} valorations.{% endblocktrans %}</p>
-	<p>{% blocktrans %} Your average book reading time is {{ avg_reading_time_user }} days.{% endblocktrans %}</p>
+	{% if avg_reading_time_user %}
+		<p>{% blocktrans %} Your average book reading time is {{ avg_reading_time_user }} days.{% endblocktrans %}</p>
+	{% endif %}
 
-<h2>{% trans "Books read by user" %}</h2>
+{% if valorations_by_year %} <!-- If no end books, it can't show chart -->
+	<h2>{% trans "Books read by user" %}</h2>
 
-<div class="chart_js"  style="width: 50%;">
-	<canvas id="chart-area"></canvas>
-</div>
-<script>
-	var barChartData = {
-		labels: {{years_by_year}},
-		datasets: [{
-			label: 'Books finished',
-			backgroundColor: 'rgb(255, 99, 132)',
-			borderColor: 'rgb(255, 99, 132)',
-			borderWidth: 1,
-			data: {{valorations_by_year}}
-		},]
+	<div class="chart_js"  style="width: 50%;">
+		<canvas id="chart-area"></canvas>
+	</div>
+	<script>
+		var barChartData = {
+			labels: {{years_by_year}},
+			datasets: [{
+				label: 'Books finished',
+				backgroundColor: 'rgb(255, 99, 132)',
+				borderColor: 'rgb(255, 99, 132)',
+				borderWidth: 1,
+				data: {{valorations_by_year}}
+			},]
 
-	};
+		};
 
-	window.onload = function() {
-		var ctx = document.getElementById('chart-area').getContext('2d');
-		window.myBar = new Chart(ctx, {
-			type: 'bar',
-			data: barChartData,
-			options: {
-				responsive: true,
-				legend: {
-					position: 'right',
-				},
-			}
-		});
+		window.onload = function() {
+			var ctx = document.getElementById('chart-area').getContext('2d');
+			window.myBar = new Chart(ctx, {
+				type: 'bar',
+				data: barChartData,
+				options: {
+					responsive: true,
+					legend: {
+						position: 'right',
+					},
+				}
+			});
 
-	};
+		};
 
-</script>
-
+	</script>
+{% endif %}
 
 {% endblock %}
