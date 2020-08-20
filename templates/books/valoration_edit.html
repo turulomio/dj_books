@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block content %}
+{% if object.user == request.user %}
     <h1>{% trans "Add or edit a Valoration" %}</h1>
     <form method="post">
         <table>
@@ -14,5 +15,10 @@
         </table>
     <button type="submit">{% trans "Save" %}</button>
     </form>
-{% include "messages.html" %}
+    {% include "messages.html" %}
+{% else %}
+    <h1>{% trans "Error editing" %}</h1>
+    <p>{% trans "You can't update other users valorations" %}</p>
+{% endif%}
+
 {% endblock %}

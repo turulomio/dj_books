@@ -6,7 +6,9 @@
 <title>My Library > {% trans "Valorations" %} > {% trans "Confirm delete" %}</title>
 {% endblock %}
 
+
 {% block content %}
+{% if object.user == request.user %}
     <h1>{% trans "Confirm delete" %}</h1>
     <form action="" method="post">
     {% csrf_token %}
@@ -14,4 +16,8 @@
     <input type="submit" value="Confirm" />
     </form>
 {% include "messages.html" %}
+{% else %}
+    <h1>{% trans "Error deleting" %}</h1>
+    <p>{% trans "You can't delete other users valorations" %}</p>
+{% endif%}
 {% endblock %}

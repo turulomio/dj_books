@@ -52,7 +52,6 @@ def statistics_global(request):
             valorations_by_year=list(valorations_by_year)
     return render(request,  "statistics_global.html", locals())    
 
-
 @permission_required('books.statistics_user')
 def statistics_user(request):
     valorations_number= Valoration.objects.filter(user=request.user).count()
