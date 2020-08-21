@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-14 04:41+0000\n"
+"POT-Creation-Date: 2020-08-21 08:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,104 +20,104 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: books/models.py:19
+#: books/models.py:20
 msgid "Birth date"
 msgstr ""
 
-#: books/models.py:43
+#: books/models.py:44
 msgid "Name"
 msgstr ""
 
-#: books/models.py:44
+#: books/models.py:45
 msgid "Family name"
 msgstr ""
 
-#: books/models.py:45
+#: books/models.py:46
 msgid "Birth year"
 msgstr ""
 
-#: books/models.py:46
+#: books/models.py:47
 msgid "Death year"
 msgstr ""
 
-#: books/models.py:49
+#: books/models.py:50
 msgid "Man"
 msgstr ""
 
-#: books/models.py:50
+#: books/models.py:51
 msgid "Woman"
 msgstr ""
 
-#: books/models.py:53
+#: books/models.py:54
 msgid "Gender"
 msgstr ""
 
-#: books/models.py:77
+#: books/models.py:78
 msgid "{}-"
 msgstr ""
 
-#: books/models.py:85
+#: books/models.py:86
 msgid "{} years"
 msgstr ""
 
-#: books/models.py:87
+#: books/models.py:88
 msgid "Lived {} years"
 msgstr ""
 
-#: books/models.py:100 templates/objects/book.html:11
+#: books/models.py:101 templates/objects/book.html:11
 msgid "Title"
 msgstr ""
 
-#: books/models.py:101 templates/objects/book.html:12
+#: books/models.py:102 templates/objects/book.html:12
 msgid "Year"
 msgstr ""
 
-#: books/models.py:120 templates/objects/valoration.html:14
+#: books/models.py:121 templates/objects/valoration.html:14
 msgid "Book"
 msgstr ""
 
-#: books/models.py:128
+#: books/models.py:129
 msgid "Valoration of {} ({}) by {}: {}"
 msgstr ""
 
-#: books/templatetags/mymenu.py:184
+#: books/templatetags/mymenu.py:186
 msgid "My Library"
 msgstr ""
 
-#: books/templatetags/mymenu.py:185 templates/home.html:14
+#: books/templatetags/mymenu.py:187 templates/home.html:14
 #: templates/home.html:15
 msgid "Search"
 msgstr ""
 
-#: books/templatetags/mymenu.py:187
+#: books/templatetags/mymenu.py:189
 msgid "Add author"
 msgstr ""
 
-#: books/templatetags/mymenu.py:189
+#: books/templatetags/mymenu.py:191
 msgid "My valorations"
 msgstr ""
 
-#: books/templatetags/mymenu.py:191
+#: books/templatetags/mymenu.py:193
 msgid "Queries"
 msgstr ""
 
-#: books/templatetags/mymenu.py:192
+#: books/templatetags/mymenu.py:194
 msgid "Most valued books"
 msgstr ""
 
-#: books/templatetags/mymenu.py:193 templates/unfinished_books.html:6
+#: books/templatetags/mymenu.py:195 templates/unfinished_books.html:6
 msgid "Unfinished books"
 msgstr ""
 
-#: books/templatetags/mymenu.py:196
+#: books/templatetags/mymenu.py:197
 msgid "Statistics"
 msgstr ""
 
-#: books/templatetags/mymenu.py:197
+#: books/templatetags/mymenu.py:198
 msgid "Global"
 msgstr ""
 
-#: books/templatetags/mymenu.py:198 templates/objects/valoration.html:17
+#: books/templatetags/mymenu.py:199 templates/objects/valoration.html:17
 msgid "User"
 msgstr ""
 
@@ -137,28 +137,24 @@ msgstr ""
 msgid "Required. Inform a valid email address."
 msgstr ""
 
-#: dj_books/reusing/text_inputs.py:81
-msgid "Y"
-msgstr ""
-
-#: dj_books/reusing/text_inputs.py:82
-msgid "N"
-msgstr ""
-
-#: dj_books/reusing/text_inputs.py:95
-msgid "Please enter '{}' or '{}'"
-msgstr ""
-
-#: dj_books/reusing/text_inputs.py:117
-msgid "Press a key to continue..."
-msgstr ""
-
 #: dj_books/views.py:79
 msgid "Your profile was successfully updated!"
 msgstr ""
 
 #: dj_books/views.py:88
 msgid "Your password was successfully updated!"
+msgstr ""
+
+#: settings_file.py:247
+msgid "Y"
+msgstr ""
+
+#: settings_file.py:248
+msgid "N"
+msgstr ""
+
+#: settings_file.py:261
+msgid "Please enter '{}' or '{}'"
 msgstr ""
 
 #: templates/403.html:6 templates/403.html:10
@@ -202,7 +198,7 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
-#: templates/base.html:88 templates/profile.html:6 templates/profile.html:10
+#: templates/base.html:88 templates/profile.html:6
 msgid "Settings"
 msgstr ""
 
@@ -229,13 +225,11 @@ msgstr ""
 #: templates/books/author_confirm_delete.html:10
 #: templates/books/book_confirm_delete.html:6
 #: templates/books/book_confirm_delete.html:10
-#: templates/books/valoration_confirm_delete.html:6
-#: templates/books/valoration_confirm_delete.html:10
+#: templates/books/valoration_confirm_delete.html:7
 msgid "Confirm delete"
 msgstr ""
 
 #: templates/books/author_edit.html:6 templates/books/book_edit.html:6
-#: templates/books/valoration_edit.html:5
 msgid "New"
 msgstr ""
 
@@ -244,30 +238,31 @@ msgid "Add or edit an Author"
 msgstr ""
 
 #: templates/books/author_edit.html:16 templates/books/book_edit.html:16
-#: templates/books/valoration_edit.html:15
+#: templates/books/valoration_add.html:12
+#: templates/books/valoration_edit.html:12
 msgid "Save"
 msgstr ""
 
-#: templates/books/author_read.html:6 templates/books/author_read.html:10
+#: templates/books/author_read.html:6
 msgid "Author details"
 msgstr ""
 
-#: templates/books/author_read.html:14 templates/books/book_read.html:16
-#: templates/books/valoration_read.html:16
+#: templates/books/author_read.html:10 templates/books/book_read.html:16
+#: templates/objects/valoration.html:30
 msgid "Update"
 msgstr ""
 
-#: templates/books/author_read.html:17 templates/books/book_read.html:19
-#: templates/books/valoration_read.html:19
+#: templates/books/author_read.html:13 templates/books/book_read.html:19
+#: templates/objects/valoration.html:31
 msgid "Delete"
 msgstr ""
 
-#: templates/books/author_read.html:20 templates/books/book_edit.html:6
+#: templates/books/author_read.html:16 templates/books/book_edit.html:6
 #: templates/database.html:12 templates/home.html:25
 msgid "Books"
 msgstr ""
 
-#: templates/books/author_read.html:23
+#: templates/books/author_read.html:19
 msgid "Add a book"
 msgstr ""
 
@@ -283,14 +278,36 @@ msgstr ""
 msgid "Add a book valoration"
 msgstr ""
 
-#: templates/books/valoration_confirm_delete.html:6
-#: templates/books/valoration_edit.html:5 templates/database.html:17
-#: templates/home.html:31
-msgid "Valorations"
+#: templates/books/valoration_add.html:6
+msgid "Add a Valoration"
 msgstr ""
 
-#: templates/books/valoration_edit.html:9
-msgid "Add or edit a Valoration"
+#: templates/books/valoration_add.html:16
+msgid "Error ading a new valoration"
+msgstr ""
+
+#: templates/books/valoration_add.html:17
+msgid "You can't add valorations"
+msgstr ""
+
+#: templates/books/valoration_confirm_delete.html:15
+msgid "Error deleting"
+msgstr ""
+
+#: templates/books/valoration_confirm_delete.html:16
+msgid "You can't delete other users valorations"
+msgstr ""
+
+#: templates/books/valoration_edit.html:6
+msgid "Edit a Valoration"
+msgstr ""
+
+#: templates/books/valoration_edit.html:16
+msgid "Error editing"
+msgstr ""
+
+#: templates/books/valoration_edit.html:17
+msgid "You can't update other users valorations"
 msgstr ""
 
 #: templates/books/valoration_read.html:10
@@ -299,6 +316,10 @@ msgstr ""
 
 #: templates/database.html:6
 msgid "Library database"
+msgstr ""
+
+#: templates/database.html:17 templates/home.html:31
+msgid "Valorations"
 msgstr ""
 
 #: templates/home.html:13
@@ -334,23 +355,23 @@ msgstr ""
 msgid "View"
 msgstr ""
 
-#: templates/profile.html:11
+#: templates/profile.html:7
 msgid "User profile"
 msgstr ""
 
-#: templates/profile.html:12
-msgid "Set profile data and select your prefered language:"
+#: templates/profile.html:8
+msgid "Set profile data:"
 msgstr ""
 
-#: templates/profile.html:19
+#: templates/profile.html:15
 msgid "Save profile changes"
 msgstr ""
 
-#: templates/profile.html:26 templates/profile.html:33
+#: templates/profile.html:23 templates/profile.html:30
 msgid "Change password"
 msgstr ""
 
-#: templates/profile.html:27
+#: templates/profile.html:24
 msgid "If you wish you can change your password here:"
 msgstr ""
 
@@ -358,16 +379,16 @@ msgstr ""
 msgid "Global statistics"
 msgstr ""
 
-#: templates/statistics_global.html:7 templates/statistics_user.html:8
+#: templates/statistics_global.html:8 templates/statistics_user.html:9
 #, python-format
 msgid " Your average book reading time is %(avg_reading_time_user)s days."
 msgstr ""
 
-#: templates/statistics_global.html:8
+#: templates/statistics_global.html:12
 msgid "Registers"
 msgstr ""
 
-#: templates/statistics_global.html:43
+#: templates/statistics_global.html:19
 msgid "Books read by all users"
 msgstr ""
 
@@ -380,7 +401,7 @@ msgstr ""
 msgid " You have made %(valorations_number)s valorations."
 msgstr ""
 
-#: templates/statistics_user.html:10
+#: templates/statistics_user.html:13
 msgid "Books read by user"
 msgstr ""
 
