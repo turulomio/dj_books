@@ -2,8 +2,7 @@
 {% load i18n %}
 
 {% block content %}
-{%debug%}
-{% if perms.add_valoration %}
+{% if perms.books.add_valoration %}
     <h1>{% trans "Add a Valoration" %}</h1>
     <form method="post">
         <table>

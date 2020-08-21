@@ -21,7 +21,7 @@
   <h2>Valorations</h2>
   
 {% if perms.books.add_valoration %}
-  <a href="{% url 'valoration-create' book_id=book.id %}">{% trans "Add a book valoration" %}</a>
+  <a href="{% url 'valoration-add' book_id=book.id %}">{% trans "Add a book valoration" %}</a>
 {% endif %}
   <p>
     {% for valoration in valorations %}

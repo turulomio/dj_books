@@ -122,7 +122,7 @@ def valoration_new(request, book_id):
             valoration.read_start=form.cleaned_data['read_start']
             valoration.read_end=form.cleaned_data['read_end']
             valoration.save()
-            return HttpResponseRedirect(reverse_lazy('valoration-add',args=(valoration.id,)))
+            return HttpResponseRedirect(reverse_lazy('valoration-read',args=(valoration.id,)))
     else:
         form = ValorationAddForm()
         form.fields['book'].initial=book
