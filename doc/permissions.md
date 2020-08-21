@@ -18,6 +18,8 @@ To see if a user is staff in a template: `{% if user.is_staff %}`. Function deco
 
 To see if a user has a permission in a template: `{% if perms.catalog.can_mark_returned %}`. Function decorator: `@permission_required('catalog.can_mark_returned')`
 
+To see if a user is anonymous in a template: `user.is_anonymous`
+
 ## Assign permissions to groups in migrations
 
 There are a few ways around it:
