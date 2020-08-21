@@ -13,10 +13,11 @@
         {{ profile_form.as_table }}
         </table>
         <button type="submit" name="button_profile">{% trans "Save profile changes" %}</button>
+
+        {% if user_form.is_valid or profile_form.is_valid %}
+            {% include "messages.html" %}
+        {% endif %}
     </form>
-    {% if user_form.is_valid or profile_form.is_valid %}
-        {% include "messages.html" %}
-    {% endif %}
    
     <p></p>
     <h2>{% trans "Change password" %}</h2>
@@ -27,8 +28,8 @@
         {{ change_password_form.as_p }}
         </table>
         <button type="submit" name="button_password">{% trans "Change password" %}</button>
+        {% if change_password_form.is_valid %}
+            {% include "messages.html" %}
+        {% endif %}
     </form>
-    {% if change_password_form.is_valid %}
-        {% include "messages.html" %}
-    {% endif %}
 {% endblock %}
