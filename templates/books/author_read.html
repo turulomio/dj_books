@@ -2,10 +2,6 @@
 {% extends 'base.html' %}
 {% load i18n %}
 
-{% block head %}
-<title>My Library > {% trans "Author details" %} </title>
-{% endblock %}
-
 {% block content %}
     <h1>{% trans "Author details" %}</h1>
    {% include "objects/author.html" with author=author only %}
@@ -19,7 +15,7 @@
   
   <h2>{% trans "Books" %}</h2>
   <p>
-{% if perms.books.create_book%}
+{% if perms.books.add_book %}
   <a href="{% url 'book-add' author_id=author.id %}">{% trans "Add a book" %}</a>
 {% endif %}
     {% for book in books %}

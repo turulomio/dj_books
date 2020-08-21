@@ -2,11 +2,6 @@
 {% extends 'base.html' %}
 {% load i18n %}
 
-{% block head %}
-<title>My Library > {% trans "Valorations" %} > {% trans "Confirm delete" %}</title>
-{% endblock %}
-
-
 {% block content %}
 {% if object.user == request.user %}
     <h1>{% trans "Confirm delete" %}</h1>

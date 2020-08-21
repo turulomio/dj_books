@@ -2,8 +2,9 @@
 {% load i18n %}
 
 {% block content %}
-{% if object.user == request.user %}
-    <h1>{% trans "Edit a Valoration" %}</h1>
+{%debug%}
+{% if perms.add_valoration %}
+    <h1>{% trans "Add a Valoration" %}</h1>
     <form method="post">
         <table>
         {% csrf_token %}
@@ -13,8 +14,8 @@
     </form>
     {% include "messages.html" %}
 {% else %}
-    <h1>{% trans "Error editing" %}</h1>
-    <p>{% trans "You can't update other users valorations" %}</p>
+    <h1>{% trans "Error ading a new valoration" %}</h1>
+    <p>{% trans "You can't add valorations" %}</p>
 {% endif%}
 
 {% endblock %}

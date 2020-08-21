@@ -148,8 +148,10 @@ class Menu:
     ## @todo Leave selected current action
     def render_pagetitle(self,current_url_name):
         action=self.find_action_by_url(current_url_name)
-        action_name="None" if action is None else action.name
-        return "{} > {}".format(self.appname, action_name)
+        if action is None:
+            return self.appname
+        else:
+            return "{} > {}".format(self.appname, action.name)
 
     def append(self,o):
         self.arr.append(o)

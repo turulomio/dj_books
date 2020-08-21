@@ -122,14 +122,14 @@ def valoration_new(request, book_id):
             valoration.read_start=form.cleaned_data['read_start']
             valoration.read_end=form.cleaned_data['read_end']
             valoration.save()
-            return HttpResponseRedirect(reverse_lazy('valoration-read',args=(valoration.id,)))
+            return HttpResponseRedirect(reverse_lazy('valoration-add',args=(valoration.id,)))
     else:
         form = ValorationAddForm()
         form.fields['book'].initial=book
         form.fields['user'].initial=request.user
         form.fields['read_start'].widget.attrs['class'] ='datepicker'
         form.fields['read_end'].widget.attrs['class'] ='datepicker'
-    return render(request, 'books/valoration_edit.html', {'form': form})
+    return render(request, 'books/valoration_add.html', {'form': form})
 
 @method_decorator(login_required, name='dispatch')
 @method_decorator(permission_required('books.add_author',raise_exception=True), name='dispatch')
