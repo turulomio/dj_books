@@ -9,14 +9,5 @@
 {% block content %}
   <h1>{% trans "Valoration details" %}</h1>
 
-       {% include "objects/valoration.html" with valoration=valoration author=valoration.book.author  book=valoration.book view_link=0 only %}
-  <p>
-
-{% if perms.books.change_valoration  %}
-<a href="{% url 'valoration-update' pk=valoration.id %}">{% trans "Update" %}</a>
-{% endif %}
-{% if perms.books.delete_valoration  %}
-    <a href="{% url 'valoration-delete' pk=valoration.id %}">{% trans "Delete" %}</a>
-{% endif %}
-      
+       {% include "objects/valoration.html" with valoration=valoration show_book=1 %}   
 {% endblock %}

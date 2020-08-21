@@ -24,9 +24,17 @@
         <p class="object"><strong>Valoration [0-100]: </strong>{{ valoration.valoration }}</p>
         <p class="object"><strong>Comment: </strong> {{ valoration.comment }}</p>
     </div>
-    {% if perms.books.view_valoration %}
     <div class="buttons">   
-        <a href="{% url 'valoration-read' pk=valoration.id %}">{% trans "View" %}</a>
+        
+        {% if perms.books.view_valoration %}<a href="{% url 'valoration-read' pk=valoration.id %}">{% trans "View" %}</a>{%endif%}
+        {% if perms.books.change_valoration and valoration.user == request.user %}<a href="{% url 'valoration-update' pk=valoration.id %}">{% trans "Update" %}</a>{% endif %}
+        {% if perms.books.delete_valoration and valoration.user == request.user %}<a href="{% url 'valoration-delete' pk=valoration.id %}">{% trans "Delete" %}</a>{% endif %}
     </div>
-    {%endif%}
+
+
+
+
+
+
+
 </div><!-- End div Book -->

@@ -90,7 +90,7 @@
                     <div class="headeritem"><a href="{% url 'signup' %}">{% trans "Sign up" %}</a></div>
                     <div class="headeritem"><a href="{% url 'login' %}?next={%url 'home' %}">{% trans "Login" %}</a></div>
                 {% endif %}
-                {% if request.user.is_superuser %}
+                {% if request.user.is_staff %}
                     <div class="headeritem"><a href="{% url 'admin:index' %}">{% trans "Administration" %}</a></div>
                 {% endif %}
             </div> {# header #}
