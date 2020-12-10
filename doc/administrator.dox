@@ -81,6 +81,11 @@ import sys
 sys.path.append('/var/www/localhost/htdocs/dj_books/') 
 @endcode
 
+Static files weren't showed, so I had to change in settings 
+@code
+STATIC_URL = '/django-money/static/'
+@endcode
+
 
 Then I restart apache and it works
 @code
