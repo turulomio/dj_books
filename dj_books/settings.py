@@ -16,14 +16,15 @@ from django.urls import reverse_lazy
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 ## SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'dr@0-#9nj4=loa8)j_5(s&m7s=fbmlo=15yeac01q#kiij$cev'
+#SECRET_KEY = 'dr@0-#9nj4=loa8)j_5(s&m7s=fbmlo=15yeac01q#kiij$cev'
+SECRET_KEY = 'CHANGEME-CHANGEME-CHANGEME-CHANGEME-CHANGEME-CHANG'
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 ## @note SECURITY WARNING: don't run with debug turned on in production!
 ## Defines is a Debug environment
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1' ]
-
 
 ## Application definitions
 INSTALLED_APPS = [
@@ -69,27 +70,25 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'dj_books.wsgi.application'
 
-from settings_file import MyConfigParser
-myconfigparser=MyConfigParser("/etc/dj_books/settings.conf")
 ## Database connection definitions
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': myconfigparser.get("db", "db", "mylibrary"),
-        'USER': myconfigparser.cget("db", "user", "postgres"),
-        'PASSWORD': myconfigparser.cget("db", "password", "mypass"),
-        'HOST': myconfigparser.get("db", "server", "127.0.0.1"),
-        'PORT': myconfigparser.getInteger("db", "port", 5432),
+        'NAME':  'mylibrary', 
+        'USER': 'postgres', 
+        'PASSWORD':  'mypassword', 
+        'HOST':  "127.0.0.1", 
+        'PORT': 5432, 
     }
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-EMAIL_HOST = myconfigparser.get("smtp", "server", "127.0.0.1")
-EMAIL_PORT = myconfigparser.getInteger("smtp", "port", 25)
-EMAIL_HOST_USER = myconfigparser.cget("smtp", "user",  "user")
-EMAIL_HOST_PASSWORD =myconfigparser.cget("smtp", "password",  "mypass")
-EMAIL_USE_TLS = myconfigparser.getBoolean("smtp", "tls",  False)
+EMAIL_HOST = "127.0.0.1"
+EMAIL_PORT =  25
+EMAIL_HOST_USER = "user"
+EMAIL_HOST_PASSWORD = "mymailpassword"
+EMAIL_USE_TLS = False
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
 
@@ -154,4 +153,3 @@ SESSION_SAVE_EVERY_REQUEST = True
 
 ## Expires session if browser is closed
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-
