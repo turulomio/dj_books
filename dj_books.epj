@@ -1,0 +1,179 @@
+{
+  "header": {
+    "comment": "eric project file for project dj_books",
+    "copyright": "Copyright (C) 2022 , ",
+    "saved": "2022-01-17, 07:15:05"
+  },
+  "project": {
+    "AUTHOR": "",
+    "CHECKERSPARMS": {},
+    "DESCRIPTION": "",
+    "DOCSTRING": "",
+    "DOCUMENTATIONPARMS": {},
+    "EMAIL": "",
+    "EOL": 0,
+    "FILETYPES": {
+      "*.e4p": "OTHERS",
+      "*.epj": "OTHERS",
+      "*.idl": "INTERFACES",
+      "*.md": "OTHERS",
+      "*.proto": "PROTOCOLS",
+      "*.py": "SOURCES",
+      "*.py3": "SOURCES",
+      "*.pyw": "SOURCES",
+      "*.pyw3": "SOURCES",
+      "*.rst": "OTHERS",
+      "*.txt": "OTHERS",
+      "GNUmakefile": "OTHERS",
+      "Makefile": "OTHERS",
+      "README": "OTHERS",
+      "README.*": "OTHERS",
+      "makefile": "OTHERS"
+    },
+    "FORMS": [],
+    "HASH": "a50b06343534456b2f3a543c3c12ca60b926d5f1",
+    "IDLPARAMS": {
+      "DefinedNames": [],
+      "IncludeDirs": [],
+      "UndefinedNames": []
+    },
+    "INTERFACES": [],
+    "LEXERASSOCS": {},
+    "MAINSCRIPT": "",
+    "MAKEPARAMS": {
+      "MakeEnabled": false,
+      "MakeExecutable": "",
+      "MakeFile": "",
+      "MakeParameters": "",
+      "MakeTarget": "",
+      "MakeTestOnly": true
+    },
+    "MIXEDLANGUAGE": false,
+    "OTHERS": [
+      "dj_books/dj_books.epj",
+      "README.md",
+      "doc/permissions.md",
+      "doc/entity_relationship.md"
+    ],
+    "OTHERTOOLSPARMS": {},
+    "PACKAGERSPARMS": {},
+    "PROGLANGUAGE": "Python3",
+    "PROJECTTYPE": "Console",
+    "PROJECTTYPESPECIFICDATA": {},
+    "PROTOCOLS": [],
+    "RCCPARAMS": {
+      "CompressLevel": 0,
+      "CompressionDisable": false,
+      "CompressionThreshold": 70,
+      "PathPrefix": ""
+    },
+    "RESOURCES": [],
+    "SOURCES": [
+      "books/tests.py",
+      "books/management/commands/permissions.py",
+      "books/management/commands/apache_installation.py",
+      "books/management/commands/doxygen.py",
+      "books/management/commands/dumppostgres.py",
+      "books/management/commands/procedure.py",
+      "books/management/commands/reusing.py",
+      "books/migrations/0007_auto_20180710_0434.py",
+      "books/migrations/0015_mine_20200807_0901_permissions_to_groups.py",
+      "books/migrations/0008_auto_20180722_0944.py",
+      "books/migrations/0012_auto_20200807_0805.py",
+      "books/migrations/0014_mine_20200807_0859_permissions_to_groups.py",
+      "books/migrations/0003_auto_20180604_2014.py",
+      "books/migrations/0004_auto_20180605_1932.py",
+      "books/migrations/0013_auto_20200807_0836.py",
+      "books/migrations/__init__.py",
+      "books/migrations/0009_author_gender.py",
+      "books/migrations/0016_auto_20200809_1013.py",
+      "books/migrations/0001_initial.py",
+      "books/migrations/0010_auto_20200806_0606.py",
+      "books/migrations/0002_auto_20180225_0614.py",
+      "books/migrations/0018_auto_20200820_1804.py",
+      "books/migrations/0011_auto_20200807_0729.py",
+      "books/migrations/0019_mine_20200821_0421_good_permissions.py",
+      "books/migrations/0006_profile_email_confirmed.py",
+      "books/migrations/0017_remove_profile_language.py",
+      "books/admin.py",
+      "books/forms.py",
+      "books/apps.py",
+      "books/models.py",
+      "books/reusing/myconfigparser.py",
+      "books/reusing/datetime_functions.py",
+      "books/reusing/text_inputs.py",
+      "books/reusing/github.py",
+      "books/reusing/currency.py",
+      "books/reusing/casts.py",
+      "books/reusing/percentage.py",
+      "books/templatetags/__init__.py",
+      "books/templatetags/mymenu.py",
+      "books/templatetags/random_numbers.py",
+      "books/__init__.py",
+      "books/views.py",
+      "books/context_processors.py",
+      "manage.py",
+      "dj_books/presettings.py",
+      "dj_books/admin.py",
+      "dj_books/forms.py",
+      "dj_books/settings.py",
+      "dj_books/tokens.py",
+      "dj_books/urls.py",
+      "dj_books/views.py",
+      "dj_books/wsgi.py"
+    ],
+    "SPELLEXCLUDES": "",
+    "SPELLLANGUAGE": "en_US",
+    "SPELLWORDS": "",
+    "TRANSLATIONEXCEPTIONS": [],
+    "TRANSLATIONPATTERN": "",
+    "TRANSLATIONS": [],
+    "TRANSLATIONSBINPATH": "",
+    "UICPARAMS": {
+      "Package": "",
+      "PackagesRoot": "",
+      "RcSuffix": ""
+    },
+    "VCS": "Git",
+    "VCSOPTIONS": {
+      "add": [
+        ""
+      ],
+      "checkout": [
+        ""
+      ],
+      "commit": [
+        ""
+      ],
+      "diff": [
+        ""
+      ],
+      "export": [
+        ""
+      ],
+      "global": [
+        ""
+      ],
+      "history": [
+        ""
+      ],
+      "log": [
+        ""
+      ],
+      "remove": [
+        ""
+      ],
+      "status": [
+        ""
+      ],
+      "tag": [
+        ""
+      ],
+      "update": [
+        ""
+      ]
+    },
+    "VCSOTHERDATA": {},
+    "VERSION": "0.1"
+  }
+}

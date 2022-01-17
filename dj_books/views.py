@@ -8,7 +8,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render,  redirect
 from django.contrib.sites.shortcuts import get_current_site
 
-from django.utils.encoding import force_bytes, force_text
+from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.auth.models import User
 
@@ -49,7 +49,7 @@ def account_activation_sent(request):
     
 def activate(request, uidb64, token):
     try:
-        uid = force_text(urlsafe_base64_decode(uidb64))
+        uid = str(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=uid)
     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None

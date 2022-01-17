@@ -13,3 +13,4 @@ __pycache__/
 *.DS_Store
 *.e4p
 doc/html/
+dj_books/presettings.py
