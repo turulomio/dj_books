@@ -1,16 +1,19 @@
-[tool.poetry]
+[project]
 name = "dj-books"
 version = "0.1.0"
 description = ""
-authors = ["turulomio <turulomio@yahoo.es>"]
+authors = [
+    {name = "turulomio", email = "turulomio@yahoo.es"}
+]
 readme = "README.md"
-
-[tool.poetry.dependencies]
-python = ">=3.11"
-django = ">=5.1"
-psycopg = ">=3.2.1"
-
+requires-python = ">=3.13"
+dependencies = [
+    "django>=6",
+    "psycopg>=3.2.1",
+]
 
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]

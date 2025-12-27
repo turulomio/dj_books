@@ -8,7 +8,7 @@
 
 
 from django import template
-from django.utils.html import format_html
+from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse_lazy
 
@@ -188,7 +188,7 @@ register = template.Library()
 def mymenu(context):
     user=context['user']
     url_name=context['request'].resolver_match.url_name
-    return format_html(context['menu'].render_menu(user,url_name))
+    return mark_safe(context['menu'].render_menu(user,url_name))
 
 @register.simple_tag(takes_context=True)
 def mypagetitle(context):
